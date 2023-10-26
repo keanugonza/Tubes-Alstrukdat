@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "stack.h"
-#include "boolean.h"
+#include "../boolean.h"
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
