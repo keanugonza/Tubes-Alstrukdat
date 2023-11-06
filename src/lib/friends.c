@@ -29,3 +29,7 @@ void removeFriend(Friends*f, int user1, int user2){
     ELMT(*f,user1,user2) = 0;
     ELMT(*f,user2,user1) = 0;
 }
+
+boolean isFriend(Friends f, int user1, int user2){
+    return ELMT(f,user1,user2) == 1;
+}
