@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "perintahADT.C": "cpp",
+        "boolean.h": "c"
+    }
+}
