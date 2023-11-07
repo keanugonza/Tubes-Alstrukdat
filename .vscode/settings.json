@@ -3,6 +3,7 @@
         "perintahADT.C": "cpp",
         "boolean.h": "c",
         "graph.h": "c",
-        "wordmachine.h": "c"
+        "wordmachine.h": "c",
+        "utas.h": "c"
     }
 }

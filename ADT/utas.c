@@ -1,18 +1,15 @@
-#ifndef utas_H
-#define utas_H
+#include <stdio.h>
+#include <stdlib.h>
+#include "utas.h"
 
-#include "ADTDasar/wordmachine.h"
-
-/* Definisi Node : */
-typedef struct node* Address;
-typedef struct node {
-    Word info;
-    Address next;
-} Node;
-
-typedef Address Utas;
-
-void createUtas(Utas *u);
+Address newNode(Word w){
+    Address p = (Address) malloc(sizeof(Node));
+    if(p != NULL){
+        WORD(p) = w;
+        NEXT(p) = NULL;
+    }
+    return p;
+}
 
 void sambungUtas(int idUtas, int idx);
 
@@ -20,4 +17,5 @@ void hapusUtas(int idUtas, int idx);
 
 void cetakUtas(Utas *u);
 
-#endif
+void panjangUtas(Utas u);
+
