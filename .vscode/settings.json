@@ -2,6 +2,7 @@
     "files.associations": {
         "perintahADT.C": "cpp",
         "boolean.h": "c",
-        "graph.h": "c"
+        "graph.h": "c",
+        "wordmachine.h": "c"
     }
 }
