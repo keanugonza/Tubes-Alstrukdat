@@ -24,12 +24,6 @@ typedef struct
 #define MINUTE(D) (D).mm
 #define SECOND(D) (D).ss
 
-/* ***************************************************************** */
-/* DEFINISI PRIMITIF                                                 */
-/* ***************************************************************** */
-/* KELOMPOK VALIDASI TERHADAP TYPE                                   */
-/* ***************************************************************** */
-
 
 /* *** Konstruktor: Membentuk sebuah DATETIME dari komponen-komponennya *** */
 void CreateDATETIME(DATETIME *D, int YY, int MM, int DD, int hh, int mm, int ss){
@@ -43,9 +37,6 @@ void CreateDATETIME(DATETIME *D, int YY, int MM, int DD, int hh, int mm, int ss)
 /* Membentuk sebuah DATETIME dari komponen-komponennya yang valid */
 /* Prekondisi : DD, MM, YY, hh, mm, ss valid untuk membentuk DATETIME */
 
-/* ***************************************************************** */
-/* KELOMPOK BACA/TULIS                                               */
-/* ***************************************************************** */
 void BacaDATETIME(DATETIME *D){
     int YY,MM,DD,hh,mm,ss;
     time_t now = time(NULL);
@@ -81,10 +72,4 @@ void TulisDATETIME(DATETIME D){
 /* F.S. : Nilai D ditulis dg format DD/MM/YYYY HH:MM:SS */
 /* Proses : menulis nilai setiap komponen D ke layar dalam format DD/MM/YYYY HH:MM:SS
    tanpa karakter apa pun di depan atau belakangnya, termasuk spasi, enter, dll.*/
-
-/* ***************************************************************** */
-/* KELOMPOK OPERASI TERHADAP TYPE                                    */
-/* ***************************************************************** */
-/* *** Kelompok operasi relasional terhadap DATETIME *** */
-
 #endif
