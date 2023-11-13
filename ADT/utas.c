@@ -11,11 +11,19 @@ Address newNode(Word w){
     return p;
 }
 
-void sambungUtas(int idUtas, int idx);
-
-void hapusUtas(int idUtas, int idx);
-
-void cetakUtas(Utas *u);
-
-void panjangUtas(Utas u);
+void panjangUtas(Utas u){
+    Address p;
+    int counter;
+    if (isEmpty(u)){
+        return 0;
+    }else{
+        p = FIRST(u);
+        counter = 0;
+        while (NEXT(p) != NULL){
+            counter +=1;
+            p = NEXT(p);
+        }
+        return counter;
+    }
+}
 

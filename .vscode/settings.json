@@ -4,6 +4,7 @@
         "boolean.h": "c",
         "graph.h": "c",
         "wordmachine.h": "c",
-        "utas.h": "c"
+        "utas.h": "c",
+        "listdinofutas.h": "c"
     }
 }
