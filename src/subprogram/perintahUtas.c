@@ -2,10 +2,12 @@
 #include "../../ADT/ListDinOfUtas.h"
 #include <stdio.h>
 
-void sambungUtas(int idUtas, int idx);
 
-void hapusUtas(int idUtas, int idx);
+void UTAS();
 
-void cetakUtas(Utas *u);
+void SAMBUNG_UTAS();
 
-void panjangUtas(Utas u);
+void HAPUS_UTAS();
+
+void CETAK_UTAS();
+

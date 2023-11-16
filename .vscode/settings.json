@@ -5,6 +5,7 @@
         "graph.h": "c",
         "wordmachine.h": "c",
         "utas.h": "c",
-        "listdinofutas.h": "c"
+        "listdinofutas.h": "c",
+        "stdlib.h": "c"
     }
 }
