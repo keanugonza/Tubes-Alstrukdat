@@ -4,11 +4,6 @@
 
 #include "boolean.h"
 #include "kicauan.h"
-/*  Kamus Umum */
-#define IDX_MIN 0
-/* Indeks minimum list */
-#define IDX_UNDEF -1
-/* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
 
@@ -16,17 +11,17 @@ typedef int IdxType;
 typedef Kicauan ELType;
 typedef struct
 {
-    Kicauan *buffer; /* memori tempat penyimpan elemen (container) */
-    int nEff;       /* >=0, banyaknya elemen efektif */
-    int capacity;   /* ukuran elemen */
+    Kicauan *buffer_Kicauan; /* memori tempat penyimpan elemen (container) */
+    int nEff_Kicauan;       /* >=0, banyaknya elemen efektif */
+    int capacity_Kicauan;   /* ukuran elemen */
 } ListDinKicauan;
 
 
 /* ********** SELEKTOR ********** */
-#define NEFF(l) (l).nEff
-#define BUFFER(l) (l).buffer
-#define KICAUAN(l, i) (l).buffer[i]
-#define CAPACITY(l) (l).capacity
+#define NEFF_Kicauan(l) (l).nEff_Kicauan
+#define BUFFER_Kicauan(l) (l).buffer_Kicauan
+#define KICAUAN(l, i) (l).buffer_Kicauan[i]
+#define CAPACITY_Kicauan(l) (l).capacity_Kicauan
 
 /* ********** KONSTRUKTOR ********** */
 
@@ -50,6 +45,8 @@ boolean isEmptyKicauan(ListDinKicauan l);
 /* *** Test list penuh *** */
 boolean isFullKicauan(ListDinKicauan l);
 /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
+void setKicauan(ListDinKicauan *l, Kicauan k, IdxType idx);
+
 void insertKicauan(ListDinKicauan *l, Kicauan val);
 /* Proses: Menambahkan val sebagai elemen terakhir list */
 /* I.S. List l boleh kosong, tetapi tidak penuh */

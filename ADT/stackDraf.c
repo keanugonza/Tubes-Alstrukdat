@@ -1,80 +1,78 @@
-#include "stackDraf.h" 
-#include <stdlib.h>
+#include "stackDraf.h"
 
-void CreateStackDraf(StackDraf *s, int capacity){
-    CAPACITY(*s) = capacity;
-    BUFFER(*s) = (Kicauan *)malloc(capacity * sizeof(Kicauan));
-    addrTOP(*s) = Nil;
-}
-/* I.S. l sembarang, capacity > 0 */
-/* F.S. Terbentuk list dinamis l kosong dengan kapasitas capacity */
+/* Prototype manajemen memori */
+AddressDraf newNodeDraf(Kicauan k){
+    AddressDraf p;
+    p = (AddressDraf) malloc(sizeof(Node));
 
-void dealocateStackDraf(StackDraf *s){
-    addrTOP(*s) = 0;
-    CAPACITY(*s) = 0;
-    free(BUFFER(*s));
-}
-/* I.S. l terdefinisi; */
-/* F.S. (l) dikembalikan ke system, CAPACITY(l)=0; NEFF(l)=0 */
-
-/* ********** SELEKTOR (TAMBAHAN) ********** */
-/* *** Banyaknya elemen *** */
-int stackLengthDraf(StackDraf s){
-    return addrTOP(s) + 1;
-}
-/* Mengirimkan banyaknya elemen efektif list */
-/* Mengirimkan nol jika list l kosong */
-/* *** Daya tampung container *** */
-
-boolean isEmptyDraf(StackDraf s){
-    return(stackLengthDraf(s) == 0);
-}
-/* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
-/* *** Test list penuh *** */
-boolean isFullDraf(StackDraf s){
-    return(stackLengthDraf(s) == CAPACITY(s));
-}
-/* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
-void pushDraf(StackDraf *s, Kicauan val){
-    KICAUAN(*s,addrTOP(*s)+1) = val;
-    addrTOP(*s) += 1;
-}
-/* Proses: Menambahkan val sebagai elemen terakhir list */
-/* I.S. List l boleh kosong, tetapi tidak penuh */
-/* F.S. val adalah elemen terakhir l yang baru */
-/* ********** MENGHAPUS ELEMEN ********** */
-void popDraf(StackDraf *s, Kicauan *val){
-    *val = KICAUAN(*s,addrTOP(*s));
-    addrTOP(*s) -= 1;
-}
-/* Proses : Menghapus elemen terakhir list */
-/* I.S. List tidak kosong */
-/* F.S. val adalah nilai elemen terakhir l sebelum penghapusan, */
-/*      Banyaknya elemen list berkurang satu */
-/*      List l mungkin menjadi kosong */
-void copyStackDraf(StackDraf sIn, StackDraf *sOut){
-    /* I.S. lIn terdefinisi tidak kosong, lOut sembarang */
-    /* F.S. lOut berisi salinan dari lIn (identik, nEff dan capacity sama) */
-    /* Proses : Menyalin isi lIn ke lOut */
-    int i;
-    CreateStackDraf(sOut, CAPACITY(sIn));
-    addrTOP(*sOut) = addrTOP(sIn);
-    for(i = 0; i <= addrTOP(sIn); i++){
-       KICAUAN(*sOut,i) = KICAUAN(sIn,i);
-    }   
-}
-/* ********* MENGUBAH UKURAN ARRAY ********* */
-void expandStackDraf(StackDraf *s, int num){
-    StackDraf stemp;
-    int i;
-    CreateStackDraf(&stemp, CAPACITY(*s) + num);
-    for(i = 0; i <= addrTOP(*s); i++){
-       KICAUAN(stemp,i) = KICAUAN(*s,i);
+    if(p != NIL){
+        INFO_Draf(p)  = k;
+        NEXT_Draf(p) = NIL;
     }
-    addrTOP(stemp) = addrTOP(*s);
-    dealocateStackDraf(s);
-    copyStackDraf(stemp,s);
+    return p;
 }
-/* Proses : Menambahkan capacity l sebanyak num */
-/* I.S. List sudah terdefinisi */
-/* F.S. Ukuran list bertambah sebanyak num */
+/* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x, 
+   atau 
+   NULL jika alokasi gagal */   
+
+/* ********* PROTOTYPE REPRESENTASI LOJIK STACK ***************/
+boolean isEmptyDraf(StackDraf s){
+    return (ADDR_TOP_Draf(s) == NIL);
+}
+/* Mengirim true jika Stack kosong: TOP(s) = NIL */
+
+int lengthDraf(StackDraf s){
+    AddressDraf p;
+    int i = 0;
+    if(!isEmptyDraf(s)){
+        p = ADDR_TOP_Draf(s);
+
+        while(p != NIL){
+            i++;
+            p = NEXT_Draf(p);
+        }
+    }
+
+    return i;
+}
+/* Mengirimkan banyaknya elemen stack. Mengirimkan 0 jika Stack s kosong */
+
+void CreateStackDraf(StackDraf *s){
+    ADDR_TOP_Draf(*s) = NIL;
+}
+/* I.S. sembarang */ 
+/* F.S. Membuat sebuah stack s yang kosong */
+
+void pushDraf(StackDraf *s, Kicauan k){
+    AddressDraf p = newNodeDraf(k);
+
+    if(p!=NIL){
+        NEXT_Draf(p) = ADDR_TOP_Draf(*s);
+        ADDR_TOP_Draf(*s) = p;
+    }
+}
+/* Menambahkan x sebagai elemen Stack s */
+/* I.S. s mungkin kosong, x terdefinisi */
+/* F.S. x menjadi Top yang baru jika alokasi x berhasil, */
+/*      jika tidak, s tetap */
+/* Pada dasarnya adalah operasi insertFirst pada list linier */
+
+void popDraf(StackDraf *s, Kicauan *k){
+    AddressDraf p;
+
+    *k = TOP_Draf(*s);
+    p = ADDR_TOP_Draf(*s);
+
+    if(lengthDraf(*s) == 1){
+        ADDR_TOP_Draf(*s) = NIL;
+    } else{
+        ADDR_TOP_Draf(*s) = NEXT_Draf(p);
+    }
+
+    free(p);
+}
+/* Menghapus Top dari Stack s */
+/* I.S. s tidak kosong */
+/* F.S. x adalah nilai elemen Top yang lama, */
+/*      elemen Top yang lama didealokasi */
+/* Pada dasarnya adalah operasi deleteFirst pada list linier */

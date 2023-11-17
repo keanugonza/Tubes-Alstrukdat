@@ -2,17 +2,17 @@
 #include <stdlib.h>
 
 void CreateListDinKicauan(ListDinKicauan *l, int capacity){
-    CAPACITY(*l) = capacity;
-    BUFFER(*l) = (Kicauan *)malloc(capacity * sizeof(Kicauan));
-    NEFF(*l) = 0;
+    CAPACITY_Kicauan(*l) = capacity;
+    BUFFER_Kicauan(*l) = (Kicauan *)malloc(capacity * sizeof(Kicauan));
+    NEFF_Kicauan(*l) = 0;
 }
 /* I.S. l sembarang, capacity > 0 */
 /* F.S. Terbentuk list dinamis l kosong dengan kapasitas capacity */
 
 void dealocateListKicauan(ListDinKicauan *l){
-    NEFF(*l) = 0;
-    CAPACITY(*l) = 0;
-    free(BUFFER(*l));
+    NEFF_Kicauan(*l) = 0;
+    CAPACITY_Kicauan(*l) = 0;
+    free(BUFFER_Kicauan(*l));
 }
 /* I.S. l terdefinisi; */
 /* F.S. (l) dikembalikan ke system, CAPACITY(l)=0; NEFF(l)=0 */
@@ -20,7 +20,7 @@ void dealocateListKicauan(ListDinKicauan *l){
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
 int listLengthKicauan(ListDinKicauan l){
-    return NEFF(l);
+    return NEFF_Kicauan(l);
 }
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list l kosong */
@@ -32,12 +32,19 @@ boolean isEmptyKicauan(ListDinKicauan l){
 /* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
 /* *** Test list penuh *** */
 boolean isFullKicauan(ListDinKicauan l){
-    return(listLengthKicauan(l) == CAPACITY(l));
+    return(listLengthKicauan(l) == CAPACITY_Kicauan(l));
 }
 /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
-void insertKicauan(ListDinKicauan *l, Kicauan val){
-    KICAUAN(*l,NEFF(*l)) = val;
-    NEFF(*l) += 1;
+void insertKicauan(ListDinKicauan *l, Kicauan k){
+    KICAUAN(*l,NEFF_Kicauan(*l)) = k;
+    NEFF_Kicauan(*l) += 1;
+    if(isFullKicauan){
+        expandListKicauan(l,CAPACITY_Kicauan(*l));
+    }
+}
+
+void setKicauan(ListDinKicauan *l, Kicauan k, IdxType idx){
+    l->buffer_Kicauan[idx] = k;
 }
 /* Proses: Menambahkan val sebagai elemen terakhir list */
 /* I.S. List l boleh kosong, tetapi tidak penuh */
@@ -46,9 +53,9 @@ void insertKicauan(ListDinKicauan *l, Kicauan val){
 
 void copyListKicauan(ListDinKicauan lIn, ListDinKicauan *lOut){
     int i;
-    CreateListDinKicauan(lOut, CAPACITY(lIn));
-    NEFF(*lOut) = NEFF(lIn);
-    for(i = 0; i < NEFF(lIn); i++){
+    CreateListDinKicauan(lOut, CAPACITY_Kicauan(lIn));
+    NEFF_Kicauan(*lOut) = NEFF_Kicauan(lIn);
+    for(i = 0; i < NEFF_Kicauan(lIn); i++){
        KICAUAN(*lOut,i) = KICAUAN(lIn,i);
     } 
 }
@@ -57,11 +64,11 @@ void copyListKicauan(ListDinKicauan lIn, ListDinKicauan *lOut){
 void expandListKicauan(ListDinKicauan *l, int num){
     ListDinKicauan ltemp;
     int i;
-    CreateListDinKicauan(&ltemp, CAPACITY(*l) + num);
-    for(i = 0; i < NEFF(*l); i++){
+    CreateListDinKicauan(&ltemp, CAPACITY_Kicauan(*l) + num);
+    for(i = 0; i < NEFF_Kicauan(*l); i++){
        KICAUAN(ltemp,i) = KICAUAN(*l,i);
     }
-    NEFF(ltemp) = NEFF(*l);
+    NEFF_Kicauan(ltemp) = NEFF_Kicauan(*l);
     dealocateListKicauan(l);
     copyListKicauan(ltemp,l);
 }
