@@ -34,6 +34,6 @@ void ADV_Char()
        EOP = (currentChar == MARKNL || currentChar == MARKSC);
        if (EOP)
        {
-              fclose(pita);
+              //fclose(pita);
        }
 }

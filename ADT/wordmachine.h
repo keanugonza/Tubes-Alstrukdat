@@ -57,5 +57,9 @@ void CopyWord_takeBlank();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
+void displayWord(Word w);
+
+boolean isWordEqual(Word w1, Word w2);
+
 
 #endif
