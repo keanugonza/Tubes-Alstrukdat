@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "boolean.h"
-#include "ADTDasar\datetime.h"
+#include "datetime.h"
 #include "wordmachine.h"
 
 
@@ -21,23 +21,21 @@ typedef struct
 
 
 /* ********** SELEKTOR ********** */
-#define ID(K) (K).id
-#define TEXT(K) (K).text
-#define LIKE(K) (K).like
-#define AUTHOR(K) (K).author
-#define DATETIME(K) (K).T
-#define PRIVAT(K) (K).Privat
+#define ID_KICAUAN(K) (K).id
+#define TEXT_KICAUAN(K) (K).text
+#define LIKE_KICAUAN(K) (K).like
+#define AUTHOR_KICAUAN(K) (K).author
+#define DATETIME_KICAUAN(K) (K).T
+#define PRIVAT_KICAUAN(K) (K).Privat
 
 /* ********** KONSTRUKTOR ********** */
 
-void createKicauan(Kicauan *K, int id, Word text, int like, Word author, DATETIME T, boolean Privat);
+void createKicauan(Kicauan *K, int id, Word text, int like, Word author, boolean Privat);
 
 void printKicauan(Kicauan *K);
 
 void tambahLike(Kicauan *K, int like);
 
-void ubahKicauan(Kicauan *K, Word text);
-
-
+void ubahTeksKicauan(Kicauan *K);
 
 #endif

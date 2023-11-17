@@ -1,71 +1,59 @@
-
 #ifndef STACKDRAF_H
 #define STACKDRAF_H
 
 #include "boolean.h"
 #include "kicauan.h"
+#include <stdlib.h>
 
-/*  Kamus Umum */
-#define Nil -1
+#define NIL NULL
+/* Deklarasi infotype */
+/* Stack dengan representasi berkait dengan pointer */
+typedef struct node* AddressDraf;
+typedef struct node { 
+    Kicauan k;
+    AddressDraf nextDraf; 
+} Node; 
 
-
-typedef int IdxType;
-typedef int address;
-typedef Kicauan ELType;
-typedef struct
-{
-    Kicauan *buffer; /* memori tempat penyimpan Kicauan (container) */
-    int capacity;\
-    address TOP;   /* alamat TOP */
+/* Type stack dengan ciri Top: */
+typedef struct { 
+    AddressDraf addrTopDraf; /* alamat Top: elemen puncak */
 } StackDraf;
 
+/* Selektor */
+#define     NEXT_Draf(p) (p)->nextDraf
+#define     INFO_Draf(p) (p)->k
+#define ADDR_TOP_Draf(s) (s).addrTopDraf
+#define      TOP_Draf(s) (s).addrTopDraf->k 
 
-/* ********** SELEKTOR ********** */
-#define addrTOP(s) (s).TOP
-#define BUFFER(s) (s).buffer
-#define KICAUAN(s, i) (s).buffer[i]
-#define CAPACITY(s) (s).capacity
+/* Prototype manajemen memori */
+AddressDraf newNodeDraf(Kicauan k);
+/* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x, 
+   atau 
+   NULL jika alokasi gagal */   
 
-/* ********** KONSTRUKTOR ********** */
+/* ********* PROTOTYPE REPRESENTASI LOJIK STACK ***************/
+boolean isEmptyDraf(StackDraf s);
+/* Mengirim true jika Stack kosong: TOP(s) = NIL */
 
-void CreateStackDraf(StackDraf *s, int capacity);
-/* I.S. s sembarang, capacity > 0 */
-/* F.S. Terbentuk Stack dinamis s kosong dengan kapasitas capacity */
+int lengthDraf(StackDraf s);
+/* Mengirimkan banyaknya elemen stack. Mengirimkan 0 jika Stack s kosong */
 
-void dealocateStackDraf(StackDraf *l);
-/* I.S. s terdefinisi; */
-/* F.S. (s) dikembalikan ke system, CAPACITY(s)=0; addrTOP(s)=Nil */
+void CreateStackDraf(StackDraf *s);
+/* I.S. sembarang */ 
+/* F.S. Membuat sebuah stack s yang kosong */
 
-/* ********** SELEKTOR (TAMBAHAN) ********** */
-/* *** Banyaknya elemen *** */
-int stackLengthDraf(StackDraf l);
-/* Mengirimkan banyaknya elemen efektif Stack */
-/* Mengirimkan nol jika Stack s kosong */
-/* *** Daya tampung container *** */
+void pushDraf(StackDraf *s, Kicauan k);
+/* Menambahkan x sebagai elemen Stack s */
+/* I.S. s mungkin kosong, x terdefinisi */
+/* F.S. x menjadi Top yang baru jika alokasi x berhasil, */
+/*      jika tidak, s tetap */
+/* Pada dasarnya adalah operasi insertFirst pada list linier */
 
-boolean isEmptyDraf(StackDraf l);
-/* Mengirimkan true jika Stack s kosong, mengirimkan false jika tidak */
-boolean isFullDraf(StackDraf l);
-/* Mengirimkan true jika Stack s penuh, mengirimkan false jika tidak */
-void pushDraf(StackDraf *l, Kicauan val);
-/* Proses: Menambahkan val sebagai elemen terakhir Stack */
-/* I.S. Stack s boleh kosong, tetapi tidak penuh */
-/* F.S. val adalah elemen terakhir s yang baru */
-void popDraf(StackDraf *l, Kicauan *val);
-/* Proses : Menghapus elemen terakhir Stack */
-/* I.S. Stack tidak kosong */
-/* F.S. val adalah nilai elemen terakhir s sebelum penghapusan, */
-/*      Banyaknya elemen Stack berkurang satu */
-/*      Stack s mungkin menjadi kosong */
-void copyStackDraf(StackDraf sIn, StackDraf *sOut);
-    /* I.S. sIn terdefinisi tidak kosong, sOut sembarang */
-    /* F.S. sOut berisi salinan dari sIn (identik, nEff dan capacity sama) */
-    /* Proses : Menyalin isi sIn ke sOut */
-
-/* ********* MENGUBAH UKURAN ARRAY ********* */
-void expandStackDraf(StackDraf *l, int num);
-/* Proses : Menambahkan capacity s sebanyak num */
-/* I.S. Stack sudah terdefinisi */
-/* F.S. Ukuran Stack bertambah sebanyak num */
+void popDraf(StackDraf *s, Kicauan *k);
+/* Menghapus Top dari Stack s */
+/* I.S. s tidak kosong */
+/* F.S. x adalah nilai elemen Top yang lama, */
+/*      elemen Top yang lama didealokasi */
+/* Pada dasarnya adalah operasi deleteFirst pada list linier */
 
 #endif
