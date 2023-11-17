@@ -50,32 +50,16 @@ boolean isEmptyKicauan(ListDinKicauan l);
 /* *** Test list penuh *** */
 boolean isFullKicauan(ListDinKicauan l);
 /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
-void insertLastKicauan(ListDinKicauan *l, Kicauan val);
+void insertKicauan(ListDinKicauan *l, Kicauan val);
 /* Proses: Menambahkan val sebagai elemen terakhir list */
 /* I.S. List l boleh kosong, tetapi tidak penuh */
 /* F.S. val adalah elemen terakhir l yang baru */
 /* ********** MENGHAPUS ELEMEN ********** */
-void deleteLastKicauan(ListDinKicauan *l, Kicauan *val);
-/* Proses : Menghapus elemen terakhir list */
-/* I.S. List tidak kosong */
-/* F.S. val adalah nilai elemen terakhir l sebelum penghapusan, */
-/*      Banyaknya elemen list berkurang satu */
-/*      List l mungkin menjadi kosong */
-
+void copyListKicauan(ListDinKicauan lIn, ListDinKicauan *lOut);
 /* ********* MENGUBAH UKURAN ARRAY ********* */
 void expandListKicauan(ListDinKicauan *l, int num);
 /* Proses : Menambahkan capacity l sebanyak num */
 /* I.S. List sudah terdefinisi */
 /* F.S. Ukuran list bertambah sebanyak num */
-
-void shrinkListKicauan(ListDinKicauan *l, int num);
-/* Proses : Mengurangi capacity sebanyak num */
-/* I.S. List sudah terdefinisi, ukuran capacity > num, dan nEff < capacity - num. */
-/* F.S. Ukuran list berkurang sebanyak num. */
-
-void compressListKicauan(ListDinKicauan *l);
-/* Proses : Mengubah capacity sehingga capacity = nEff */
-/* I.S. List tidak kosong */
-/* F.S. Ukuran capacity = nEff */
 
 #endif

@@ -1,4 +1,5 @@
 #include "listdinKicauan.h"
+#include <stdlib.h>
 
 void CreateListDinKicauan(ListDinKicauan *l, int capacity){
     CAPACITY(*l) = capacity;
@@ -26,15 +27,15 @@ int listLengthKicauan(ListDinKicauan l){
 /* *** Daya tampung container *** */
 
 boolean isEmptyKicauan(ListDinKicauan l){
-    return(listLength(l) == 0);
+    return(listLengthKicauan(l) == 0);
 }
 /* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
 /* *** Test list penuh *** */
 boolean isFullKicauan(ListDinKicauan l){
-    return(listLength(l) == CAPACITY(l));
+    return(listLengthKicauan(l) == CAPACITY(l));
 }
 /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
-void insertLastKicauan(ListDinKicauan *l, Kicauan val){
+void insertKicauan(ListDinKicauan *l, Kicauan val){
     KICAUAN(*l,NEFF(*l)) = val;
     NEFF(*l) += 1;
 }
@@ -42,26 +43,16 @@ void insertLastKicauan(ListDinKicauan *l, Kicauan val){
 /* I.S. List l boleh kosong, tetapi tidak penuh */
 /* F.S. val adalah elemen terakhir l yang baru */
 /* ********** MENGHAPUS ELEMEN ********** */
-void deleteLastKicauan(ListDinKicauan *l, Kicauan *val){
-    *val = KICAUAN(*l,NEFF(*l)-1);
-    NEFF(*l) -= 1;
-}
-/* Proses : Menghapus elemen terakhir list */
-/* I.S. List tidak kosong */
-/* F.S. val adalah nilai elemen terakhir l sebelum penghapusan, */
-/*      Banyaknya elemen list berkurang satu */
-/*      List l mungkin menjadi kosong */
-void copyListKicuan(ListDinKicauan lIn, ListDinKicauan *lOut){
-    /* I.S. lIn terdefinisi tidak kosong, lOut sembarang */
-    /* F.S. lOut berisi salinan dari lIn (identik, nEff dan capacity sama) */
-    /* Proses : Menyalin isi lIn ke lOut */
+
+void copyListKicauan(ListDinKicauan lIn, ListDinKicauan *lOut){
     int i;
     CreateListDinKicauan(lOut, CAPACITY(lIn));
     NEFF(*lOut) = NEFF(lIn);
     for(i = 0; i < NEFF(lIn); i++){
        KICAUAN(*lOut,i) = KICAUAN(lIn,i);
-    }   
+    } 
 }
+
 /* ********* MENGUBAH UKURAN ARRAY ********* */
 void expandListKicauan(ListDinKicauan *l, int num){
     ListDinKicauan ltemp;
@@ -78,32 +69,3 @@ void expandListKicauan(ListDinKicauan *l, int num){
 /* I.S. List sudah terdefinisi */
 /* F.S. Ukuran list bertambah sebanyak num */
 
-void shrinkListKicauan(ListDinKicauan *l, int num){
-    ListDinKicauan ltemp;
-    int i;
-    CreateListDin(&ltemp, CAPACITY(*l) - num);
-    for(i = 0; i < NEFF(*l); i++){
-       KICAUAN(ltemp,i) = KICAUAN(*l,i);
-    }
-    NEFF(ltemp) = NEFF(*l);
-    dealocateListKicauan(l);
-    copyListKicuan(ltemp,l);
-}
-/* Proses : Mengurangi capacity sebanyak num */
-/* I.S. List sudah terdefinisi, ukuran capacity > num, dan nEff < capacity - num. */
-/* F.S. Ukuran list berkurang sebanyak num. */
-
-void compressListKicauan(ListDinKicauan *l){
-    ListDinKicauan ltemp;
-    int i;
-    CreateListDin(&ltemp, NEFF(*l));
-    for(i = 0; i < NEFF(*l); i++){
-       KICAUAN(ltemp,i) = KICAUAN(*l,i);
-    }
-    NEFF(ltemp) = NEFF(*l);
-    dealocateListKicauan(l);
-    copyListKicuan(ltemp,l);
-}
-/* Proses : Mengubah capacity sehingga capacity = nEff */
-/* I.S. List tidak kosong */
-/* F.S. Ukuran capacity = nEff */
