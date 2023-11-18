@@ -44,7 +44,7 @@ void insertKicauan(ListDinKicauan *l, Kicauan k){
 }
 
 void setKicauan(ListDinKicauan *l, Kicauan k, IdxType idx){
-    l->buffer_Kicauan[idx] = k;
+    KICAUAN(*l,idx) = k;
 }
 /* Proses: Menambahkan val sebagai elemen terakhir list */
 /* I.S. List l boleh kosong, tetapi tidak penuh */

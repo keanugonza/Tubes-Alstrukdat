@@ -21,22 +21,22 @@ int main(){
 
     createKicauan(&K, 1,text,12,author,true);
     insertKicauan(&l, K);
-    printKicauan(&K);
+    printKicauan(K);
     
     createKicauan(&K, 2,text,12482934,author,true);
     insertKicauan(&l, K);
-    printKicauan(&K);
+    printKicauan(K);
 
 
     printf("\n\n -------------CEK ISI LIST-----------\n");
     K = l.buffer_Kicauan[0];
-    printKicauan(&K);
+    printKicauan(K);
     K = l.buffer_Kicauan[1];
-    printKicauan(&K);
+    printKicauan(K);
 
 
     createKicauan(&K, 3,text,111,author,true);
-    printKicauan(&K);
+    printKicauan(K);
     insertKicauan(&l, K);
 
     if (isFullKicauan(l)){
@@ -56,7 +56,7 @@ int main(){
     tambahLike(&k, 10);
     setKicauan(&l,k,id-1);
     K = KICAUAN(l,id-1);
-    printKicauan(&K);
+    printKicauan(K);
 
     printf("\n\n -------------UBAH TEXT-----------\n");
     printf("UBAH TEKS ID 1\n");
@@ -64,7 +64,7 @@ int main(){
     ubahTeksKicauan(&k);
     setKicauan(&l,k,id-1);
     K = KICAUAN(l,id-1);
-    printKicauan(&K);
+    printKicauan(K);
 }
 
-//gcc -o driverKicauan .\datetime.c .\kicauan.c .\listdinKicauan.c .\driverKicauan.c .\wordmachine.c .\charmachine.c
+//

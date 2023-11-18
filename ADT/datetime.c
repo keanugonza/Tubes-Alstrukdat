@@ -1,25 +1,9 @@
 #include <stdio.h>
 #include "time.h"
+#include "datetime.h"
 
 
-/* *** Definisi TYPE DATETIME <DD/MM/YY HH:MM:SS> *** */
-typedef struct
-{
-    int YY;   /* integer tahun*/
-    int MM;     /* integer bulan*/
-    int DD;     /* integer hari*/
-    int hh;     /* integer jam*/
-    int mm;     /* integer menit*/
-    int ss;     /* integer detik*/
-} DATETIME;
-
-/* *** Notasi Akses: selektor DATETIME *** */
-#define YEAR(D) (D).YY
-#define MONTH(D) (D).MM
-#define DAY(D) (D).DD
-#define HOUR(D) (D).hh
-#define MINUTE(D) (D).mm
-#define SECOND(D) (D).ss
+/* *** Konstruktor: Membentuk sebuah DATETIME dari komponen-komponennya *** */
 
 
 /* *** Konstruktor: Membentuk sebuah DATETIME dari komponen-komponennya *** */
