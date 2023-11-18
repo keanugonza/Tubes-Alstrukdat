@@ -13,6 +13,8 @@
 #include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\datetime.c"
 
 
+
+
 boolean EndWord;
 Word currentWord;
 
@@ -37,7 +39,7 @@ void KICAU(ListDinKicauan *l, boolean privat, Word author){
         printf("\n");
         printf("Selamat! kicauan telah diterbitkan!\n");
         printf("Detil kicauan:\n");
-        printKicauan(k);
+        displayKicauan(k);
     // }
 }
 
@@ -46,7 +48,7 @@ void allKICAUAN(ListDinKicauan *l, Word author){
         Kicauan k = KICAUAN(*l,i);
         Word pemilikKicauan = AUTHOR_KICAUAN(k);
         if((isWordEqual(author, pemilikKicauan)) || isTeman(author,pemilikKicauan)){
-            printKicauan(k);
+            displayKicauan(k);
         }
         printf("\n");
     }
@@ -65,7 +67,7 @@ void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Word author){
             setKicauan(l, k, idx);
             printf("Selamat! kicauan telah disukai!\n");
             printf("Detil kicauan:\n");
-            printKicauan(k);
+            displayKicauan(k);
         } else{
             Word authorLIKE = AUTHOR_KICAUAN(k);
             if(isWordEqual(author, authorLIKE) || isTeman(author,authorLIKE)){
@@ -73,7 +75,7 @@ void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Word author){
                 setKicauan(l, k, idKICAU-1);
                 printf("Selamat! kicauan telah disukai!\n");
                 printf("Detil kicauan:\n");
-                printKicauan(k);
+                displayKicauan(k);
             } else{
                 printf("Wah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya\n");
             }
@@ -95,7 +97,7 @@ void UBAH_KICAUAN(ListDinKicauan *l, int idKICAU, Word author){
             setKicauan(l, k, idx);
             printf("Selamat! kicauan telah diterbitkan!\n");
             printf("Detil kicauan:\n");
-            printKicauan(k);
+            displayKicauan(k);
 
         } else{
             printf("Kicauan dengan ID = %d bukan milikmu!\n", idKICAU);

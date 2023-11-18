@@ -17,7 +17,7 @@ void createKicauan(Kicauan *K, int id, Word text, int like, Word author, boolean
 }
 
 
-void printKicauan(Kicauan K){
+void displayKicauan(Kicauan K){
     // printf("Selamat! kicauan telah diterbitkan!\n");
     // printf("Detil kicauan:\n");
     printf("| ID = %d\n", ID_KICAUAN(K));

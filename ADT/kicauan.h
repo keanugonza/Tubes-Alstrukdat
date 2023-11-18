@@ -32,7 +32,7 @@ typedef struct
 
 void createKicauan(Kicauan *K, int id, Word text, int like, Word author, boolean Privat);
 
-void printKicauan(Kicauan K);
+void displayKicauan(Kicauan K);
 
 void tambahLike(Kicauan *K, int like);
 
