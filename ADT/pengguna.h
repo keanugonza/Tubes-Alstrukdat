@@ -14,7 +14,7 @@ typedef struct
     Word nama;              /* Nama Pengguna */
     Word kata_sandi;        /* Kata Sandi Pengguna */
     Word bio;               /* Bio Pengguna */
-    int noHP;               /* Nomor HP Pengguna */
+    Word noHP;               /* Nomor HP Pengguna */
     Word weton;             /* Weton Pengguna */
     Word jenis;             /* Jenia Akun Pengguna */
     Matrix foto;            /* Foto Pengguna */
@@ -33,6 +33,6 @@ typedef struct
 
 /* PROTOTYPE Pengguna */
 
-void createPengguna(int id, Word nama, Word kata_sandi, Word bio, int noHP, Word weton, Word jenis, Matrix foto);
+void createPengguna(int id, Word nama, Word kata_sandi, Word bio, Word noHP, Word weton, Word jenis, Matrix foto);
 
 #endif

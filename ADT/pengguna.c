@@ -3,11 +3,10 @@
 
 #include "pengguna.h"
 #include "wordmachine.h"
-#include <stdio.h>
 
 /* KONSTRUKTOR Pengguna*/
 
-void createPengguna(int id, Word nama, Word kata_sandi, Word bio, int noHP, Word weton, Word jenis, Matrix foto){
+void createPengguna(int id, Word nama, Word kata_sandi, Word bio, Word noHP, Word weton, Word jenis, Matrix foto){
     Pengguna User;
     Id(User) = id;
     Nama(User) = nama;
