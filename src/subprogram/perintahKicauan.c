@@ -1,16 +1,16 @@
 #include <stdio.h>
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\kicauan.h"
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\listdinKicauan.h"
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\wordmachine.h"
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\charmachine.h"
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\boolean.h"
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\datetime.h"
+#include "..\..\ADT\kicauan.h"
+#include "..\..\ADT\listdinKicauan.h"
+#include "..\..\ADT\wordmachine.h"
+#include "..\..\ADT\charmachine.h"
+#include "..\..\ADT\boolean.h"
+#include "..\..\ADT\datetime.h"
 
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\kicauan.c"
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\listdinKicauan.c"
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\wordmachine.c"
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\charmachine.c"
-#include "C:\Users\Keanu\Documents\GitHub\Tubes-Alstrukdat\ADT\datetime.c"
+#include "..\..\ADT\kicauan.c"
+#include "..\..\ADT\listdinKicauan.c"
+#include "..\..\ADT\wordmachine.c"
+#include "..\..\ADT\charmachine.c"
+#include "..\..\ADT\datetime.c"
 
 
 
@@ -18,9 +18,9 @@
 boolean EndWord;
 Word currentWord;
 
-// boolean isTeman(Word a, Word b){
-//     return false;
-// }
+boolean isTeman(Word a, Word b){
+    return false;
+}
 
 void KICAU(ListDinKicauan *l, boolean privat, Word author){
     Word text;
