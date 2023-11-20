@@ -31,7 +31,7 @@ typedef struct
 
 
 /* *** Konstruktor: Membentuk sebuah DATETIME dari komponen-komponennya *** */
-void CreateDATETIME(DATETIME *D);
+void CreateDATETIME(DATETIME *D, int YY, int MM, int DD, int hh, int mm, int ss);
 /* Membentuk sebuah DATETIME dari komponen-komponennya yang valid */
 /* Prekondisi : DD, MM, YYYY, h, m, s valid untuk membentuk DATETIME */
 

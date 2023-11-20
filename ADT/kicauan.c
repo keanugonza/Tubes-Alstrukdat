@@ -17,19 +17,19 @@ void createKicauan(Kicauan *K, int id, Word text, int like, Word author, boolean
 }
 
 
-void printKicauan(Kicauan *K){
-    printf("Selamat! kicauan telah diterbitkan!\n");
-    printf("Detil kicauan:\n");
-    printf("| ID = %d\n", ID_KICAUAN(*K));
+void displayKicauan(Kicauan K){
+    // printf("Selamat! kicauan telah diterbitkan!\n");
+    // printf("Detil kicauan:\n");
+    printf("| ID = %d\n", ID_KICAUAN(K));
     printf("| ");
-    // displayWord(AUTHOR_KICAUAN(*K));
+    displayWord(AUTHOR_KICAUAN(K));
     printf("\n");
     printf("| ");
-    TulisDATETIME(DATETIME_KICAUAN(*K));
+    TulisDATETIME(DATETIME_KICAUAN(K));
     printf("| ");
-    displayWord(TEXT_KICAUAN(*K));
+    displayWord(TEXT_KICAUAN(K));
     printf("\n");
-    printf("| Disukai: %d\n", LIKE_KICAUAN(*K));
+    printf("| Disukai: %d\n", LIKE_KICAUAN(K));
 }
 
 

@@ -7,5 +7,9 @@
         "utas.h": "c",
         "listdinofutas.h": "c",
         "stdlib.h": "c"
+        "kicauan.h": "c",
+        "charmachine.h": "c",
+        "listdinkicauan.h": "c",
+        "wordmachine.h": "c"
     }
 }

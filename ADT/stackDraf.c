@@ -1,12 +1,30 @@
 #include "stackDraf.h"
 
+
+
+void createDraf(Draf *d, Word text){
+    DATETIME T;
+    BacaDATETIME(&T);
+    DATETIME_DRAF(*d) = T;
+    TEXT_DRAF(*d) = text;
+}
+
+
+void displayDraf(Draf d){
+    printf("| ");
+    TulisDATETIME(DATETIME_DRAF(d));
+    printf("| ");
+    displayWord(TEXT_DRAF(d));
+    printf("\n");
+}
+ 
 /* Prototype manajemen memori */
-AddressDraf newNodeDraf(Kicauan k){
+AddressDraf newNodeDraf(Draf d){
     AddressDraf p;
     p = (AddressDraf) malloc(sizeof(Node));
 
     if(p != NIL){
-        INFO_Draf(p)  = k;
+        INFO_Draf(p)  = d;
         NEXT_Draf(p) = NIL;
     }
     return p;
@@ -43,8 +61,8 @@ void CreateStackDraf(StackDraf *s){
 /* I.S. sembarang */ 
 /* F.S. Membuat sebuah stack s yang kosong */
 
-void pushDraf(StackDraf *s, Kicauan k){
-    AddressDraf p = newNodeDraf(k);
+void pushDraf(StackDraf *s, Draf d){
+    AddressDraf p = newNodeDraf(d);
 
     if(p!=NIL){
         NEXT_Draf(p) = ADDR_TOP_Draf(*s);
@@ -57,10 +75,10 @@ void pushDraf(StackDraf *s, Kicauan k){
 /*      jika tidak, s tetap */
 /* Pada dasarnya adalah operasi insertFirst pada list linier */
 
-void popDraf(StackDraf *s, Kicauan *k){
+void popDraf(StackDraf *s, Draf *d){
     AddressDraf p;
 
-    *k = TOP_Draf(*s);
+    *d = TOP_Draf(*s);
     p = ADDR_TOP_Draf(*s);
 
     if(lengthDraf(*s) == 1){
