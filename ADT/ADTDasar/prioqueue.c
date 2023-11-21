@@ -3,72 +3,43 @@
 #include "prioqueue.h"
 
 boolean IsEmpty(Queue Q){
-    return((Head(Q) == Nil) && (Tail(Q) == Nil));
+    return(IDX_HEAD(Q) == IDX_UNDEF && IDX_TAIL(Q) == IDX_UNDEF);
 }
 
 boolean IsFull(Queue Q){
-    return((((Tail(Q) - Head(Q) + MaxEl(Q)) % MaxEl(Q)) + 1) == MaxEl(Q));
+    return((((IDX_TAIL(Q) - IDX_HEAD(Q) + CAPACITY) % CAPACITY) + 1) == CAPACITY);
 }
 
-int NBElmt(Queue Q){
-    if(IsEmpty(Q))
-        return 0;
-    else
-        return(((Tail(Q) - Head(Q) + MaxEl(Q)) % MaxEl(Q)) + 1);
+void CreateEmpty(Queue *Q){
+    IDX_HEAD(*Q) = IDX_UNDEF;
+    IDX_TAIL(*Q) = IDX_UNDEF;
 }
 
-void CreateEmpty(Queue *Q, int Max){
-    (*Q).T = malloc((Max + 1) * sizeof(infotype));
-    if((*Q).T != NULL){
-        MaxEl(*Q) = Max;
-        Head(*Q) = Nil;
-        Tail(*Q) = Nil;
-    }
-    else
-        MaxEl(*Q) = 0;
-}
-
-void DeAlokasi(Queue *Q){
-    MaxEl(*Q) = 0;
-    free((*Q).T);
-}
-
-void Add(Queue *Q, infotype X){
+void Enqueue(Queue *Q, infotype X){
     if(IsEmpty(*Q)){
-        Head(*Q) = 1;
-        Tail(*Q) = Head(*Q);
-        InfoHead(*Q) = X;
+        IDX_HEAD(*Q) = 0;
+        IDX_TAIL(*Q) = IDX_HEAD(*Q);
+        Elmt(*Q, IDX_HEAD(*Q) + (IDX_TAIL(*Q) - IDX_HEAD(*Q))) = X;
     }
-    else{
-        int n = NBElmt(*Q);
-        int idx = Tail(*Q);
-        while((Prio(X) > Prio((*Q).T[idx])) && (n > 0)){
-            (*Q).T[(idx % MaxEl(*Q)) + 1] = (*Q).T[idx];
-            idx--;
-            n--;
-            if(idx == 0)
-                idx = MaxEl(*Q);
-        }
-        (*Q).T[(idx % MaxEl(*Q)) + 1] = X;
-        Tail(*Q) = (Tail(*Q) % MaxEl(*Q)) + 1;
+    else if(!IsFull(*Q)){
+        Elmt(*Q, (IDX_HEAD(*Q) + (IDX_TAIL(*Q) - IDX_HEAD(*Q)) + 1) % CAPACITY) = X;
+        IDX_TAIL(*Q)++;
     }
 }
 
-void Del(Queue *Q, infotype *X){
-    Info(*X) = Info(InfoHead(*Q));
-    Prio(*X) = Prio(InfoHead(*Q));
-    if(NBElmt(*Q) == 1){
-        Head(*Q) = Nil;
-        Tail(*Q) = Nil;
-    }
-    else
-        Head(*Q) = (Head(*Q) % MaxEl(*Q)) + 1;
+void Dequeue(Queue *Q, infotype *X){
+    *X = HEAD(*Q);
+    if(IDX_TAIL(*Q) - IDX_HEAD(*Q) + 1 == 1)
+        CreateEmpty(Q);
+    else if(!IsEmpty(*Q))
+        IDX_HEAD(*Q) = (IDX_HEAD(*Q) + 1) % CAPACITY;
 }
 
 void PrintQueue(Queue Q){
     infotype dum;
-    while(!IsEmpty(Q)){
-        Del(&Q, &dum);
+    int length = IDX_TAIL(Q) - IDX_HEAD(Q) + 1;
+    while(length--){
+        Dequeue(&Q, &dum);
         printf("%d %d\n", Prio(dum), Info(dum));
     }
     printf("#\n");

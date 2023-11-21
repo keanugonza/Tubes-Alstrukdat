@@ -1,83 +1,67 @@
 /* File : prioqueue.h */
-/* Definisi ADT Priority Queue dengan representasi array secara eksplisit dan alokasi dinamik */
+/* Definisi ADT Queue versi 3 dengan representasi array secara eksplisit dan alokasi statik */
 /* Model Implementasi Versi III dengan circular buffer */
 /* Elemen queue terurut mengecil berdasarkan elemen prio */
 
 #ifndef prioqueue_H
 #define prioqueue_H
 
-#include "boolean.h"
+#include "../boolean.h"
 
-#define Nil 0
-/* Konstanta untuk mendefinisikan address tak terdefinisi */
+#define IDX_UNDEF -1
+#define CAPACITY 20
 
-/* Definisi elemen dan address */
-typedef struct
-{
+typedef struct{
     int prio; /* [1..3], prioritas dengan nilai 1..3 (3 adalah prioritas tertinggi) */
     int info; /* nilai elemen */
 } infotype;
-typedef int address; /* indeks tabel */
-/* Contoh deklarasi variabel bertype Queue : */
-/* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
-typedef struct
-{
-    infotype *T;  /* tabel penyimpan elemen */
-    address HEAD; /* alamat penghapusan */
-    address TAIL; /* alamat penambahan */
-    int MaxEl;    /* Max elemen queue */
+typedef struct{
+    infotype buffer[CAPACITY];  /* tabel penyimpan elemen */
+    int idxHead; /* index penghapusan */
+    int idxTail; /* index penambahan */
 } Queue;
-/* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
-/* Catatan implementasi: T[0] tidak pernah dipakai */
 
 /* ********* AKSES (Selektor) ********* */
-/* Jika e adalah infotype dan Q adalah Queue, maka akses elemen : */
+/* Jika q adalah Queue, maka akses elemen : */
 #define Prio(e) (e).prio
 #define Info(e) (e).info
-#define Head(Q) (Q).HEAD
-#define Tail(Q) (Q).TAIL
-#define InfoHead(Q) (Q).T[(Q).HEAD]
-#define InfoTail(Q) (Q).T[(Q).TAIL]
-#define MaxEl(Q) (Q).MaxEl
-#define Elmt(Q, i) (Q).T[(i)]
+#define IDX_HEAD(Q) (Q).idxHead
+#define IDX_TAIL(Q) (Q).idxTail
+#define HEAD(Q) (Q).buffer[(Q).idxHead]
+#define TAIL(Q) (Q).buffer[(Q).idxTail]
+#define Elmt(Q, i) (Q).buffer[(i)]
 
 /* ********* Prototype ********* */
+/* Mengirim true jika Q kosong: IDX_HEAD dan IDX_TAIL bernilai IDX_UNDEF */
 boolean IsEmpty(Queue Q);
-/* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFull(Queue Q);
+
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
-/* yaitu mengandung elemen sebanyak MaxEl */
-int NBElmt(Queue Q);
-/* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
+/* yaitu mengandung elemen sebanyak CAPACITY*/
+boolean IsFull(Queue Q);
 
 /* *** Kreator *** */
-void CreateEmpty(Queue *Q, int Max);
-/* I.S. sembarang */
-/* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
-/* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
-/* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
-/* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 
-/* *** Destruktor *** */
-void DeAlokasi(Queue *Q);
-/* Proses: Mengembalikan memori Q */
-/* I.S. Q pernah dialokasi */
-/* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
+/* I.S. sembarang */
+/* F.S. Sebuah Q kosong terbentuk dengan kondisi sbb: */
+/* Proses : Membuat sebuah Q kosong */
+void CreateEmpty(Queue *Q);
 
 /* *** Primitif Add/Delete *** */
-void Add(Queue *Q, infotype X);
+
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
-/* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer;
+/* F.S. X menjadi IDX_TAIL yang baru, IDX_TAIL "maju" dengan mekanisme circular buffer;
         elemen baru disisipkan pada posisi yang tepat sesuai dengan prioritas */
-void Del(Queue *Q, infotype *X);
+void Enqueue(Queue *Q, infotype X);
+
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
-/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
-        Q mungkin kosong */
+/* F.S. X = nilai elemen IDX_HEAD pd I.S., IDX_HEAD "maju" dengan mekanisme circular buffer;
+Q mungkin kosong */
+void Dequeue(Queue *Q, infotype *X);
 
 /* Operasi Tambahan */
-void PrintQueue(Queue Q);
+
 /* Mencetak isi queue Q ke layar */
 /* I.S. Q terdefinisi, mungkin kosong */
 /* F.S. Q tercetak ke layar dengan format:
@@ -86,5 +70,6 @@ void PrintQueue(Queue Q);
 <prio-n> <elemen-n>
 #
 */
+void PrintQueue(Queue Q);
 
 #endif
