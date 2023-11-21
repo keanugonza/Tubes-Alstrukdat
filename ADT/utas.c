@@ -49,15 +49,14 @@ int getCurrIDX(Utas utama, Utas u){
             idx +=1;
         }
     }
-    return idx;
-    
+    return idx; 
 }
 
 void sambungDepanUtas(Utas *utama, Utas uIn){
     AddressToUtas kicUtama = KICAUANUTAMA(*utama);
-    AddressToUtas next_NEXT_UTAS = NEXT_UTAS(kicUtama);
+    AddressToUtas next = NEXT_UTAS(kicUtama);
     NEXT_UTAS(kicUtama) = uIn;
-    NEXT_UTAS(uIn) = next_NEXT_UTAS;
+    NEXT_UTAS(uIn) = next;
 }
 
 void sambungBelakangUtas(Utas *utama, Utas uIn){
@@ -73,18 +72,20 @@ void sambungBelakangUtas(Utas *utama, Utas uIn){
 }
 
 void sambungUtasAt(Utas *utama, Utas uIn, int idx){
-    if(idx == 1){
+    if(idx > 0){
+        if(idx == 1){
         sambungDepanUtas(utama,uIn);
-    }else{
-        int counter = 0;
-        AddressToUtas p = KICAUANUTAMA(*utama);
-        while (counter < idx-1){
-            counter +=1;
-            p = NEXT_UTAS(p);
+        }else{
+            int counter = 0;
+            AddressToUtas p = KICAUANUTAMA(*utama);
+            while (counter < idx-1){
+                counter +=1;
+                p = NEXT_UTAS(p);
+            }
+            NEXT_UTAS(uIn) = NEXT_UTAS(p);
+            NEXT_UTAS(p) = uIn;
         }
-        NEXT_UTAS(uIn) = NEXT_UTAS(p);
-        NEXT_UTAS(p) = uIn;
-    }
+    }  
 }
 
 void hapusDepanUtas(Utas *utama){
