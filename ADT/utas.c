@@ -2,14 +2,13 @@
 #include <stdlib.h>
 #include "utas.h"
 
-Address newNode(int id, Word author, DATETIME dt, Word isi){
-    Address p = (Address) malloc(sizeof(Node));
+AddressToUtas newNode(int id, Word author, DATETIME dt, Word isi){
+    AddressToUtas p = (AddressToUtas) malloc(sizeof(Node));
     if(p != NULL){
-        ID(p) = id;
-        AUTHOR(p) = author;
-        DATETIME(p) = dt;
-        ISI(p) = isi;
-        NEXT(p) = NULL;
+        AUTHOR_UTAS(p) = author;
+        DATETIME_UTAS(p) = dt;
+        ISI_UTAS(p) = isi;
+        NEXT_UTAS(p) = NULL;
     }
     return p;
 }
@@ -19,41 +18,57 @@ boolean isEmptyUtas(Utas u){
 }
 
 boolean onlyKicauanUtama(Utas u){
-    return !isEmptyUtas(u) && NEXT(u) == NULL;
+    return !isEmptyUtas(u) && NEXT_UTAS(u) == NULL;
 }
 
 int panjangUtas(Utas u){
-    Address p;
+    AddressToUtas p;
     int count;
     if(onlyKicauanUtama(u)){
         return 1;
     }else{
         p = KICAUANUTAMA(u);
         count = 1;
-        while (NEXT(p) != NULL){
+        while (NEXT_UTAS(p) != NULL){
             count +=1;
-            p = NEXT(p);
+            p = NEXT_UTAS(p);
         }
         return count;
     }
 }
 
+int getCurrIDX(Utas utama, Utas u){
+    AddressToUtas p = KICAUANUTAMA(u);
+    Word isi =ISI_UTAS(u);
+    int idx = 0;
+    boolean found = false;
+    while (!found){
+        if(isWordEqual(ISI_UTAS(p),isi)){
+            found = true;
+        }else{
+            idx +=1;
+        }
+    }
+    return idx;
+    
+}
+
 void sambungDepanUtas(Utas *utama, Utas uIn){
-    Address kicUtama = KICAUANUTAMA(*utama);
-    Address next = NEXT(kicUtama);
-    NEXT(kicUtama) = uIn;
-    NEXT(uIn) = next;
+    AddressToUtas kicUtama = KICAUANUTAMA(*utama);
+    AddressToUtas next_NEXT_UTAS = NEXT_UTAS(kicUtama);
+    NEXT_UTAS(kicUtama) = uIn;
+    NEXT_UTAS(uIn) = next_NEXT_UTAS;
 }
 
 void sambungBelakangUtas(Utas *utama, Utas uIn){
     if(onlyKicauanUtama(*utama)){
-        NEXT(*utama) = uIn;
+        NEXT_UTAS(*utama) = uIn;
     }else{
-        Address p = KICAUANUTAMA(*utama);
-        while (NEXT(p) != NULL){
-            p = NEXT(p);
+        AddressToUtas p = KICAUANUTAMA(*utama);
+        while (NEXT_UTAS(p) != NULL){
+            p = NEXT_UTAS(p);
         }
-        NEXT(p) = uIn;
+        NEXT_UTAS(p) = uIn;
     }
 }
 
@@ -62,22 +77,22 @@ void sambungUtasAt(Utas *utama, Utas uIn, int idx){
         sambungDepanUtas(utama,uIn);
     }else{
         int counter = 0;
-        Address p = KICAUANUTAMA(*utama);
+        AddressToUtas p = KICAUANUTAMA(*utama);
         while (counter < idx-1){
             counter +=1;
-            p = NEXT(p);
+            p = NEXT_UTAS(p);
         }
-        NEXT(uIn) = NEXT(p);
-        NEXT(p) = uIn;
+        NEXT_UTAS(uIn) = NEXT_UTAS(p);
+        NEXT_UTAS(p) = uIn;
     }
 }
 
 void hapusDepanUtas(Utas *utama){
     if(!onlyKicauanUtama(*utama)){
-        Address kicUtama = KICAUANUTAMA(*utama);
-        Address del = NEXT(kicUtama);
-        NEXT(kicUtama) = NEXT(del);
-        NEXT(del) = NULL;
+        AddressToUtas kicUtama = KICAUANUTAMA(*utama);
+        AddressToUtas del = NEXT_UTAS(kicUtama);
+        NEXT_UTAS(kicUtama) = NEXT_UTAS(del);
+        NEXT_UTAS(del) = NULL;
         free(del);
     }
 }
@@ -86,13 +101,13 @@ void hapusBelakangUtas(Utas *utama){
     if(onlyKicauanUtama(*utama)){
         hapusDepanUtas(*utama);
     }else{
-        Address del = KICAUANUTAMA(*utama);
-        Address prev = NULL;
-        while (NEXT(del) != NULL){
+        AddressToUtas del = KICAUANUTAMA(*utama);
+        AddressToUtas prev = NULL;
+        while (NEXT_UTAS(del) != NULL){
             prev = del;
-            del = NEXT(del);
+            del = NEXT_UTAS(del);
         }
-        NEXT(prev) = NULL;
+        NEXT_UTAS(prev) = NULL;
         free(del);
     }
 }
@@ -104,30 +119,39 @@ void hapusUtasAt(Utas *utama, int idx){
         hapusBelakangUtas(utama);
     }else{
         int counter = 0;
-        Address loc = KICAUANUTAMA(*utama);
+        AddressToUtas loc = KICAUANUTAMA(*utama);
         while (counter < idx-1){
             counter +=1;
-            loc = NEXT(loc);
+            loc = NEXT_UTAS(loc);
         }
-        Address p = NEXT(loc);
-        NEXT(loc) = NEXT(p);
+        AddressToUtas p = NEXT_UTAS(loc);
+        NEXT_UTAS(loc) = NEXT_UTAS(p);
         free(p);
     }
 }
 
 void displayUtas(Utas u){
-    Address p = KICAUANUTAMA(u);
-    printf("| ID =%d\n",ID(u));
+    AddressToUtas p = KICAUANUTAMA(u);
+    printf("| ID =%d\n", ID(p));
     printf("| ");// author
+    displayWord(AUTHOR_UTAS(u));
+    printf("\n");
     printf("| ");
-    TulisDATETIME(DATETIME(u));
+    TulisDATETIME(DATETIME_UTAS(u));
+    printf("\n");
     printf("| ");//isi
-    if(NEXT(u) != NULL){
-        printf("    | INDEX =%d\n",ID(u));
+    displayWord(ISI_UTAS(u));
+    printf("\n");
+    if(NEXT_UTAS(p) != NULL){
+        printf("    | INDEX =%d\n",getCurrIDX(u,p));
         printf("    | "); // author
+        displayWord(AUTHOR_UTAS(u));
+        printf("\n");
         printf("    | ");
-        TulisDATETIME(DATETIME(u));
+        TulisDATETIME(DATETIME_UTAS(u));
         printf("    | "); //isi
+        displayWord(ISI_UTAS(u));
+        printf("\n");
     }
 }
 

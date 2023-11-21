@@ -12,19 +12,18 @@
 #define IDX_UNDEF -1
 /* Indeks tak terdefinisi*/
 
-typedef Utas ElType; /* type elemen list */
 typedef int IdxType;
 typedef struct
 {
-    ElType *buffer; /* memori tempat penyimpan elemen (container) */
-    int nEff;       /* >=0, banyaknya elemen efektif */
-    int capacity;   /* ukuran elemen */
+    Utas *buffer_utas; /* memori tempat penyimpan elemen (container) */
+    int nEff_utas;       /* >=0, banyaknya elemen efektif */
+    int capacity_utas;   /* ukuran elemen */
 } ListUtas;
 
-#define NEFF(l) (l).nEff
-#define BUFFER(l) (l).buffer
-#define ELMT(l, i) (l).buffer[i]
-#define CAPACITY(l) (l).capacity
+#define NEFF_UTAS(l) (l).nEff_utas
+#define BUFFER_UTAS(l) (l).buffer_utas
+#define ELMT_UTAS(l, i) (l).buffer_utas[i]
+#define CAPACITY_UTAS(l) (l).capacity_utas
 
 
 void CreateListDinUtas(ListUtas *lu, int capacity);
@@ -52,14 +51,14 @@ IdxType getLastIdxUtas(ListUtas lu);
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
-boolean isEmptyUtas(ListUtas lu);
+boolean isEmptyListUtas(ListUtas lu);
 /* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
 /* *** Test list penuh *** */
-boolean isFullUtas(ListUtas lu);
+boolean isFullListUtas(ListUtas lu);
 /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
 
 /* ********** Test Indeks yang valid ********** */
-boolean isIdxValidUtas(ListUtas lu, IdxType i);
+boolean isIdxValidListUtas(ListUtas lu, IdxType i);
 /* Mengirimkan true jika i adalah indeks yang valid utk kapasitas list l */
 /* yaitu antara indeks yang terdefinisi utk container*/
 boolean isIdxEffUtas(ListUtas lu, IdxType i);
@@ -71,7 +70,7 @@ boolean isInListUtas(ListUtas lu, int id);
 
 
 /* *** Menambahkan elemen terakhir *** */
-void insertLastUtas(ListUtas *lu, ElType val);
+void insertLastUtas(ListUtas *lu, Utas val);
 /* Proses: Menambahkan val sebagai elemen terakhir list */
 /* I.S. List l boleh kosong, tetapi tidak penuh */
 /* F.S. val adalah elemen terakhir l yang baru */

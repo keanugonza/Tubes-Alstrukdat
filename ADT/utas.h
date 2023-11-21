@@ -2,28 +2,28 @@
 #define utas_H
 
 #include "wordmachine.h"
-#include "ADTDasar/datetime.h"
+#include "datetime.h"
 
 /* Definisi Node : */
-typedef struct node* Address;
+typedef struct node* AddressToUtas;
 typedef struct node {
     int id;
     Word author;
     DATETIME datetime;
     Word isi;
-    Address next;
+    AddressToUtas next;
 } Node;
 
 #define KICAUANUTAMA(p) p
-#define ID(p) (p)->id
-#define AUTHOR(p) (p)->author
-#define NEXT(p) (p)->next
-#define DATETIME(p) (p)->datetime
-#define ISI(p) (p)->isi
+#define ID_UTAS(p) (p)->id
+#define AUTHOR_UTAS(p) (p)->author
+#define NEXT_UTAS(p) (p)->next
+#define DATETIME_UTAS(p) (p)->datetime
+#define ISI_UTAS(p) (p)->isi
 
-typedef Address Utas;
+typedef AddressToUtas Utas;
 
-Address newNode(int id, Word author, DATETIME dt, Word isi);
+AddressToUtas newNode(int id, Word author, DATETIME dt, Word isi);
 /*Membuat node utas baru*/
 
 boolean isEmptyUtas(Utas u);
@@ -33,6 +33,9 @@ boolean onlyKicauanUtama(Utas u);
 
 int panjangUtas(Utas u);
 /*Mengembalikkan panjang utas*/
+
+int getCurrIDX(Utas utama, Utas u);
+/*Mengembalikan idx dari elemen yang sedang diakses, dijamin u terdapat dalam utama*/
 
 void sambungDepanUtas(Utas *utama, Utas uIn);
 /*I.S Utas terdefinisi*/

@@ -3,24 +3,24 @@
 void CreateListDinUtas(ListUtas *lu, int capacity){
     /* I.S. l sembarang, capacity > 0 */
     /* F.S. Terbentuk list dinamis l kosong dengan kapasitas capacity */
-    CAPACITY(*lu) = capacity;
-    BUFFER(*lu) = (ElType *)malloc(capacity * sizeof(ElType));
-    NEFF(*lu) = 0;
+    CAPACITY_UTAS(*lu) = capacity;
+    BUFFER_UTAS(*lu) = (Utas *)malloc(capacity * sizeof(Utas));
+    NEFF_UTAS(*lu) = 0;
 }
 
 void dealocateListUtas(ListUtas *lu){
     /* I.S. l terdefinisi; */
     /* F.S. (l) dikembalikan ke system, CAPACITY(l)=0; NEFF(l)=0 */
-    NEFF(*lu) = 0;
-    CAPACITY(*lu) = 0;
-    free(BUFFER(*lu));
+    NEFF_UTAS(*lu) = 0;
+    CAPACITY_UTAS(*lu) = 0;
+    free(BUFFER_UTAS(*lu));
 }
 
 int listLengthUtas(ListUtas lu){
     /* Mengirimkan banyaknya elemen efektif list */
     /* Mengirimkan nol jika list l kosong */
     /* *** Daya tampung container *** */
-    return NEFF(lu);
+    return NEFF_UTAS(lu);
 }
 
 /* *** Selektor INDEKS *** */
@@ -38,19 +38,19 @@ IdxType getLastIdxUtas(ListUtas lu){
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
-boolean isEmptyUtas(ListUtas lu){
+boolean isEmptyListUtas(ListUtas lu){
     /* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
     /* *** Test list penuh *** */
-    return(listLength(lu) == 0);
+    return(listLengthUtas(lu) == 0);
 }
 
-boolean isFullUtas(ListUtas lu){
+boolean isFullListUtas(ListUtas lu){
     /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
-    return(listLength(lu) == CAPACITY(lu));
+    return(listLengthUtas(lu) == CAPACITY(lu));
 }
 
 /* ********** Test Indeks yang valid ********** */
-boolean isIdxValidUtas(ListUtas lu, IdxType i){
+boolean isIdxValidListUtas(ListUtas lu, IdxType i){
     /* Mengirimkan true jika i adalah indeks yang valid utk kapasitas list l */
     /* yaitu antara indeks yang terdefinisi utk container*/
     return (i>=getFirstIdx(lu)) && (i< CAPACITY(lu));
@@ -59,15 +59,28 @@ boolean isIdxValidUtas(ListUtas lu, IdxType i){
 boolean isIdxEffUtas(ListUtas lu, IdxType i){
     /* Mengirimkan true jika i adalah indeks yang terdefinisi utk list */
     /* yaitu antara 0..NEFF(l) */
-    return (i>=getFirstIdx(lu)) && (i<=NEFF(lu));
+    return (i>=getFirstIdxUtas(lu)) && (i<=NEFF_UTAS(lu));
 }
 
-void insertLastUtas(ListUtas *lu, ElType val){
+boolean isInListUtas(ListUtas lu, int id){
+    boolean found = false;
+    int i = 0;
+    while (!found && i<listLengthUtas(lu)){
+        if(ID(ELMT(lu,i)) == id) {
+            found = true;
+        }else{
+            i+=1;
+        }
+    }
+    return found;
+}
+
+void insertLastUtas(ListUtas *lu, Utas val){
     /* Proses: Menambahkan val sebagai elemen terakhir list */
     /* I.S. List l boleh kosong, tetapi tidak penuh */
     /* F.S. val adalah elemen terakhir l yang baru */
-    ELMT(*lu,NEFF(*lu)) = val;
-    NEFF(*lu) += 1;
+    ELMT_UTAS(*lu,NEFF_UTAS(*lu)) = val;
+    NEFF_UTAS(*lu) += 1;
 }
 
 void expandListUtas(ListUtas *lu, int num){
@@ -77,10 +90,10 @@ void expandListUtas(ListUtas *lu, int num){
     ListUtas ltemp;
     int i;
     CreateListDin(&ltemp, CAPACITY(*lu) + num);
-    for(i = 0; i < NEFF(*lu); i++){
-       ELMT(ltemp,i) = ELMT(*lu,i);
+    for(i = 0; i < NEFF_UTAS(*lu); i++){
+       ELMT_UTAS(ltemp,i) = ELMT_UTAS(*lu,i);
     }
-    NEFF(ltemp) = NEFF(*lu);
-    dealocateList(lu);
+    NEFF_UTAS(ltemp) = NEFF_UTAS(*lu);
+    dealocateListUtas(lu);
     copyList(ltemp,lu);
 }
