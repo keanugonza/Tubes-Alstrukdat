@@ -16,12 +16,13 @@ void createListPengguna(ListPengguna *LP)
     lenListPengguna(*LP) = 0;
 }
 
-void insertLastPengguna(ListPengguna *LP, eltype val)
+void insertPengguna(ListPengguna *LP, eltype val)
 {
     if ((*LP).len != CAPACITY_LPENGGUNA)
     {
         ELMT_LP(*LP, (*LP).len) = val;
     }
+    lenListPengguna(*LP) = lenListPengguna(*LP) + 1;
 }
 
 boolean isMember(ListPengguna LP, Word val)

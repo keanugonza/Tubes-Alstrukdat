@@ -5,14 +5,14 @@
 #include "datetime.h"
 
 /* Definisi Node : */
-typedef struct node* AddressToUtas;
-typedef struct node {
+typedef struct nodeUtas* AddressToUtas;
+typedef struct nodeUtas {
     int id;
     Word author;
     DATETIME datetime;
     Word isi;
     AddressToUtas next;
-} Node;
+} NodeUtas;
 
 #define KICAUANUTAMA(p) p
 #define ID_UTAS(p) (p)->id
