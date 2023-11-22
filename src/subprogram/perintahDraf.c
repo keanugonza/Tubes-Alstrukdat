@@ -10,7 +10,6 @@
 #include "..\..\ADT\stackDraf.c"
 
 
-
 void SIMPAN(StackDraf*s, Word text){
     Draf d;
     createDraf(&d, text);
