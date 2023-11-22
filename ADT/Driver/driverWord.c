@@ -6,7 +6,7 @@ Word w;
 int main(){
     printf("tes masukkan 1 kata\n");
     STARTWORD_takeBlank();
-    ambilWord(&w);
+    w = currentWord;
     printf("current word: ");
     displayWord(currentWord);
     printf("\n");
@@ -18,7 +18,7 @@ int main(){
     printf("current word: ");
     displayWord(currentWord);
     printf("\n");
-    ambilWord(&w);
+    w = currentWord;
     printf("kata1: ");
     displayWord(w);
     printf("\n");
@@ -26,7 +26,7 @@ int main(){
     printf("current word: ");
     displayWord(currentWord);
     printf("\n");
-    ambilWord(&w);
+    w = currentWord;
     printf("kata2: ");
     displayWord(w);
     printf("\n");
@@ -34,7 +34,7 @@ int main(){
     printf("current word: ");
     displayWord(currentWord);
     printf("\n");
-    ambilWord(&w);
+    w = currentWord;
     printf("kata3: ");
     displayWord(w);
     printf("\n");
@@ -43,7 +43,7 @@ int main(){
     printf("current word: ");
     displayWord(currentWord);
     printf("\n");
-    ambilWord(&w);
+    w = currentWord;
     printf("kata: ");
     displayWord(w);
     printf("\n");

@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.pl": "prolog",
         "perintahADT.C": "cpp",
         "boolean.h": "c",
         "graph.h": "c",
@@ -10,6 +11,7 @@
         "kicauan.h": "c",
         "charmachine.h": "c",
         "listdinkicauan.h": "c",
-        "liststatikpengguna.h": "c"
+        "liststatikpengguna.h": "c",
+        "matrix.h": "c"
     }
 }
