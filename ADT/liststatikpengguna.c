@@ -5,6 +5,9 @@
 #include "liststatikpengguna.h"
 #include "wordmachine.h"
 #include "boolean.h"
+#include "ADTDasar\pcolor.h"
+#include "foto.h"
+
 
 /* KONSTRUKTOR List Pengguna*/
 
@@ -63,4 +66,27 @@ void printInfoPengguna(ListPengguna LP, int id)
     printf("\n| Bio Akun: %s",ELMT_LP(LP,id).bio);
     printf("\n| No HP: %s",ELMT_LP(LP,id).noHP);
     printf("\n| Weton: %s",ELMT_LP(LP,id).weton);
+}
+
+void displayProfil(ListPengguna LP, int id)
+{   
+    Word listwarna[3];
+    listwarna[0] = stringToWord("R");
+    listwarna[1] = stringToWord("G");
+    listwarna[2] = stringToWord("B");
+
+    for(int i = 0; i < 5;i++){
+        for(int j = 0; j < 5; j++){
+            if (isWordEqual(ELMT_FT((ELMT_LP(LP, id).color), i, j), listwarna[0]) == true){
+                print_red((ELMT_FT((ELMT_LP(LP, id).simbol), i, j)).TabWord[0]);
+            }
+            else if (isWordEqual(ELMT_FT((ELMT_LP(LP, id).color), i, j), listwarna[1]) == true){
+                print_green((ELMT_FT((ELMT_LP(LP, id).simbol), i, j)).TabWord[0]);
+            }
+            else if (isWordEqual(ELMT_FT((ELMT_LP(LP, id).color), i, j), listwarna[2]) == true){
+                print_blue((ELMT_FT((ELMT_LP(LP, id).simbol), i, j)).TabWord[0]);
+            }
+        }
+        printf("\n");
+    }
 }

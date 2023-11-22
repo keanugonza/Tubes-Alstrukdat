@@ -3,6 +3,7 @@
 #include "..\..\ADT\liststatikpengguna.h"
 #include "..\..\ADT\wordmachine.h"
 #include "..\..\ADT\charmachine.h"
+#include "..\..\ADT\foto.h"
 
 
 void masuk(ListPengguna *LP, int *tempIDpengguna){
@@ -60,7 +61,10 @@ void daftar(ListPengguna *LP){
     Pengguna User;
     int id = lenListPengguna(*LP);
     boolean privat = false;
-    // createPengguna(&User, id, nama, sandi, kosong, kosong, kosong, privat, foto);
+    Matrix formatcolor, formatsimbol;
+    createMatrixColor(&formatcolor);
+    createMatrixSimbol(&formatsimbol);
+    createPengguna(&User, id, nama, sandi, kosong, kosong, kosong, privat, formatcolor, formatsimbol);
     insertLastPengguna(&LP, User);
 }
 
@@ -75,5 +79,3 @@ void keluar(int *tempIDpengguna){
         printf("\nAnda berhasil logout. Sampai jumpa di pertemuan berikutnya!\n");
     }
 }
-
-void gantiprofil();

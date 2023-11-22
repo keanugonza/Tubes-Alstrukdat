@@ -4,20 +4,16 @@
 #include "..\..\ADT\wordmachine.h"
 #include "..\..\ADT\charmachine.h"
 
-Word listWeton[5];
-listWeton[0] = stringToWord("Pahing");
-listWeton[1] = stringToWord("Kliwon");
-listWeton[2] = stringToWord("Wage");
-listWeton[3] = stringToWord("Pon");
-listWeton[4] = stringToWord("Legi");
-Word conf[2];
-conf[0] = stringToWord("YA");
-conf[1] = stringToWord("TIDAK");
-Word kosong;
-kosong.TabWord[0] = " ";
-kosong.Length = 1;
-
 gantiprofil(ListPengguna *LP, int *tempIDpengguna){
+    Word listWeton[5];
+    listWeton[0] = stringToWord("Pahing");
+    listWeton[1] = stringToWord("Kliwon");
+    listWeton[2] = stringToWord("Wage");
+    listWeton[3] = stringToWord("Pon");
+    listWeton[4] = stringToWord("Legi");
+    Word kosong;
+    kosong.TabWord[0] = "";
+    kosong.Length = 1;
     printInfoPengguna(*LP, tempIDpengguna);
     printf("\nMasukkan Bio Akun:\n");
     Word bio;
@@ -70,7 +66,7 @@ lihatprofil(ListPengguna *LP, Word val){
     int i = idxPengguna(*LP, val);
     if (ELMT_LP(*LP,i).jenis == false){
         printInfoPengguna(*LP, i);
-        printFotoPengguna(*LP, i);
+        displayProfil(*LP, i);
     }
     else 
     {
@@ -79,6 +75,9 @@ lihatprofil(ListPengguna *LP, Word val){
 }
 
 aturjenisakun(ListPengguna *LP, int *tempIDpengguna){
+    Word conf[2];
+    conf[0] = stringToWord("YA");
+    conf[1] = stringToWord("TIDAK");
     boolean type = ELMT_LP(*LP,*tempIDpengguna).jenis;
     if (type == false){
         printf("\nSaat ini, akun Anda adalah akun Publik. \nIngin mengubah ke akun Privat? \n(YA/TIDAK)\n");
@@ -108,7 +107,7 @@ aturjenisakun(ListPengguna *LP, int *tempIDpengguna){
 
 ubahfotoprofil(ListPengguna *LP, int *tempIDpengguna){
     printf("Foto profil Anda saat ini adalah\n");
-    printFotoPengguna(*LP, *tempIDpengguna);
+    displayProfil(*LP, *tempIDpengguna);
     
 
 }

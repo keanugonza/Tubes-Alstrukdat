@@ -54,4 +54,6 @@ void printInfoPengguna(ListPengguna LP, int id);
 /* F.S. Menampilkan info pengguna */
 /* Proses: Menampilkan info pengguna*/
 
+void displayProfil(ListPengguna LP, int id);
+
 #endif

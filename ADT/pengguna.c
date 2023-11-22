@@ -7,7 +7,7 @@
 
 /* KONSTRUKTOR Pengguna*/
 
-void createPengguna(Pengguna *User, int id, Word nama, Word kata_sandi, Word bio, Word noHP, Word weton, boolean jenis, Matrix foto){
+void createPengguna(Pengguna *User, int id, Word nama, Word kata_sandi, Word bio, Word noHP, Word weton, boolean jenis, Matrix color, Matrix simbol){
     Id(*User) = id;
     Nama(*User) = nama;
     Kata_sandi(*User) = kata_sandi;
@@ -15,6 +15,7 @@ void createPengguna(Pengguna *User, int id, Word nama, Word kata_sandi, Word bio
     NoHP(*User) = noHP;
     Weton(*User) = weton;
     Jenis(*User) = jenis;
-    Foto(*User) = foto;
+    Color(*User) = color;
+    Simbol(*User) = simbol;
 }
 
