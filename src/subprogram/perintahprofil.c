@@ -108,7 +108,21 @@ aturjenisakun(ListPengguna *LP, int *tempIDpengguna){
 ubahfotoprofil(ListPengguna *LP, int *tempIDpengguna){
     printf("Foto profil Anda saat ini adalah\n");
     displayProfil(*LP, *tempIDpengguna);
-    
-
+    printf("Masukkan foto profil yang baru\n");
+    for(int i = 0; i < 5; i++){
+        Word temp;
+        STARTWORD_takeBlank();
+        temp = currentWord;
+        int k = 0;
+        for(int j = 0; j < 5; j++){
+            ELMT_FT((ELMT_LP(*LP, *tempIDpengguna).color), i, j) = stringToWord(temp.TabWord[k]);
+            k += 4;
+        }
+        k = 2;
+        for(int j = 0; j < 5; j++){
+            ELMT_FT((ELMT_LP(*LP, *tempIDpengguna).simbol), i, j) = stringToWord(temp.TabWord[k]);
+            k += 4;
+        }
+    }
 }
 
