@@ -7,13 +7,17 @@
 #define prioqueue_H
 
 #include "../boolean.h"
+#include "../friends.h"
+#include "../pengguna.h"
+#include "../wordmachine.h"
+#include "../liststatikpengguna.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 20
 
 typedef struct{
     int prio; /* [1..3], prioritas dengan nilai 1..3 (3 adalah prioritas tertinggi) */
-    int info; /* nilai elemen */
+    Word info; /* nilai elemen */
 } infotype;
 typedef struct{
     infotype buffer[CAPACITY];  /* tabel penyimpan elemen */

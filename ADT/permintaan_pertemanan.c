@@ -1,16 +1,23 @@
 #include "permintaan_pertemanan.h"
-#include "wordmachine.c"
 
-extern self;
+#include "./ADTDasar/prioqueue.c"
+#include "friends.c"
+#include "pengguna.c"
+#include "wordmachine.c"
+#include "liststatikpengguna.c"
+
+extern ListPengguna LP;
+extern Word self;
+extern friends;
 
 void createFriendReqList(Queue *q){
     CreateEmpty(q);
 }
 
-boolean hasSentFriendReq(Queue q, Pengguna nama){
+boolean hasSentFriendReq(Queue q, Word nama){
     int length =  IDX_TAIL(q) - IDX_HEAD(q) + 1;
     while(length--){
-        if(info(HEAD(q)) == nama.nama){
+        if(isWordEqual(Info(HEAD(q)), nama)){
             return true;
         }
         IDX_HEAD(q)++;
@@ -18,15 +25,16 @@ boolean hasSentFriendReq(Queue q, Pengguna nama){
     return false;
 }
 
-void addFriendReq(Queue *q, Pengguna otherUser){
+void addFriendReq(Queue *q, Word nama){
     printf("\nMasukkan nama pengguna:\n");
     input();
+
     printf("\n");
     if(!IsEmpty(*q)){
         printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n");
     }
-    else if(userDoesntExist()){
-        printf("Pengguna bernama %s tidak ditemukan.\n", nama());
+    else if(!isMember(LP, currentWord)){
+        printf("Pengguna bernama %s tidak ditemukan.\n", currentWord);
     }
     else if(isFriends()){
         printf("Anda sudah berteman dengan %s!\n");
@@ -35,7 +43,7 @@ void addFriendReq(Queue *q, Pengguna otherUser){
         printf("Anda sudah mengirimkan permintaan pertemanan kepada %s. Silakan tunggu hingga permintaan Anda disetujui.\n");
     }
     else{
-        Add(q, otherUser);
+        Add(q, currentWord);
         printf("Permintaan pertemanan kepada %s telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n");
     }
     printf("\n");
@@ -43,11 +51,11 @@ void addFriendReq(Queue *q, Pengguna otherUser){
 
 void displayFriendReqList(Queue q){
     infotype dum;
-    int length = IDX_TAIL(q) - IDX_HEAD(q) + 1;
+    int len = length(q);
     printf("\n");
     if(length > 0){
-        printf("Terdapat %d permintaan pertemanan untuk Anda.\n", length);
-        while(length--){
+        printf("Terdapat %d permintaan pertemanan untuk Anda.\n", len);
+        while(len--){
             Dequeue(&q, &dum);
             printf("\n| %s\n| Jumlah teman:  %d\n", Info(dum), Prio(dum));
         }
@@ -57,7 +65,7 @@ void displayFriendReqList(Queue q){
     printf("\n");
 }
 
-void accFriendReq(Queue *q, Graph friendList){
+void accFriendReq(Queue *q, int id){
     infotype dum;
     printf("\nPermintaan pertemanan teratas dari %s\n", Info(HEAD(*q)));
     printf("\n| %s\n| Jumlah teman:  %d\n", Info(HEAD(*q)), Prio(HEAD(*q)));
@@ -67,7 +75,7 @@ void accFriendReq(Queue *q, Graph friendList){
 
     if("YA"){
         Dequeue(q, &dum);
-        addFriend(friends, u1, u2);
+        addFriend(friends, id, id);
         printf("\nPermintaan pertemanan dari %s telah disetujui. Selamat! Anda telah berteman dengan %s.\n");
     }
     else if("TIDAK"){
