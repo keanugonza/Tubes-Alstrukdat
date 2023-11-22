@@ -49,17 +49,15 @@ void STARTWORD_takeBlank();
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
 
+void ADVWORD_takeBlank();
+
 void CopyWord_takeBlank();
-/* Mengakuisisi kata, menyimpan dalam currentWord
-   I.S. : currentChar adalah karakter pertama dari kata
-   F.S. : currentWord berisi kata yang sudah diakuisisi;
-          currentChar = BLANK atau currentChar = MARK;
-          currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
-          Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+// mengabaikan semua 
 
 void displayWord(Word w);
 
 boolean isWordEqual(Word w1, Word w2);
 
+void ambilWord(Word* w);
 
 #endif

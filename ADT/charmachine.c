@@ -31,9 +31,4 @@ void ADV_Char()
 
        /* Algoritma */
        retval = fscanf(pita, "%c", &currentChar);
-       EOP = (currentChar == MARKNL || currentChar == MARKSC);
-       if (EOP)
-       {
-              //fclose(pita);
-       }
 }
