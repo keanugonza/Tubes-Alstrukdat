@@ -1,6 +1,6 @@
 /* File : prioqueue.h */
-/* Definisi ADT Queue versi 3 dengan representasi array secara eksplisit dan alokasi statik */
-/* Model Implementasi Versi III dengan circular buffer */
+/* Definisi ADT Queue versi 1 dengan representasi array secara eksplisit dan alokasi statik */
+/* Model Implementasi Versi I*/
 /* Elemen queue terurut mengecil berdasarkan elemen prio */
 
 #ifndef prioqueue_H
@@ -39,6 +39,9 @@ boolean IsEmpty(Queue Q);
 /* yaitu mengandung elemen sebanyak CAPACITY*/
 boolean IsFull(Queue Q);
 
+/* Mengirim jumlah elemen Q saat ini */
+int length(Queue Q);
+
 /* *** Kreator *** */
 
 /* I.S. sembarang */
@@ -50,14 +53,14 @@ void CreateEmpty(Queue *Q);
 
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
-/* F.S. X menjadi IDX_TAIL yang baru, IDX_TAIL "maju" dengan mekanisme circular buffer;
-        elemen baru disisipkan pada posisi yang tepat sesuai dengan prioritas */
+/* F.S. Q bertambah elemen X sebagai tail yang baru sesuai prioritasnya, TAIL bergeser ke kanan */
 void Enqueue(Queue *Q, infotype X);
 
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
-/* F.S. X = nilai elemen IDX_HEAD pd I.S., IDX_HEAD "maju" dengan mekanisme circular buffer;
-Q mungkin kosong */
+/* F.S. X = HEAD(Q) yang lama. Jika Q tidak jadi kosong, IDX_HEAD(Q) berpindah ke elemen berikutnya pada Q.
+Jika Q menjadi kosong, IDX_HEAD(Q) dan IDX_TAIL(Q) menjadi IDX_UNDEF. 
+Menggeser semua elemen ke kiri agar IDX_HEAD(Q) tetap di index 0 */
 void Dequeue(Queue *Q, infotype *X);
 
 /* Operasi Tambahan */
