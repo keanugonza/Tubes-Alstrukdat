@@ -18,6 +18,14 @@
 boolean EndWord;
 Word currentWord;
 
+boolean isBlank(Word text){
+    if(text.Length == 0){
+        return true;
+    } else{
+        return false;
+    }
+}
+
 boolean isTeman(Word a, Word b){
     return false;
 }
@@ -29,9 +37,9 @@ void KICAU(ListDinKicauan *l, boolean privat, Word author){
     printf("Masukkan kicauan:\n");
     STARTWORD_takeBlank();
     text = currentWord;
-    // if (isBlank(text)){
-    //     printf("Kicauan tidak boleh hanya berisi spasi!\n");
-    // } else{
+    if (isBlank(text)){
+        printf("Kicauan tidak boleh hanya berisi spasi!\n");
+    } else{
         int id = listLengthKicauan(*l) + 1;
         int like =0;
         createKicauan(&k, id, text, like, author, privat);
@@ -40,11 +48,11 @@ void KICAU(ListDinKicauan *l, boolean privat, Word author){
         printf("Selamat! kicauan telah diterbitkan!\n");
         printf("Detil kicauan:\n");
         displayKicauan(k);
-    // }
+    }
 }
 
 void allKICAUAN(ListDinKicauan *l, Word author){
-    for (int i=0; i < listLengthKicauan(*l); i++){
+    for (int i=listLengthKicauan(*l)-1; i >= 0; i--){
         Kicauan k = KICAUAN(*l,i);
         Word pemilikKicauan = AUTHOR_KICAUAN(k);
         if((isWordEqual(author, pemilikKicauan)) || isTeman(author,pemilikKicauan)){
