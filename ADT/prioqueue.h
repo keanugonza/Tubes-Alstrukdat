@@ -6,14 +6,18 @@
 #ifndef prioqueue_H
 #define prioqueue_H
 
-#include "../boolean.h"
+#include "./boolean.h"
+#include "./friends.h"
+#include "./pengguna.h"
+#include "./wordmachine.h"
+#include "./liststatikpengguna.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 20
 
 typedef struct{
     int prio; /* [1..3], prioritas dengan nilai 1..3 (3 adalah prioritas tertinggi) */
-    int info; /* nilai elemen */
+    Word info; /* nilai elemen */
 } infotype;
 typedef struct{
     infotype buffer[CAPACITY];  /* tabel penyimpan elemen */
@@ -59,8 +63,8 @@ void Enqueue(Queue *Q, infotype X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = HEAD(Q) yang lama. Jika Q tidak jadi kosong, IDX_HEAD(Q) berpindah ke elemen berikutnya pada Q.
-Jika Q menjadi kosong, IDX_HEAD(Q) dan IDX_TAIL(Q) menjadi IDX_UNDEF. 
-Menggeser semua elemen ke kiri agar IDX_HEAD(Q) tetap di index 0 */
+Jika Q menjadi kosong, IDX_HEAD(Q) dan IDX_TAIL(Q) menjadi IDX_UNDEF. */
+/* Menggeser semua elemen ke kiri agar IDX_HEAD(Q) tetap di index 0 */
 void Dequeue(Queue *Q, infotype *X);
 
 /* Operasi Tambahan */

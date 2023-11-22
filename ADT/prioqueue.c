@@ -57,7 +57,7 @@ void PrintQueue(Queue Q){
     int len = length(Q);
     while(len--){
         Dequeue(&Q, &dum);
-        printf("%d %d\n", Prio(dum), Info(dum));
+        printf("%d %s\n", Prio(dum), Info(dum));
     }
     printf("#\n");
 }
