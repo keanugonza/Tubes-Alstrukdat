@@ -1,7 +1,8 @@
 #include "../../ADT/ListDinOfUtas.h"
 #include "../../ADT/listdinKicauan.h"
-#include "../../ADT/liststatikpengguna.h"
+#include "../../ADT/wordmachine.h"
 #include "../../ADT/friends.h"
+#include "../../ADT/liststatikpengguna.h"
 #include <stdio.h>
 
 void UTAS(ListUtas *lu, ListDinKicauan lk, Pengguna user, int idUtas, int idKicauan){
@@ -21,21 +22,24 @@ void UTAS(ListUtas *lu, ListDinKicauan lk, Pengguna user, int idUtas, int idKica
         if(isWordEqual(AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), Nama(user)) ){ // cek apakah kicauan milik user
             DATETIME currDatetime;
             BacaDATETIME(&currDatetime);
-            AddressToUtas new = newNode(idKicauan, AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), currDatetime, TEXT_KICAUAN(KICAUAN(lk,idKicauan)));
+            AddressToUtas kicUtama = newNode(idKicauan, AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), currDatetime, TEXT_KICAUAN(KICAUAN(lk,idKicauan)));
             if(isFullListUtas(*lu)){
                 expandListUtas(lu,2);
             }
-            insertLastUtas(lu, new);
+            insertLastUtas(lu, kicUtama);
             printf("Utas berhasil dibuat!\n");
             printf("\n");
-            printf("\n");
             boolean selesai = false;
+            AddressToUtas new;
             do{ // lakukan masukkan kicauan hingga di input TIDAK
                 printf("Masukkan kicauan:\n");
-                //input word
+                ADVWORD_takeBlank();
+                BacaDATETIME(&currDatetime);
+                new = newNode(1,Nama(user),currDatetime,currentWord);
+                sambungBelakangUtas(&kicUtama, new);
                 for(;;){ // cek input agar YA atau TIDAK
                     printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)\n");
-                    //input word
+                    ADVWORD_takeBlank();
                     if(isWordEqual(currentWord,ya) || isWordEqual(currentWord,tidak)){
                         break;
                     }else{

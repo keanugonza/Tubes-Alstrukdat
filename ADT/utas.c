@@ -3,7 +3,7 @@
 #include "utas.h"
 
 AddressToUtas newNode(int id, Word author, DATETIME dt, Word isi){
-    AddressToUtas p = (AddressToUtas) malloc(sizeof(Node));
+    AddressToUtas p = (AddressToUtas) malloc(sizeof(NodeUtas));
     if(p != NULL){
         AUTHOR_UTAS(p) = author;
         DATETIME_UTAS(p) = dt;
