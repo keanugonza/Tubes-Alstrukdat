@@ -5,12 +5,14 @@
 #include "..\..\ADT\charmachine.h"
 #include "..\..\ADT\boolean.h"
 #include "..\..\ADT\datetime.h"
+// #include "..\..\ADT\friends.h"
 
 #include "..\..\ADT\kicauan.c"
 #include "..\..\ADT\listdinKicauan.c"
 #include "..\..\ADT\wordmachine.c"
 #include "..\..\ADT\charmachine.c"
 #include "..\..\ADT\datetime.c"
+// #include "..\..\ADT\friends.c"
 
 
 
@@ -22,6 +24,9 @@ boolean isTeman(Word a, Word b){
     return false;
 }
 
+boolean isBlank(Word text){
+    return false;
+}
 void KICAU(ListDinKicauan *l, boolean privat, Word author){
     Word text;
     Kicauan k;
@@ -29,9 +34,9 @@ void KICAU(ListDinKicauan *l, boolean privat, Word author){
     printf("Masukkan kicauan:\n");
     STARTWORD_takeBlank();
     text = currentWord;
-    // if (isBlank(text)){
-    //     printf("Kicauan tidak boleh hanya berisi spasi!\n");
-    // } else{
+    if (isBlank(text)){
+        printf("Kicauan tidak boleh hanya berisi spasi!\n");
+    } else{
         int id = listLengthKicauan(*l) + 1;
         int like =0;
         createKicauan(&k, id, text, like, author, privat);
@@ -40,11 +45,11 @@ void KICAU(ListDinKicauan *l, boolean privat, Word author){
         printf("Selamat! kicauan telah diterbitkan!\n");
         printf("Detil kicauan:\n");
         displayKicauan(k);
-    // }
+    }
 }
 
 void allKICAUAN(ListDinKicauan *l, Word author){
-    for (int i=0; i < listLengthKicauan(*l); i++){
+    for (int i= listLengthKicauan(*l) -1; i >= 0 ; i--){
         Kicauan k = KICAUAN(*l,i);
         Word pemilikKicauan = AUTHOR_KICAUAN(k);
         if((isWordEqual(author, pemilikKicauan)) || isTeman(author,pemilikKicauan)){

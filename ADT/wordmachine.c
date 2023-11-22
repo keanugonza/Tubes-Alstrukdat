@@ -23,7 +23,7 @@ void STARTWORD()
               currentChar karakter pertama sesudah karakter terakhir kata */
     START_Char();
     IgnoreBlanks();
-    if (currentChar == MARKSC || currentChar == MARKNL)
+    if (currentChar == MARKSC)
     {
         EndWord = true;
     }
@@ -42,7 +42,7 @@ void ADVWORD()
               Jika currentChar = MARK, EndWord = true.
        Proses : Akuisisi kata menggunakan procedure CopyWord */
     IgnoreBlanks();
-    if (currentChar == MARKSC || currentChar == MARKNL)
+    if (currentChar == MARKSC )
     {
         EndWord = true;
     }
@@ -63,7 +63,7 @@ void CopyWord()
               currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
               Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
     currentWord.Length = 0;
-    while (currentChar != BLANK && currentChar != MARKSC && currentChar != MARKNL)
+    while (currentChar != BLANK && currentChar != MARKSC)
     {
         if (currentWord.Length < NMax)
         { // jika lebih akan terpotong
@@ -84,7 +84,7 @@ void STARTWORD_takeBlank()
               atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
               currentChar karakter pertama sesudah karakter terakhir kata */
     START_Char();
-    if (currentChar == MARKSC || currentChar == MARKNL)
+    if (currentChar == MARKSC)
     {
         EndWord = true;
     }
@@ -104,7 +104,7 @@ void CopyWord_takeBlank()
               currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
               Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
     currentWord.Length = 0;
-    while (currentChar != MARKSC && currentChar != MARKNL)
+    while (currentChar != MARKSC)
     {
         if (currentWord.Length < NMax)
         { // jika lebih akan terpotong
