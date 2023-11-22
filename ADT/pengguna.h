@@ -34,6 +34,6 @@ typedef struct
 
 /* PROTOTYPE Pengguna */
 
-void createPengguna(int id, Word nama, Word kata_sandi, Word bio, Word noHP, Word weton, boolean jenis, Matrix foto);
+void createPengguna(Pengguna *User, int id, Word nama, Word kata_sandi, Word bio, Word noHP, Word weton, boolean jenis, Matrix foto);
 
 #endif
