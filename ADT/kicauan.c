@@ -5,15 +5,15 @@
 /* ********** KONSTRUKTOR ********** */
 boolean EndWord;
 Word currentWord;
-void createKicauan(Kicauan *K, int id, Word text, int like, Word author, boolean Privat){
+void createKicauan(Kicauan *K, int id, Word text, int like, Pengguna user){
     DATETIME T;
     BacaDATETIME(&T);
     ID_KICAUAN(*K) = id;
     TEXT_KICAUAN(*K) = text;
     LIKE_KICAUAN(*K) = like;
-    AUTHOR_KICAUAN(*K) = author;
+    AUTHOR_KICAUAN(*K) = user.nama;
     DATETIME_KICAUAN(*K) = T;
-    PRIVAT_KICAUAN(*K) = Privat;
+    PRIVAT_KICAUAN(*K) = user.jenis;
 }
 
 
