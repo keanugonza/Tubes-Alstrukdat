@@ -7,16 +7,16 @@
 #include "liststatikpengguna.c"
 
 extern ListPengguna LP;
-extern Word self;
-extern friends;
+extern Pengguna user;
+extern Friends f;
 
 void createFriendReqList(Queue *q){
     CreateEmpty(q);
 }
 
 boolean hasSentFriendReq(Queue q, Word nama){
-    int length =  IDX_TAIL(q) - IDX_HEAD(q) + 1;
-    while(length--){
+    int len = length(q);
+    while(len--){
         if(isWordEqual(Info(HEAD(q)), nama)){
             return true;
         }
@@ -26,9 +26,15 @@ boolean hasSentFriendReq(Queue q, Word nama){
 }
 
 void addFriendReq(Queue *q, Word nama){
+    infotype friendReq;
+    Word text;
     printf("\nMasukkan nama pengguna:\n");
-    input();
+    STARTWORD();
+    text = currentWord;
 
+    Info(friendReq) = text;
+    Prio(friendReq) = friendCount(f, idxPengguna(LP, text));
+    
     printf("\n");
     if(!IsEmpty(*q)){
         printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n");
@@ -36,14 +42,14 @@ void addFriendReq(Queue *q, Word nama){
     else if(!isMember(LP, currentWord)){
         printf("Pengguna bernama %s tidak ditemukan.\n", currentWord);
     }
-    else if(isFriends()){
+    else if(isFriend(f, user.id, idxPengguna(LP, text))){
         printf("Anda sudah berteman dengan %s!\n");
     }
-    else if(hasSentFriendReq(*q, nama)){
+    else if(hasSentFriendReq(*q, text)){
         printf("Anda sudah mengirimkan permintaan pertemanan kepada %s. Silakan tunggu hingga permintaan Anda disetujui.\n");
     }
     else{
-        Add(q, currentWord);
+        Enqueue(q, friendReq);
         printf("Permintaan pertemanan kepada %s telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n");
     }
     printf("\n");
@@ -67,20 +73,23 @@ void displayFriendReqList(Queue q){
 
 void accFriendReq(Queue *q, int id){
     infotype dum;
+    Word text;
+
     printf("\nPermintaan pertemanan teratas dari %s\n", Info(HEAD(*q)));
     printf("\n| %s\n| Jumlah teman:  %d\n", Info(HEAD(*q)), Prio(HEAD(*q)));
 
     printf("Apakah Anda ingin menyetujui permintaan pertemanan ini? (YA/TIDAK) ");
-    input();
+    STARTWORD();
+    text = currentWord;
 
-    if("YA"){
+    if(isWordEqual(text, Info(dum))){
         Dequeue(q, &dum);
-        addFriend(friends, id, id);
+        addFriend(&f, user.id, user.id);
         printf("\nPermintaan pertemanan dari %s telah disetujui. Selamat! Anda telah berteman dengan %s.\n");
     }
-    else if("TIDAK"){
+    else if(!isWordEqual(text, Info(dum))){
         Dequeue(q, &dum);
-        printf("\nPermintaan pertemanan dari %s telah ditolak.\n", Nama_User());
+        printf("\nPermintaan pertemanan dari %s telah ditolak.\n", text);
     }
     printf("\n");
 }
