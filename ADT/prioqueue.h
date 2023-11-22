@@ -6,11 +6,11 @@
 #ifndef prioqueue_H
 #define prioqueue_H
 
-#include "../boolean.h"
-#include "../friends.h"
-#include "../pengguna.h"
-#include "../wordmachine.h"
-#include "../liststatikpengguna.h"
+#include "./boolean.h"
+#include "./friends.h"
+#include "./pengguna.h"
+#include "./wordmachine.h"
+#include "./liststatikpengguna.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 20
@@ -63,8 +63,8 @@ void Enqueue(Queue *Q, infotype X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = HEAD(Q) yang lama. Jika Q tidak jadi kosong, IDX_HEAD(Q) berpindah ke elemen berikutnya pada Q.
-Jika Q menjadi kosong, IDX_HEAD(Q) dan IDX_TAIL(Q) menjadi IDX_UNDEF. 
-Menggeser semua elemen ke kiri agar IDX_HEAD(Q) tetap di index 0 */
+Jika Q menjadi kosong, IDX_HEAD(Q) dan IDX_TAIL(Q) menjadi IDX_UNDEF. */
+/* Menggeser semua elemen ke kiri agar IDX_HEAD(Q) tetap di index 0 */
 void Dequeue(Queue *Q, infotype *X);
 
 /* Operasi Tambahan */
