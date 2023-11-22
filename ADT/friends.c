@@ -6,11 +6,12 @@ void createPertemanan(Friends *f){
     /* I.S. Sembarang */
     /* F.S. Mengembalikan graph adjacency matriks dari pertemanan */
     int i,j;
-    createGraph(f);
     for(i = 0; i<20; i++){
         for(j = 0; j<20; i++){
             if (i == j){
                 NODE_TEMAN(*f,i,j) = 1;
+            }else{
+                NODE_TEMAN(*f,i,j) = 0;
             }
         }
     }
@@ -39,7 +40,7 @@ int friendCount(Friends f, int user){
     int count;
     for(i = 0; i < 20; i++){
         if(i != user){
-            if(f[i] == 1){
+            if(f[user][i] == 1){
                 count +=1;
             }
         }

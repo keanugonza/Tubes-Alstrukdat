@@ -5,14 +5,18 @@
 #include "..\..\ADT\charmachine.h"
 #include "..\..\ADT\boolean.h"
 #include "..\..\ADT\boolean.h"
+#include "..\..\ADT\friends.h"
 #include "..\..\ADT\pengguna.h"
+#include "..\..\ADT\liststatikpengguna.h"
 
 #include "..\..\ADT\kicauan.c"
 #include "..\..\ADT\listdinKicauan.c"
 #include "..\..\ADT\wordmachine.c"
 #include "..\..\ADT\charmachine.c"
 #include "..\..\ADT\datetime.c"
+#include "..\..\ADT\friends.c"
 #include "..\..\ADT\pengguna.c"
+#include "..\..\ADT\liststatikpengguna.c"
 
 
 
@@ -53,18 +57,19 @@ void KICAU(ListDinKicauan *l, Pengguna user){
     }
 }
 
-void allKICAUAN(ListDinKicauan *l, Pengguna user){
+void allKICAUAN(ListDinKicauan *l, Pengguna user, ListPengguna LP, Friends f){
     for (int i=listLengthKicauan(*l)-1; i >= 0; i--){
         Kicauan k = KICAUAN(*l,i);
         Word pemilikKicauan = AUTHOR_KICAUAN(k);
-        if((isWordEqual(user.nama, pemilikKicauan)) || isTeman(user.nama,pemilikKicauan)){
+        int idx_pengguna = idxPengguna(LP, pemilikKicauan);
+        if((isWordEqual(user.nama, pemilikKicauan)) || isFriend(f, user.id, idx_pengguna)){
             displayKicauan(k);
         }
         printf("\n");
     }
 }
 
-void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Pengguna user){
+void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Pengguna user, ListPengguna LP, Friends f){
     int idx = idKICAU -1;
     if(idx > listLengthKicauan(*l)-1 || idx<0){
         printf("Tidak ditemukan kicauan dengan ID = %d\n", idKICAU);
@@ -80,7 +85,8 @@ void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Pengguna user){
             displayKicauan(k);
         } else{
             Word authorLIKE = AUTHOR_KICAUAN(k);
-            if(isWordEqual(user.nama, authorLIKE) || isTeman(user.nama,authorLIKE)){
+            int idx_pengguna = idxPengguna(LP, authorLIKE);
+            if(isWordEqual(user.nama, authorLIKE) || isFriend(f, user.id, idx_pengguna)){
                 tambahLike(&k,1);
                 setKicauan(l, k, idKICAU-1);
                 printf("Selamat! kicauan telah disukai!\n");

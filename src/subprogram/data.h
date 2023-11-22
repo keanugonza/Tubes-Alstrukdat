@@ -5,8 +5,9 @@
 
 StackDraf progStackDraf[20];
 Draf progDraf;
-ListDinKicauan progListDinPengguna;
+ListDinKicauan progListDinKicau;
 Kicauan progKicauan;
 ListUtas progCreateListDinUtas;
 Utas progUtas;
 Friends progFriends;
+int idPengguna;

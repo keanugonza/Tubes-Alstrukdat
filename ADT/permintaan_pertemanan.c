@@ -1,16 +1,23 @@
 #include "permintaan_pertemanan.h"
-#include "wordmachine.c"
 
-extern self;
+#include "prioqueue.c"
+#include "friends.c"
+#include "pengguna.c"
+#include "wordmachine.c"
+#include "liststatikpengguna.c"
+
+extern ListPengguna LP;
+extern Pengguna user;
+extern Friends f;
 
 void createFriendReqList(Queue *q){
     CreateEmpty(q);
 }
 
-boolean hasSentFriendReq(Queue q, Pengguna nama){
-    int length =  IDX_TAIL(q) - IDX_HEAD(q) + 1;
-    while(length--){
-        if(info(HEAD(q)) == nama.nama){
+boolean hasSentFriendReq(Queue q, Word nama){
+    int len = length(q);
+    while(len--){
+        if(isWordEqual(Info(HEAD(q)), nama)){
             return true;
         }
         IDX_HEAD(q)++;
@@ -18,36 +25,43 @@ boolean hasSentFriendReq(Queue q, Pengguna nama){
     return false;
 }
 
-void addFriendReq(Queue *q, Pengguna otherUser){
+void addFriendReq(Queue *q, Word nama){
+    infotype friendReq;
+    Word text;
     printf("\nMasukkan nama pengguna:\n");
-    input();
+    STARTWORD();
+    text = currentWord;
+
+    Info(friendReq) = text;
+    Prio(friendReq) = friendCount(f, idxPengguna(LP, text));
+    
     printf("\n");
     if(!IsEmpty(*q)){
         printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n");
     }
-    else if(userDoesntExist()){
-        printf("Pengguna bernama %s tidak ditemukan.\n", nama());
+    else if(!isMember(LP, text)){
+        printf("Pengguna bernama %s tidak ditemukan.\n", text);
     }
-    else if(isFriends()){
-        printf("Anda sudah berteman dengan %s!\n");
+    else if(isFriend(f, user.id, idxPengguna(LP, text))){
+        printf("Anda sudah berteman dengan %s!\n", text);
     }
-    else if(hasSentFriendReq(*q, nama)){
-        printf("Anda sudah mengirimkan permintaan pertemanan kepada %s. Silakan tunggu hingga permintaan Anda disetujui.\n");
+    else if(hasSentFriendReq(*q, text)){
+        printf("Anda sudah mengirimkan permintaan pertemanan kepada %s. Silakan tunggu hingga permintaan Anda disetujui.\n", text);
     }
     else{
-        Add(q, otherUser);
-        printf("Permintaan pertemanan kepada %s telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n");
+        Enqueue(q, friendReq);
+        printf("Permintaan pertemanan kepada %s telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n", text);
     }
     printf("\n");
 }
 
 void displayFriendReqList(Queue q){
     infotype dum;
-    int length = IDX_TAIL(q) - IDX_HEAD(q) + 1;
+    int len = length(q);
     printf("\n");
     if(length > 0){
-        printf("Terdapat %d permintaan pertemanan untuk Anda.\n", length);
-        while(length--){
+        printf("Terdapat %d permintaan pertemanan untuk Anda.\n", len);
+        while(len--){
             Dequeue(&q, &dum);
             printf("\n| %s\n| Jumlah teman:  %d\n", Info(dum), Prio(dum));
         }
@@ -57,22 +71,25 @@ void displayFriendReqList(Queue q){
     printf("\n");
 }
 
-void accFriendReq(Queue *q, Graph friendList){
+void accFriendReq(Queue *q, int id){
     infotype dum;
+    Word text;
+
     printf("\nPermintaan pertemanan teratas dari %s\n", Info(HEAD(*q)));
     printf("\n| %s\n| Jumlah teman:  %d\n", Info(HEAD(*q)), Prio(HEAD(*q)));
 
     printf("Apakah Anda ingin menyetujui permintaan pertemanan ini? (YA/TIDAK) ");
-    input();
+    STARTWORD();
+    text = currentWord;
 
-    if("YA"){
+    if(isWordEqual(text, Info(dum))){
         Dequeue(q, &dum);
-        addFriend(friends, u1, u2);
-        printf("\nPermintaan pertemanan dari %s telah disetujui. Selamat! Anda telah berteman dengan %s.\n");
+        addFriend(&f, user.id, user.id);
+        printf("\nPermintaan pertemanan dari %s telah disetujui. Selamat! Anda telah berteman dengan %s.\n", text, text);
     }
-    else if("TIDAK"){
+    else if(!isWordEqual(text, Info(dum))){
         Dequeue(q, &dum);
-        printf("\nPermintaan pertemanan dari %s telah ditolak.\n", Nama_User());
+        printf("\nPermintaan pertemanan dari %s telah ditolak.\n", text);
     }
     printf("\n");
 }
