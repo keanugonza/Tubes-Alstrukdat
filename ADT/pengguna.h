@@ -7,6 +7,7 @@
 // #include "boolean...."
 #include "wordmachine.h"
 #include "ADTDasar\matrix.h"
+#include "boolean.h"
 
 typedef struct
 {
@@ -16,7 +17,7 @@ typedef struct
     Word bio;               /* Bio Pengguna */
     Word noHP;               /* Nomor HP Pengguna */
     Word weton;             /* Weton Pengguna */
-    Word jenis;             /* Jenia Akun Pengguna */
+    boolean jenis;             /* Jenia Akun Pengguna */
     Matrix foto;            /* Foto Pengguna */
 } Pengguna;
 
@@ -33,6 +34,6 @@ typedef struct
 
 /* PROTOTYPE Pengguna */
 
-void createPengguna(int id, Word nama, Word kata_sandi, Word bio, Word noHP, Word weton, Word jenis, Matrix foto);
+void createPengguna(int id, Word nama, Word kata_sandi, Word bio, Word noHP, Word weton, boolean jenis, Matrix foto);
 
 #endif

@@ -4,13 +4,15 @@
 #include "..\..\ADT\wordmachine.h"
 #include "..\..\ADT\charmachine.h"
 #include "..\..\ADT\boolean.h"
-#include "..\..\ADT\datetime.h"
+#include "..\..\ADT\boolean.h"
+#include "..\..\ADT\pengguna.h"
 
 #include "..\..\ADT\kicauan.c"
 #include "..\..\ADT\listdinKicauan.c"
 #include "..\..\ADT\wordmachine.c"
 #include "..\..\ADT\charmachine.c"
 #include "..\..\ADT\datetime.c"
+#include "..\..\ADT\pengguna.c"
 
 
 
@@ -30,7 +32,7 @@ boolean isTeman(Word a, Word b){
     return false;
 }
 
-void KICAU(ListDinKicauan *l, boolean privat, Word author){
+void KICAU(ListDinKicauan *l, Pengguna user){
     Word text;
     Kicauan k;
 
@@ -42,7 +44,7 @@ void KICAU(ListDinKicauan *l, boolean privat, Word author){
     } else{
         int id = listLengthKicauan(*l) + 1;
         int like =0;
-        createKicauan(&k, id, text, like, author, privat);
+        createKicauan(&k, id, text, like, user);
         insertKicauan(l,k);
         printf("\n");
         printf("Selamat! kicauan telah diterbitkan!\n");
@@ -51,18 +53,18 @@ void KICAU(ListDinKicauan *l, boolean privat, Word author){
     }
 }
 
-void allKICAUAN(ListDinKicauan *l, Word author){
+void allKICAUAN(ListDinKicauan *l, Pengguna user){
     for (int i=listLengthKicauan(*l)-1; i >= 0; i--){
         Kicauan k = KICAUAN(*l,i);
         Word pemilikKicauan = AUTHOR_KICAUAN(k);
-        if((isWordEqual(author, pemilikKicauan)) || isTeman(author,pemilikKicauan)){
+        if((isWordEqual(user.nama, pemilikKicauan)) || isTeman(user.nama,pemilikKicauan)){
             displayKicauan(k);
         }
         printf("\n");
     }
 }
 
-void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Word author){
+void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Pengguna user){
     int idx = idKICAU -1;
     if(idx > listLengthKicauan(*l)-1 || idx<0){
         printf("Tidak ditemukan kicauan dengan ID = %d\n", idKICAU);
@@ -78,7 +80,7 @@ void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Word author){
             displayKicauan(k);
         } else{
             Word authorLIKE = AUTHOR_KICAUAN(k);
-            if(isWordEqual(author, authorLIKE) || isTeman(author,authorLIKE)){
+            if(isWordEqual(user.nama, authorLIKE) || isTeman(user.nama,authorLIKE)){
                 tambahLike(&k,1);
                 setKicauan(l, k, idKICAU-1);
                 printf("Selamat! kicauan telah disukai!\n");
@@ -91,7 +93,7 @@ void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Word author){
     }
 }
 
-void UBAH_KICAUAN(ListDinKicauan *l, int idKICAU, Word author){
+void UBAH_KICAUAN(ListDinKicauan *l, int idKICAU, Pengguna user){
     int idx = idKICAU -1;
     if(idx > listLengthKicauan(*l)-1 || idx<0){
         printf("Tidak ditemukan kicauan dengan ID = %d\n", idKICAU);
@@ -99,7 +101,7 @@ void UBAH_KICAUAN(ListDinKicauan *l, int idKICAU, Word author){
         Kicauan k;
         k = KICAUAN(*l,idx);
 
-        if(isWordEqual(AUTHOR_KICAUAN(k),author)){
+        if(isWordEqual(AUTHOR_KICAUAN(k),user.nama)){
             printf("Masukkan kicauan baru:\n");
             ubahTeksKicauan(&k);
             setKicauan(l, k, idx);

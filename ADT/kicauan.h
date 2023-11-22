@@ -2,6 +2,7 @@
 #include "boolean.h"
 #include "datetime.h"
 #include "wordmachine.h"
+#include "pengguna.h"
 
 
 #ifndef KICAUAN_H
@@ -30,7 +31,7 @@ typedef struct
 
 /* ********** KONSTRUKTOR ********** */
 
-void createKicauan(Kicauan *K, int id, Word text, int like, Word author, boolean Privat);
+void createKicauan(Kicauan *K, int id, Word text, int like, Pengguna user);
 
 void displayKicauan(Kicauan K);
 

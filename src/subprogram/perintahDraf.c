@@ -6,6 +6,7 @@
 #include "..\..\ADT\boolean.h"
 #include "..\..\ADT\datetime.h"
 #include "..\..\ADT\listdinKicauan.h"
+#include "..\..\ADT\pengguna.h"
 #include "..\..\ADT\stackDraf.c"
 
 
@@ -17,11 +18,11 @@ void SIMPAN(StackDraf*s, Word text){
     printf("Draf telah berhasil disimpan!\n");
 }
 
-void TERBIT(ListDinKicauan *l, Word text, boolean privat, Word author){
+void TERBIT(ListDinKicauan *l, Word text, Pengguna user){
     Kicauan k;
     int id = listLengthKicauan(*l) + 1;
     int like =0;
-    createKicauan(&k, id, text, like, author, privat);
+    createKicauan(&k, id, text, like, user);
     insertKicauan(l,k);
     printf("\n");
     printf("Selamat! kicauan telah diterbitkan!\n");
@@ -30,7 +31,7 @@ void TERBIT(ListDinKicauan *l, Word text, boolean privat, Word author){
 }
 
 
-void BUAT_DRAF(StackDraf *s, ListDinKicauan *l, boolean privat, Word author){
+void BUAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
     Word text;
     int pilihan;
     // printf("Masukkan draf:\n");
@@ -44,16 +45,16 @@ void BUAT_DRAF(StackDraf *s, ListDinKicauan *l, boolean privat, Word author){
     } else if(pilihan == 2){ //SIMPAN
         SIMPAN(s, text);
     } else if (pilihan ==3){ //TERBIT
-        TERBIT(l, text, privat, author);
+        TERBIT(l, text, user);
     }
 }
 
-void UBAH(StackDraf *s, ListDinKicauan *l, boolean privat, Word author){
+void UBAH(StackDraf *s, ListDinKicauan *l, Pengguna user){
     printf("Masukkan draf yang baru:\n");
-    BUAT_DRAF( s, l, privat, author);
+    BUAT_DRAF( s, l, user);
 }
 
-void LIHAT_DRAF(StackDraf *s, ListDinKicauan *l, boolean privat, Word author){
+void LIHAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
     int pilihan;
     if (isEmptyDraf(*s)){
         printf("Yah, anda belum memiliki draf apapun! Buat dulu ya :D\n");
@@ -65,11 +66,11 @@ void LIHAT_DRAF(StackDraf *s, ListDinKicauan *l, boolean privat, Word author){
         printf("\nApakah anda ingin mengubah, menghapus, atau menerbitkan draf ini? (KEMBALI jika ingin kembali)\n");
         scanf("%d", &pilihan);
         if (pilihan == 1){//ubah
-            UBAH(s,l,privat,author);
+            UBAH(s,l,user);
         } else if (pilihan == 2){ // hapus
             printf("Draf telah berhasil dihapus!\n");
         } else if (pilihan == 3){ //Terbit
-            TERBIT(l,TEXT_DRAF(d),privat,author);
+            TERBIT(l,TEXT_DRAF(d),user);
         }
     }
 }
