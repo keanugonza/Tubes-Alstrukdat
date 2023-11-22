@@ -21,7 +21,7 @@ void displayDraf(Draf d){
 /* Prototype manajemen memori */
 AddressDraf newNodeDraf(Draf d){
     AddressDraf p;
-    p = (AddressDraf) malloc(sizeof(Node));
+    p = (AddressDraf) malloc(sizeof(NodeDraf));
 
     if(p != NIL){
         INFO_Draf(p)  = d;

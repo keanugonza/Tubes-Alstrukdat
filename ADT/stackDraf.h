@@ -15,11 +15,11 @@ typedef struct {
     Word text;  
 } Draf;
 
-typedef struct node* AddressDraf;
-typedef struct node { 
+typedef struct nodeDraf* AddressDraf;
+typedef struct nodeDraf { 
     Draf d;
     AddressDraf nextDraf; 
-} Node; 
+} NodeDraf; 
 
 /* Type stack dengan ciri Top: */
 typedef struct { 
