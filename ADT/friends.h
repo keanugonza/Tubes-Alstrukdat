@@ -3,7 +3,10 @@
 
 #include "ADTDasar/graph.h"
 
-typedef Graph Friends;
+typedef int mem[20][20];
+typedef mem Friends;
+
+#define NODE_TEMAN(F, i, j) (F)[(i)][(j)]
 
 void createPertemanan(Friends *f);
 /* I.S. Sembarang */
@@ -19,5 +22,8 @@ void removeFriend(Friends*f, int user1, int user2);
 
 boolean isFriend(Friends f, int user1, int user2);
 /*Mengembalikan true jika user1 dan user2 berteman*/
+
+int friendCount(Friends f, int user);
+/*Menghitung jumlah teman user*/
 
 #endif
