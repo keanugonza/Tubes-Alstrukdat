@@ -23,7 +23,7 @@ typedef struct nodeUtas {
 
 typedef AddressToUtas Utas;
 
-AddressToUtas newNode(int id, Word author, DATETIME dt, Word isi);
+AddressToUtas newNodeUtas(int id, Word author, DATETIME dt, Word isi);
 /*Membuat node utas baru*/
 
 boolean isEmptyUtas(Utas u);

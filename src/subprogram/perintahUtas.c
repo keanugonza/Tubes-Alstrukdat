@@ -22,7 +22,7 @@ void UTAS(ListUtas *lu, ListDinKicauan lk, Pengguna user, int idUtas, int idKica
         if(isWordEqual(AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), Nama(user)) ){ // cek apakah kicauan milik user
             DATETIME currDatetime;
             BacaDATETIME(&currDatetime);
-            AddressToUtas kicUtama = newNode(idKicauan, AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), currDatetime, TEXT_KICAUAN(KICAUAN(lk,idKicauan)));
+            AddressToUtas kicUtama = newNodeUtas(idKicauan, AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), currDatetime, TEXT_KICAUAN(KICAUAN(lk,idKicauan)));
             if(isFullListUtas(*lu)){
                 expandListUtas(lu,2);
             }
@@ -35,7 +35,7 @@ void UTAS(ListUtas *lu, ListDinKicauan lk, Pengguna user, int idUtas, int idKica
                 printf("Masukkan kicauan:\n");
                 ADVWORD_takeBlank();
                 BacaDATETIME(&currDatetime);
-                new = newNode(1,Nama(user),currDatetime,currentWord);
+                new = newNodeUtas(1,Nama(user),currDatetime,currentWord);
                 sambungBelakangUtas(&kicUtama, new);
                 for(;;){ // cek input agar YA atau TIDAK
                     printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)\n");
@@ -68,7 +68,7 @@ void SAMBUNG_UTAS(ListUtas lu, Pengguna user, int idUtas, int idx){
                 //insert word
                 DATETIME currDatetime;
                 BacaDATETIME(&currDatetime);
-                AddressToUtas insert = newNode(idx, Nama(user), currDatetime, currentWord);
+                AddressToUtas insert = newNodeUtas(idx, Nama(user), currDatetime, currentWord);
                 sambungUtasAt(&kicUtama, insert, idx);
                 printf("Utas berhasil disambung.\n");
             }else{
