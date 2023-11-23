@@ -1,7 +1,6 @@
 #include "prioqueue.h"
 #include "friends.h"
 #include "pengguna.h"
-#include "wordmachine.h"
 #include "liststatikpengguna.h"
 
 /* Membuat Daftar Permintaan Pertemanan */

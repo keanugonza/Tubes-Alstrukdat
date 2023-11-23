@@ -6,11 +6,8 @@
 #ifndef prioqueue_H
 #define prioqueue_H
 
-#include "./boolean.h"
-#include "./friends.h"
-#include "./pengguna.h"
-#include "./wordmachine.h"
-#include "./liststatikpengguna.h"
+#include "boolean.h"
+#include "wordmachine.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 20
@@ -36,6 +33,7 @@ typedef struct{
 #define Elmt(Q, i) (Q).buffer[(i)]
 
 /* ********* Prototype ********* */
+
 /* Mengirim true jika Q kosong: IDX_HEAD dan IDX_TAIL bernilai IDX_UNDEF */
 boolean IsEmpty(Queue Q);
 
@@ -67,8 +65,7 @@ Jika Q menjadi kosong, IDX_HEAD(Q) dan IDX_TAIL(Q) menjadi IDX_UNDEF. */
 /* Menggeser semua elemen ke kiri agar IDX_HEAD(Q) tetap di index 0 */
 void Dequeue(Queue *Q, infotype *X);
 
-/* Operasi Tambahan */
-
+/* Operasi Tambahan (Untuk Pengujian ADT PrioQueue)*/
 /* Mencetak isi queue Q ke layar */
 /* I.S. Q terdefinisi, mungkin kosong */
 /* F.S. Q tercetak ke layar dengan format:

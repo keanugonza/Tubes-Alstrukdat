@@ -1,14 +1,8 @@
 #include "permintaan_pertemanan.h"
 
-#include "prioqueue.c"
-#include "friends.c"
-#include "pengguna.c"
-#include "wordmachine.c"
-#include "liststatikpengguna.c"
-
-extern ListPengguna LP;
-extern Pengguna user;
-extern Friends f;
+extern ListPengguna ListPenggunaFriendReq;
+extern Pengguna userFriendReq;
+extern Friends FriendReq;
 
 void createFriendReqList(Queue *q){
     CreateEmpty(q);
@@ -33,16 +27,16 @@ void addFriendReq(Queue *q, Word nama){
     text = currentWord;
 
     Info(friendReq) = text;
-    Prio(friendReq) = friendCount(f, idxPengguna(LP, text));
+    Prio(friendReq) = friendCount(FriendReq, idxPengguna(ListPenggunaFriendReq, text));
     
     printf("\n");
     if(!IsEmpty(*q)){
         printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n");
     }
-    else if(!isMember(LP, text)){
+    else if(!isMember(ListPenggunaFriendReq, text)){
         printf("Pengguna bernama %s tidak ditemukan.\n", text);
     }
-    else if(isFriend(f, user.id, idxPengguna(LP, text))){
+    else if(isFriend(FriendReq, userFriendReq.id, idxPengguna(ListPenggunaFriendReq, text))){
         printf("Anda sudah berteman dengan %s!\n", text);
     }
     else if(hasSentFriendReq(*q, text)){
@@ -84,7 +78,7 @@ void accFriendReq(Queue *q, int id){
 
     if(isWordEqual(text, Info(dum))){
         Dequeue(q, &dum);
-        addFriend(&f, user.id, user.id);
+        addFriend(&FriendReq, userFriendReq.id, userFriendReq.id);
         printf("\nPermintaan pertemanan dari %s telah disetujui. Selamat! Anda telah berteman dengan %s.\n", text, text);
     }
     else if(!isWordEqual(text, Info(dum))){
