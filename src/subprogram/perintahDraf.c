@@ -36,10 +36,11 @@ void BUAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
     Word WORD_TERBIT = stringToWord("TERBIT");
 
     printf("Masukkan draf:\n");
-    STARTWORD_takeBlank();
+    ADVWORD_takeBlank();
     text = currentWord;
     
     printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?\n");
+    ADVWORD_takeBlank();
     if(isWordEqual(currentWord, WORD_HAPUS)){ //HAPUS
         printf("Draf telah berhasil dihapus!\n");
     } else if(isWordEqual(currentWord, WORD_SIMPAN)){ //SIMPAN
@@ -66,6 +67,7 @@ void LIHAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
         popDraf(s, &d);
         displayDraf(d);
         printf("\nApakah anda ingin mengubah, menghapus, atau menerbitkan draf ini? (KEMBALI jika ingin kembali)\n");
+        ADVWORD_takeBlank();
         if (isWordEqual(currentWord, WORD_UBAH)){//ubah
             UBAH(s,l,user);
         } else if (isWordEqual(currentWord, WORD_HAPUS)){ // hapus

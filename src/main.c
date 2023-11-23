@@ -1,5 +1,5 @@
 #include "subprogram/data.h"
-
+#include <stdio.h>
 #include "subprogram/perintahDraf.c"
 #include "subprogram/perintahKicauan.c"
 #include "subprogram/perintahpengguna.c"
@@ -26,16 +26,17 @@
 
 
 int main(){
+    progIdPengguna = -1;
     for(int i=0; i<20; i ++){
         CreateStackDraf(&progStackDraf[i]);
     }
-    // for(int i=0; i<20; i ++){
-    //     createFriendReqList(&progQueue[i]);
-    // }
+    for(int i=0; i<20; i ++){
+        createFriendReqList(&progQueue[i]);
+    }
     createListPengguna(&progListPengguna);
     CreateListDinKicauan(&progListDinKicau,1);
     CreateListDinUtas(&progListDinUtas,1);
-    // createPertemanan(&progFriends);
+    createPertemanan(&progFriends);
 
     Word perintah[3];
     STARTWORD();
@@ -109,6 +110,7 @@ int main(){
             ADVWORD();
             perintah[2] = currentWord;
             int idBalas = wordToInt(perintah[2]);
+            printf("%d", idKicau);
             BALAS(idKicau, idBalas, progListPengguna, &progListDinKicau, progIdPengguna, progFriends);
         } 
         else if (isWordEqual(perintah[0],stringToWord("BALASAN"))){
