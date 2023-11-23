@@ -1,7 +1,7 @@
 #ifndef friends_H
 #define friends_H
 
-#include "ADTDasar/graph.h"
+#include "boolean.h"
 
 typedef int mem[20][20];
 typedef mem Friends;
