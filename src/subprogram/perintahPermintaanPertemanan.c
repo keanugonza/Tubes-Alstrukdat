@@ -1,4 +1,4 @@
-#include "permintaan_pertemanan.h"
+#include "../ADT/permintaan_pertemanan.h"
 
 extern ListPengguna ListPenggunaFriendReq;
 extern Pengguna userFriendReq;
@@ -19,7 +19,7 @@ boolean hasSentFriendReq(Queue q, Word nama){
     return false;
 }
 
-void addFriendReq(Queue *q, Word nama){
+void addFriendReq(Queue *q){
     infotype friendReq;
     Word text;
     printf("\nMasukkan nama pengguna:\n");
@@ -65,7 +65,7 @@ void displayFriendReqList(Queue q){
     printf("\n");
 }
 
-void accFriendReq(Queue *q, int id){
+void accFriendReq(Queue *q){
     infotype dum;
     Word text;
 
@@ -76,12 +76,12 @@ void accFriendReq(Queue *q, int id){
     STARTWORD();
     text = currentWord;
 
-    if(isWordEqual(text, Info(dum))){
+    if(isWordEqual(text, stringToWord("YA"))){
         Dequeue(q, &dum);
         addFriend(&FriendReq, userFriendReq.id, userFriendReq.id);
         printf("\nPermintaan pertemanan dari %s telah disetujui. Selamat! Anda telah berteman dengan %s.\n", text, text);
     }
-    else if(!isWordEqual(text, Info(dum))){
+    else if(!isWordEqual(text, stringToWord("TIDAK"))){
         Dequeue(q, &dum);
         printf("\nPermintaan pertemanan dari %s telah ditolak.\n", text);
     }
