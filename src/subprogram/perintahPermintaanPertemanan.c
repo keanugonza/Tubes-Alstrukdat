@@ -1,9 +1,5 @@
 #include "../../ADT/permintaan_pertemanan.h"
 
-extern ListPengguna ListPenggunaFriendReq;
-extern Pengguna userFriendReq;
-extern Friends FriendReq;
-
 void createFriendReqList(Queue *q){
     CreateEmpty(q);
 }
@@ -19,7 +15,7 @@ boolean hasSentFriendReq(Queue q, Word nama){
     return false;
 }
 
-void addFriendReq(Queue *q){
+void addFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna, ListPengguna ListPenggunaFriendReq){
     infotype friendReq;
     Word text;
     printf("\nMasukkan nama pengguna:\n");
@@ -36,7 +32,7 @@ void addFriendReq(Queue *q){
     else if(!isMember(ListPenggunaFriendReq, text)){
         printf("Pengguna bernama %s tidak ditemukan.\n", text);
     }
-    else if(isFriend(FriendReq, userFriendReq.id, idxPengguna(ListPenggunaFriendReq, text))){
+    else if(isFriend(FriendReq, currUser.id, idxPengguna(ListPenggunaFriendReq, text))){
         printf("Anda sudah berteman dengan %s!\n", text);
     }
     else if(hasSentFriendReq(*q, text)){
@@ -65,7 +61,7 @@ void displayFriendReqList(Queue q){
     printf("\n");
 }
 
-void accFriendReq(Queue *q){
+void accFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna ListPenggunaFriendReq){
     infotype dum;
     Word text;
 
@@ -78,7 +74,7 @@ void accFriendReq(Queue *q){
 
     if(isWordEqual(text, stringToWord("YA"))){
         Dequeue(q, &dum);
-        addFriend(&FriendReq, userFriendReq.id, userFriendReq.id);
+        addFriend(&FriendReq, currUser.id, idxPengguna(ListPenggunaFriendReq, Info(HEAD(*q))));
         printf("\nPermintaan pertemanan dari %s telah disetujui. Selamat! Anda telah berteman dengan %s.\n", text, text);
     }
     else if(!isWordEqual(text, stringToWord("TIDAK"))){
