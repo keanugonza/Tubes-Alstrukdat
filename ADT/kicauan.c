@@ -1,5 +1,6 @@
 #include "kicauan.h"
 #include "wordmachine.h"
+#include <stdlib.h>
 
 
 /* ********** KONSTRUKTOR ********** */
@@ -14,6 +15,7 @@ void createKicauan(Kicauan *K, int id, Word text, int like, Pengguna user){
     AUTHOR_KICAUAN(*K) = user.nama;
     DATETIME_KICAUAN(*K) = T;
     PRIVAT_KICAUAN(*K) = user.jenis;
+    ANAK_KICAU(*K) = NULL;
 }
 
 
@@ -26,6 +28,7 @@ void displayKicauan(Kicauan K){
     printf("\n");
     printf("| ");
     TulisDATETIME(DATETIME_KICAUAN(K));
+    printf("\n");
     printf("| ");
     displayWord(TEXT_KICAUAN(K));
     printf("\n");

@@ -3,6 +3,7 @@
 #include "datetime.h"
 #include "wordmachine.h"
 #include "pengguna.h"
+#include "balasan.h"
 
 
 #ifndef KICAUAN_H
@@ -18,6 +19,7 @@ typedef struct
     Word author;  
     DATETIME T;
     boolean Privat;
+    Balasan leftChild;
 } Kicauan;
 
 
@@ -28,6 +30,7 @@ typedef struct
 #define AUTHOR_KICAUAN(K) (K).author
 #define DATETIME_KICAUAN(K) (K).T
 #define PRIVAT_KICAUAN(K) (K).Privat
+#define ANAK_KICAU(K) (K).leftChild
 
 /* ********** KONSTRUKTOR ********** */
 

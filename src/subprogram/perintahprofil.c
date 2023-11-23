@@ -82,7 +82,7 @@ aturjenisakun(ListPengguna *LP, int *tempIDpengguna){
     if (type == false){
         printf("\nSaat ini, akun Anda adalah akun Publik. \nIngin mengubah ke akun Privat? \n(YA/TIDAK)\n");
         Word confirm;
-        STARTWORD_takeBlank();
+        ADVWORD_takeBlank();
         confirm = currentWord;
         if (isWordEqual(confirm, conf[0])){
             ELMT_LP(*LP,*tempIDpengguna).jenis = true;
@@ -94,7 +94,7 @@ aturjenisakun(ListPengguna *LP, int *tempIDpengguna){
     } else {
         printf("\nSaat ini, akun Anda adalah akun Privat. \nIngin mengubah ke akun Publik? \n(YA/TIDAK)\n");
         Word confirm;
-        STARTWORD_takeBlank();
+        ADVWORD_takeBlank();
         confirm = currentWord;
         if (isWordEqual(confirm, conf[0])){
             ELMT_LP(*LP,*tempIDpengguna).jenis = false;
@@ -111,7 +111,7 @@ ubahfotoprofil(ListPengguna *LP, int *tempIDpengguna){
     printf("Masukkan foto profil yang baru\n");
     for(int i = 0; i < 5; i++){
         Word temp;
-        STARTWORD_takeBlank();
+        ADVWORD_takeBlank();
         temp = currentWord;
         int k = 0;
         for(int j = 0; j < 5; j++){

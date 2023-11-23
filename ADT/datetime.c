@@ -45,8 +45,6 @@ void TulisDATETIME(DATETIME D){
     printf("%d:",HOUR(D));
     printf("%d:",MINUTE(D));
     printf("%d",SECOND(D));
-    printf("\n");
-
 }
 
 /* I.S. : D sembarang */

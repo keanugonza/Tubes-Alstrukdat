@@ -32,18 +32,20 @@ void TERBIT(ListDinKicauan *l, Word text, Pengguna user){
 
 void BUAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
     Word text;
-    int pilihan;
-    // printf("Masukkan draf:\n");
+    Word WORD_HAPUS = stringToWord("HAPUS");
+    Word WORD_SIMPAN = stringToWord("SIMPAN");
+    Word WORD_TERBIT = stringToWord("TERBIT");
+
+    printf("Masukkan draf:\n");
     STARTWORD_takeBlank();
     text = currentWord;
     
     printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?\n");
-    scanf("%d", &pilihan);
-    if(pilihan == 1){ //HAPUS
+    if(isWordEqual(currentWord, WORD_HAPUS)){ //HAPUS
         printf("Draf telah berhasil dihapus!\n");
-    } else if(pilihan == 2){ //SIMPAN
+    } else if(isWordEqual(currentWord, WORD_SIMPAN)){ //SIMPAN
         SIMPAN(s, text);
-    } else if (pilihan ==3){ //TERBIT
+    } else if (isWordEqual(currentWord, WORD_TERBIT)){ //TERBIT
         TERBIT(l, text, user);
     }
 }
@@ -54,7 +56,9 @@ void UBAH(StackDraf *s, ListDinKicauan *l, Pengguna user){
 }
 
 void LIHAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
-    int pilihan;
+    Word WORD_UBAH = stringToWord("UBAH");
+    Word WORD_HAPUS = stringToWord("HAPUS");
+    Word WORD_TERBIT = stringToWord("TERBIT");
     if (isEmptyDraf(*s)){
         printf("Yah, anda belum memiliki draf apapun! Buat dulu ya :D\n");
     } else{
@@ -63,12 +67,11 @@ void LIHAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
         popDraf(s, &d);
         displayDraf(d);
         printf("\nApakah anda ingin mengubah, menghapus, atau menerbitkan draf ini? (KEMBALI jika ingin kembali)\n");
-        scanf("%d", &pilihan);
-        if (pilihan == 1){//ubah
+        if (isWordEqual(currentWord, WORD_UBAH)){//ubah
             UBAH(s,l,user);
-        } else if (pilihan == 2){ // hapus
+        } else if (isWordEqual(currentWord, WORD_HAPUS)){ // hapus
             printf("Draf telah berhasil dihapus!\n");
-        } else if (pilihan == 3){ //Terbit
+        } else if (isWordEqual(currentWord, WORD_TERBIT)){ //Terbit
             TERBIT(l,TEXT_DRAF(d),user);
         }
     }
