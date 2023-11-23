@@ -3,7 +3,8 @@
 #include "../../ADT/ListDinOfUtas.h"
 #include "../../ADT/liststatikpengguna.h"
 #include "../../ADT/friends.h"
-#include "..\..\ADT\pengguna.h"
+#include "../../ADT/pengguna.h"
+#include "../../ADT/prioqueue.h"
 #include "perintahDraf.c"
 #include "perintahKicauan.c"
 #include "perintahpengguna.c"
@@ -16,7 +17,8 @@ ListPengguna progListPengguna;
 Draf progDraf;
 ListDinKicauan progListDinKicau;
 Kicauan progKicauan;
-ListUtas progCreateListDinUtas;
+ListUtas progListDinUtas;
 Utas progUtas;
 Friends progFriends;
 int progIdPengguna;
+Queue progQueue[20];
