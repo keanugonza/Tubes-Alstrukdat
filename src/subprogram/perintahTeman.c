@@ -46,7 +46,7 @@ void HAPUS_TEMAN(Pengguna user, ListPengguna lp, Friends *f){
             for(;;){ // cek input agar YA atau TIDAK
                     printf("Apakah anda yakin ingin menghapus ");
                     displayWord(currentWord);
-                    printf("dari daftar teman anda?(YA/TIDAK)\n")
+                    printf("dari daftar teman anda?(YA/TIDAK)\n");
                     ADVWORD_takeBlank();
                     if(isWordEqual(currentWord,ya) || isWordEqual(currentWord,tidak)){
                         break;

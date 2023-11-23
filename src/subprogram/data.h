@@ -1,13 +1,22 @@
 #include "../../ADT/stackDraf.h"
 #include "../../ADT/listdinKicauan.h"
 #include "../../ADT/ListDinOfUtas.h"
+#include "../../ADT/liststatikpengguna.h"
 #include "../../ADT/friends.h"
+#include "..\..\ADT\pengguna.h"
+#include "perintahDraf.c"
+#include "perintahKicauan.c"
+#include "perintahpengguna.c"
+#include "perintahprofil.c"
+#include "perintahTeman.c"
+#include "perintahUtas.c"
 
 StackDraf progStackDraf[20];
+ListPengguna progListPengguna;
 Draf progDraf;
 ListDinKicauan progListDinKicau;
 Kicauan progKicauan;
 ListUtas progCreateListDinUtas;
 Utas progUtas;
 Friends progFriends;
-int idPengguna;
+int progIdPengguna;
