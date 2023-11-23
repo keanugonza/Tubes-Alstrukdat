@@ -36,6 +36,7 @@ void newChildBalasan(Balasan parentbalasan, Balasan childbalasan){
 
 Balasan findByIdBalasan(Balasan parentbalasan, int idbalasan){
     Balasan res;
+    if(parentbalasan == NULL) return NULL;
     if(IDBALASAN(parentbalasan) == idbalasan) return parentbalasan;
     else{
         res = NULL;
@@ -51,6 +52,7 @@ Balasan findByIdBalasan(Balasan parentbalasan, int idbalasan){
 
 int findMaxIdBalasan(Balasan parentbalasan){
     int res,temp;
+    if(parentbalasan == NULL) return 0;
     res = IDBALASAN(parentbalasan);
     if(CHILDBALASAN(parentbalasan)!=NULL){
         temp = findMaxIdBalasan(CHILDBALASAN(parentbalasan));
