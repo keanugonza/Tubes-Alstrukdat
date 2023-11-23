@@ -33,7 +33,7 @@ IdxType getFirstIdxUtas(ListUtas lu){
 IdxType getLastIdxUtas(ListUtas lu){
     /* Prekondisi : List l tidak kosong */
     /* Mengirimkan indeks elemen l terakhir */
-    return(IdxType)(listLength(lu)-1);
+    return(IdxType)(listLengthUtas(lu)-1);
 }
 
 /* ********** TEST KOSONG/PENUH ********** */
@@ -46,14 +46,14 @@ boolean isEmptyListUtas(ListUtas lu){
 
 boolean isFullListUtas(ListUtas lu){
     /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
-    return(listLengthUtas(lu) == CAPACITY(lu));
+    return(listLengthUtas(lu) == CAPACITY_UTAS(lu));
 }
 
 /* ********** Test Indeks yang valid ********** */
 boolean isIdxValidListUtas(ListUtas lu, IdxType i){
     /* Mengirimkan true jika i adalah indeks yang valid utk kapasitas list l */
     /* yaitu antara indeks yang terdefinisi utk container*/
-    return (i>=getFirstIdx(lu)) && (i< CAPACITY(lu));
+    return (i>=getFirstIdxUtas(lu)) && (i< CAPACITY_UTAS(lu));
 }
 
 boolean isIdxEffUtas(ListUtas lu, IdxType i){
@@ -66,7 +66,7 @@ boolean isInListUtas(ListUtas lu, int id){
     boolean found = false;
     int i = 0;
     while (!found && i<listLengthUtas(lu)){
-        if(ID(ELMT(lu,i)) == id) {
+        if(ID_UTAS(ELMT_UTAS(lu,i)) == id) {
             found = true;
         }else{
             i+=1;
@@ -83,17 +83,30 @@ void insertLastUtas(ListUtas *lu, Utas val){
     NEFF_UTAS(*lu) += 1;
 }
 
+void copyListUtas(ListUtas lIn, ListUtas *lOut){
+    /* I.S. lIn terdefinisi tidak kosong, lOut sembarang */
+    /* F.S. lOut berisi salinan dari lIn (identik, nEff dan capacity sama) */
+    /* Proses : Menyalin isi lIn ke lOut */
+    int i;
+    CreateListDinUtas(lOut, CAPACITY_UTAS(lIn));
+    NEFF_UTAS(*lOut) = NEFF_UTAS(lIn);
+    for(i = 0; i < NEFF_UTAS(lIn); i++){
+       ELMT_UTAS(*lOut,i) = ELMT_UTAS(lIn,i);
+    }
+}
+
+
 void expandListUtas(ListUtas *lu, int num){
     /* Proses : Menambahkan capacity l sebanyak num */
     /* I.S. List sudah terdefinisi */
     /* F.S. Ukuran list bertambah sebanyak num */
     ListUtas ltemp;
     int i;
-    CreateListDin(&ltemp, CAPACITY(*lu) + num);
+    CreateListDinUtas(&ltemp, CAPACITY_UTAS(*lu) + num);
     for(i = 0; i < NEFF_UTAS(*lu); i++){
        ELMT_UTAS(ltemp,i) = ELMT_UTAS(*lu,i);
     }
     NEFF_UTAS(ltemp) = NEFF_UTAS(*lu);
     dealocateListUtas(lu);
-    copyList(ltemp,lu);
+    copyListUtas(ltemp,lu);
 }

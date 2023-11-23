@@ -75,6 +75,11 @@ void insertLastUtas(ListUtas *lu, Utas val);
 /* I.S. List l boleh kosong, tetapi tidak penuh */
 /* F.S. val adalah elemen terakhir l yang baru */
 
+void copyListUtas(ListUtas lIn, ListUtas *lOut);
+/* I.S. lIn terdefinisi tidak kosong, lOut sembarang */
+/* F.S. lOut berisi salinan dari lIn (identik, nEff dan capacity sama) */
+/* Proses : Menyalin isi lIn ke lOut */
+
 /* ********* MENGUBAH UKURAN ARRAY ********* */
 void expandListUtas(ListUtas *lu, int num);
 /* Proses : Menambahkan capacity l sebanyak num */

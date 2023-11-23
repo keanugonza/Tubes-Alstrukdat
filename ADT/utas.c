@@ -100,7 +100,7 @@ void hapusDepanUtas(Utas *utama){
 
 void hapusBelakangUtas(Utas *utama){
     if(onlyKicauanUtama(*utama)){
-        hapusDepanUtas(*utama);
+        hapusDepanUtas(utama);
     }else{
         AddressToUtas del = KICAUANUTAMA(*utama);
         AddressToUtas prev = NULL;
@@ -133,7 +133,7 @@ void hapusUtasAt(Utas *utama, int idx){
 
 void displayUtas(Utas u){
     AddressToUtas p = KICAUANUTAMA(u);
-    printf("| ID =%d\n", ID(p));
+    printf("| ID =%d\n", ID_UTAS(p));
     printf("| ");// author
     displayWord(AUTHOR_UTAS(u));
     printf("\n");

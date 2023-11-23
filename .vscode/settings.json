@@ -12,6 +12,7 @@
         "charmachine.h": "c",
         "listdinkicauan.h": "c",
         "liststatikpengguna.h": "c",
-        "matrix.h": "c"
+        "matrix.h": "c",
+        "stdio.h": "c"
     }
 }
