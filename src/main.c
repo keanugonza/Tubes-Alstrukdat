@@ -39,6 +39,7 @@ int main(){
     createPertemanan(&progFriends);
 
     Word perintah[3];
+    printf(">> ");
     STARTWORD();
     perintah[0] = currentWord;
     while(!(isWordEqual(perintah[0],stringToWord("TUTUP_PROGRAM")))){
@@ -151,7 +152,7 @@ int main(){
             ADVWORD();
             perintah[2] = currentWord;
             int idx = wordToInt(perintah[2]);
-            SAMBUNG_UTAS(progListDinUtas, user, idUtas, idx);
+            SAMBUNG_UTAS(&progListDinUtas, user, idUtas, idx);
         } 
         else if (isWordEqual(perintah[0],stringToWord("HAPUS_UTAS"))){
             Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
@@ -161,7 +162,7 @@ int main(){
             ADVWORD();
             perintah[2] = currentWord;
             int idx = wordToInt(perintah[2]);
-            HAPUS_UTAS(progListDinUtas,user,idUtas,idx);
+            HAPUS_UTAS(&progListDinUtas,user,idUtas,idx);
         } 
         else if (isWordEqual(perintah[0],stringToWord("CETAK_UTAS"))){
             Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);

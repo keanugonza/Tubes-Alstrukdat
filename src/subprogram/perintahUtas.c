@@ -6,102 +6,96 @@
 #include <stdio.h>
 
 void UTAS(ListUtas *lu, ListDinKicauan lk, Pengguna user, int idKicauan){
-    Word ya,tidak;
-    idKicauan = idKicauan -1;
-    ya.TabWord[0] = 'Y';
-    ya.TabWord[1] = 'A';
-    ya.Length = 2;
-    tidak.TabWord[0] = 'T';
-    tidak.TabWord[1] = 'I';
-    tidak.TabWord[2] = 'D';
-    tidak.TabWord[3] = 'A';
-    tidak.TabWord[4] = 'K';
-    tidak.Length = 5;
+    Word ya = stringToWord("YA");
+    Word tidak = stringToWord("TIDAK");
     if((idKicauan) > NEFF_Kicauan(lk)){ // cek apakah kicauan terdapat di list kicauan
-        printf("Kicauan tidak ditemukan.\n");
+        printf("\nKicauan tidak ditemukan.\n\n");
     }else{
-        if(isWordEqual(AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), Nama(user)) ){ // cek apakah kicauan milik user
-            DATETIME currDatetime;
-            BacaDATETIME(&currDatetime);
-            AddressToUtas kicUtama = newNodeUtas(idKicauan, AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), currDatetime, TEXT_KICAUAN(KICAUAN(lk,idKicauan)));
-            if(isFullListUtas(*lu)){
-                expandListUtas(lu,2);
-            }
-            insertLastUtas(lu, kicUtama);
-            printf("Utas berhasil dibuat!\n");
-            printf("\n");
-            boolean selesai = false;
-            AddressToUtas new;
-            do{ // lakukan masukkan kicauan hingga di input TIDAK
-                printf("Masukkan kicauan:\n");
-                ADVWORD_takeBlank();
+        if(!isInListUtas(*lu,idKicauan)){
+            idKicauan = idKicauan -1;
+            if(isWordEqual(AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), Nama(user)) ){ // cek apakah kicauan milik user
+                DATETIME currDatetime;
                 BacaDATETIME(&currDatetime);
-                new = newNodeUtas(1,Nama(user),currDatetime,currentWord);
-                sambungBelakangUtas(&kicUtama, new);
-                for(;;){ // cek input agar YA atau TIDAK
-                    printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK)\n");
+                AddressToUtas kicUtama = newNodeUtas(idKicauan+1, AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), currDatetime, TEXT_KICAUAN(KICAUAN(lk,idKicauan)));
+                if(isFullListUtas(*lu)){
+                    expandListUtas(lu,2);
+                }
+                insertLastUtas(lu, kicUtama);
+                printf("\nUtas berhasil dibuat!\n");
+                boolean selesai = false;
+                AddressToUtas new;
+                do{ // lakukan masukkan kicauan hingga di input TIDAK
+                    printf("\nMasukkan kicauan:\n");
                     ADVWORD_takeBlank();
-                    if(isWordEqual(currentWord,ya) || isWordEqual(currentWord,tidak)){
-                        break;
-                    }else{
-                        printf("Silahkan ulangi input anda!\n");
+                    BacaDATETIME(&currDatetime);
+                    new = newNodeUtas(1,Nama(user),currDatetime,currentWord);
+                    sambungBelakangUtas(&kicUtama, new);
+                    for(;;){ // cek input agar YA atau TIDAK
+                        printf("\nApakah Anda ingin melanjutkan utas ini? (YA/TIDAK) ");
+                        ADVWORD_takeBlank();
+                        if(isWordEqual(currentWord,ya) || isWordEqual(currentWord,tidak)){
+                            break;
+                        }else{
+                            printf("\nSilahkan ulangi input anda!\n\n");
+                        }
                     }
-                }
+                    if(isWordEqual(currentWord,tidak)){
+                        selesai = true;
+                    }
+                }while(!selesai);
+                printf("\nUtas selesai!\n\n");
 
-                if(isWordEqual(currentWord,tidak)){
-                    selesai = true;
-                }
-            }while(!selesai);
-            printf("Utas selesai!\n");
-
+            }else{
+                printf("\nUtas ini bukan milik anda!\n\n");
+            }
         }else{
-            printf("Utas ini bukan milik anda!\n");
+            printf("\nKicauan ini sudah dibuat menjadi utas!\n\n");
         }
     }
 }
 
-void SAMBUNG_UTAS(ListUtas lu, Pengguna user, int idUtas, int idx){
-    if(isIdxEffUtas(lu,idx)){ // cek apakah utas terdapat di list
-        if(isWordEqual(AUTHOR_UTAS(ELMT_UTAS(lu,idx)), Nama(user))){ // cek apakah utas dimiliki pengguna
-            AddressToUtas kicUtama = ELMT_UTAS(lu,idx);
-            if(idx < panjangUtas(kicUtama)){ //cek apakah terdapat index idx di utas
-                printf("Masukkan kicauan:\n");
-                //insert word
+void SAMBUNG_UTAS(ListUtas *lu, Pengguna user, int idUtas, int idx){
+    if(isIdxEffUtas(*lu,idUtas-1)){ // cek apakah utas terdapat di list
+        if(isWordEqual(AUTHOR_UTAS(ELMT_UTAS(*lu,idUtas-1)), Nama(user))){ // cek apakah utas dimiliki pengguna
+            AddressToUtas kicUtama = ELMT_UTAS(*lu,idUtas-1);
+            if(idx <= panjangUtas(kicUtama)){ //cek apakah terdapat index idx di utas
+                printf("\nMasukkan kicauan:\n");
+                ADVWORD_takeBlank();
                 DATETIME currDatetime;
                 BacaDATETIME(&currDatetime);
                 AddressToUtas insert = newNodeUtas(idx, Nama(user), currDatetime, currentWord);
                 sambungUtasAt(&kicUtama, insert, idx);
-                printf("Utas berhasil disambung.\n");
+                printf("\nUtas berhasil disambung.\n\n");
             }else{
-                printf("Index terlalu tinggi!\n");
+                printf("\nIndex terlalu tinggi!\n\n");
             }
         }else{
-            printf("Anda tidak bisa menyambung utas ini!\n");
+            printf("\nAnda tidak bisa menyambung utas ini!\n\n");
         }
     }else{
-        printf("Utas tidak ditemukan!\n");
+        printf("\nUtas tidak ditemukan!\n\n");
     }
 }
 
-void HAPUS_UTAS(ListUtas lu, Pengguna user, int idUtas, int idx){
+void HAPUS_UTAS(ListUtas *lu, Pengguna user, int idUtas, int idx){
     if(idx != 0){ // cek apakah ingin menghapus selain kicauan utama
-        if(isIdxEffUtas(lu,idx)){ // cek apakah utas terdapat di list utas
-            if(isWordEqual(AUTHOR_UTAS(ELMT_UTAS(lu,idx)), Nama(user))){ // cek apakah utas dimiliki pengguna
-                AddressToUtas kicUtama = ELMT_UTAS(lu,idx);
+        if(isIdxEffUtas(*lu,idUtas-1)){ // cek apakah utas terdapat di list utas
+            if(isWordEqual(AUTHOR_UTAS(ELMT_UTAS(*lu,idUtas-1)), Nama(user))){ // cek apakah utas dimiliki pengguna
+                AddressToUtas kicUtama = ELMT_UTAS(*lu,idUtas-1);
                 if(idx<panjangUtas(kicUtama)){ // cek apakah idx merupakan index di utas
                     hapusUtasAt(&kicUtama, idx);
-                    printf("Kicauan sambungan berhasil dihapus!\n");
+                    printf("\nKicauan sambungan berhasil dihapus!\n");
                 }else{
-                    printf("Kicauan sambungan dengan index %d tidak ditemukan pada utas!\n", idx);
+                    printf("\nKicauan sambungan dengan index %d tidak ditemukan pada utas!\n\n", idx);
                 }
             }else{
-                printf("Anda tidak bisa menghapus kicauan dalam utas ini!\n");
+                printf("\nAnda tidak bisa menghapus kicauan dalam utas ini!\n\n");
             }
         }else{
-            printf("Utas tidak ditemukan!\n");
+            printf("\nUtas tidak ditemukan!\n\n");
         }
     }else{
-        printf("Anda tidak bisa menghapus kicauan utama!\n");
+        printf("\nAnda tidak bisa menghapus kicauan utama!\n\n");
     }
 }
 
@@ -113,14 +107,14 @@ void CETAK_UTAS(ListUtas lu, Friends graphTeman, ListPengguna lp, Pengguna user,
             if(isFriend(graphTeman, idxPengguna(lp, AUTHOR_UTAS(ELMT_UTAS(lu,idUtas-1))), idxPengguna(lp,Nama(user)))){ // cek apakah user dan author utas merupakan teman
                 displayUtas(ELMT_UTAS(lu,idUtas-1));
             }else{
-                printf("Akun yang membuat utas ini adalah akun privat! Ikuti dahulu akun ini untuk melihat utasnya!\n");
+                printf("\nAkun yang membuat utas ini adalah akun privat! Ikuti dahulu akun ini untuk melihat utasnya!\n");
             }
         }else{
             displayUtas(ELMT_UTAS(lu,idUtas-1));
         }
         
     }else{
-        printf("Utas tidak ditemukan!\n");
+        printf("\nUtas tidak ditemukan!\n\n");
     }
 }
 

@@ -39,7 +39,7 @@ int panjangUtas(Utas u){
 }
 
 int getCurrIDX(Utas utama, Utas u){
-    AddressToUtas p = KICAUANUTAMA(u);
+    AddressToUtas p = KICAUANUTAMA(utama);
     Word isi =ISI_UTAS(u);
     int idx = 0;
     boolean found = false;
@@ -47,6 +47,7 @@ int getCurrIDX(Utas utama, Utas u){
         if(isWordEqual(ISI_UTAS(p),isi)){
             found = true;
         }else{
+            p = NEXT_UTAS(p);
             idx +=1;
         }
     }
@@ -75,7 +76,7 @@ void sambungBelakangUtas(Utas *utama, Utas uIn){
 void sambungUtasAt(Utas *utama, Utas uIn, int idx){
     if(idx > 0){
         if(idx == 1){
-        sambungDepanUtas(utama,uIn);
+            sambungDepanUtas(utama,uIn);
         }else{
             int counter = 0;
             AddressToUtas p = KICAUANUTAMA(*utama);
@@ -140,20 +141,22 @@ void displayUtas(Utas u){
     printf("\n");
     printf("| ");
     TulisDATETIME(DATETIME_UTAS(u));
+    printf("\n");
     printf("| ");//isi
     displayWord(ISI_UTAS(u));
     printf("\n");
     p = NEXT_UTAS(p);
     while(p != NULL){
-        printf("    | INDEX = %d\n",getCurrIDX(u,p)+1);
+        printf("    | INDEX = %d\n",getCurrIDX(u,p));
         printf("    | "); // author
         displayWord(AUTHOR_UTAS(p));
         printf("\n");
         printf("    | ");
         TulisDATETIME(DATETIME_UTAS(p));
+        printf("\n");
         printf("    | "); //isi
         displayWord(ISI_UTAS(p));
-        printf("\n");
+        printf("\n\n");
         p = NEXT_UTAS(p);
     }
 }
