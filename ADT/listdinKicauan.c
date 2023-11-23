@@ -38,7 +38,7 @@ boolean isFullKicauan(ListDinKicauan l){
 void insertKicauan(ListDinKicauan *l, Kicauan k){
     KICAUAN(*l,NEFF_Kicauan(*l)) = k;
     NEFF_Kicauan(*l) += 1;
-    if(isFullKicauan){
+    if(isFullKicauan(*l)){
         expandListKicauan(l,CAPACITY_Kicauan(*l));
     }
 }
