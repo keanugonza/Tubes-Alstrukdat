@@ -5,7 +5,7 @@
 #include "liststatikpengguna.h"
 #include "wordmachine.h"
 #include "boolean.h"
-#include "ADTDasar\pcolor.h"
+#include "pcolor.h"
 #include "foto.h"
 
 
@@ -19,7 +19,7 @@ void createListPengguna(ListPengguna *LP)
     lenListPengguna(*LP) = 0;
 }
 
-void insertPengguna(ListPengguna *LP, eltype val)
+void insertLastPengguna(ListPengguna *LP, eltype val)
 {
     if ((*LP).len != CAPACITY_LPENGGUNA)
     {

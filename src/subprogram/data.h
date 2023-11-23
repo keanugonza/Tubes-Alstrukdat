@@ -5,12 +5,8 @@
 #include "../../ADT/friends.h"
 #include "../../ADT/pengguna.h"
 #include "../../ADT/prioqueue.h"
-#include "perintahDraf.c"
-#include "perintahKicauan.c"
-#include "perintahpengguna.c"
-#include "perintahprofil.c"
-#include "perintahTeman.c"
-#include "perintahUtas.c"
+#include "../../ADT/wordmachine.h"
+#include "../../ADT/permintaan_pertemanan.h"
 
 StackDraf progStackDraf[20];
 ListPengguna progListPengguna;

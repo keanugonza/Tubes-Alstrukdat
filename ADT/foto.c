@@ -4,7 +4,7 @@
 void createMatrixColor(Matrix *M)
 {
     Word formatcolor;
-    formatcolor.TabWord[0] = "R";
+    formatcolor.TabWord[0] = 'R';
     formatcolor.Length = 1;
     for (int i = 0; i < 5; i++){
         for (int j = 0; j < 5; j++){
@@ -16,7 +16,7 @@ void createMatrixColor(Matrix *M)
 void createMatrixSimbol(Matrix *M)
 {
     Word formatsimbol;
-    formatsimbol.TabWord[0] = "*";
+    formatsimbol.TabWord[0] = '*';
     formatsimbol.Length = 1;
     for (int i = 0; i < 5; i++){
         for (int j = 0; j < 5; j++){

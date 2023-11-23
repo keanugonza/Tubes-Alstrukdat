@@ -125,3 +125,10 @@ char* wordToString(Word w){
     str[i] = '\0';
     return str;
 }
+
+Word charToWord(char c){
+    Word w;
+    w.TabWord[0] = c;
+    w.Length = 1;
+    return w;
+}

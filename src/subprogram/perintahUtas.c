@@ -7,7 +7,7 @@
 
 void UTAS(ListUtas *lu, ListDinKicauan lk, Pengguna user, int idKicauan){
     Word ya,tidak;
-    int idKicauan = idKicauan -1;
+    idKicauan = idKicauan -1;
     ya.TabWord[0] = 'Y';
     ya.TabWord[1] = 'A';
     ya.Length = 2;

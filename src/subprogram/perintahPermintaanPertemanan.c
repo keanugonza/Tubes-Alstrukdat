@@ -1,4 +1,4 @@
-#include "../ADT/permintaan_pertemanan.h"
+#include "../../ADT/permintaan_pertemanan.h"
 
 extern ListPengguna ListPenggunaFriendReq;
 extern Pengguna userFriendReq;

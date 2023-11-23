@@ -2,6 +2,9 @@
 #include "wordmachine.h"
 #include "datetime.h"
 
+#ifndef BALASAN_H
+#define BALASAN_H
+
 typedef struct nodeBalasan* Balasan;
 
 typedef struct nodeBalasan {
@@ -26,3 +29,5 @@ void newChildBalasan(Balasan parent, Balasan newChild);
 Balasan findByIdBalasan(Balasan parent, int id);
 int findMaxIdBalasan(Balasan parentbalasan);
 void displayBalasan(Balasan cbalasannode);
+
+#endif

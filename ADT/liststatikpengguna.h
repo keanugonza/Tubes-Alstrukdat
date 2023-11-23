@@ -36,7 +36,7 @@ void createListPengguna(ListPengguna *LP);
 /* F.S. Terbentuk List LP kosong dengan kapasitas CAPACITY_LPENGGUNA */
 /* Proses: Inisialisasi semua elemen List LP dengan MARK */
 
-void insertPengguna(ListPengguna *LP, eltype val);
+void insertLastPengguna(ListPengguna *LP, eltype val);
 /* I.S. LP sembarang */
 /* F.S. List LP dengan elemen terakhir yaitu val */
 /* Proses: Menambahkan val ke dalam LP*/

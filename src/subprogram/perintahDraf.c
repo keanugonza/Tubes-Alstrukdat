@@ -7,7 +7,6 @@
 #include "..\..\ADT\datetime.h"
 #include "..\..\ADT\listdinKicauan.h"
 #include "..\..\ADT\pengguna.h"
-#include "..\..\ADT\stackDraf.c"
 
 
 void SIMPAN(StackDraf*s, Word text){

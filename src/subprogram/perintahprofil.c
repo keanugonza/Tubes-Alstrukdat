@@ -3,18 +3,18 @@
 #include "..\..\ADT\liststatikpengguna.h"
 #include "..\..\ADT\wordmachine.h"
 #include "..\..\ADT\charmachine.h"
+#include "..\..\ADT\pcolor.h"
 
-gantiprofil(ListPengguna *LP, int *tempIDpengguna){
+
+void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
     Word listWeton[5];
     listWeton[0] = stringToWord("Pahing");
     listWeton[1] = stringToWord("Kliwon");
     listWeton[2] = stringToWord("Wage");
     listWeton[3] = stringToWord("Pon");
     listWeton[4] = stringToWord("Legi");
-    Word kosong;
-    kosong.TabWord[0] = "";
-    kosong.Length = 1;
-    printInfoPengguna(*LP, tempIDpengguna);
+    Word kosong= stringToWord("");
+    printInfoPengguna(*LP, *tempIDpengguna);
     printf("\nMasukkan Bio Akun:\n");
     Word bio;
     STARTWORD_takeBlank();
@@ -62,7 +62,7 @@ gantiprofil(ListPengguna *LP, int *tempIDpengguna){
     printf("\nProfil Anda sudah berhasil diperbarui!\n");
 }
 
-lihatprofil(ListPengguna *LP, Word val){
+void lihatprofil(ListPengguna *LP, Word val){
     int i = idxPengguna(*LP, val);
     if (ELMT_LP(*LP,i).jenis == false){
         printInfoPengguna(*LP, i);
@@ -74,7 +74,7 @@ lihatprofil(ListPengguna *LP, Word val){
     }
 }
 
-aturjenisakun(ListPengguna *LP, int *tempIDpengguna){
+void aturjenisakun(ListPengguna *LP, int *tempIDpengguna){
     Word conf[2];
     conf[0] = stringToWord("YA");
     conf[1] = stringToWord("TIDAK");
@@ -105,7 +105,7 @@ aturjenisakun(ListPengguna *LP, int *tempIDpengguna){
     }
 }
 
-ubahfotoprofil(ListPengguna *LP, int *tempIDpengguna){
+void ubahfotoprofil(ListPengguna *LP, int *tempIDpengguna){
     printf("Foto profil Anda saat ini adalah\n");
     displayProfil(*LP, *tempIDpengguna);
     printf("Masukkan foto profil yang baru\n");
@@ -115,12 +115,12 @@ ubahfotoprofil(ListPengguna *LP, int *tempIDpengguna){
         temp = currentWord;
         int k = 0;
         for(int j = 0; j < 5; j++){
-            ELMT_FT((ELMT_LP(*LP, *tempIDpengguna).color), i, j) = stringToWord(temp.TabWord[k]);
+            ELMT_FT((ELMT_LP(*LP, *tempIDpengguna).color), i, j) = charToWord(temp.TabWord[k]);
             k += 4;
         }
         k = 2;
         for(int j = 0; j < 5; j++){
-            ELMT_FT((ELMT_LP(*LP, *tempIDpengguna).simbol), i, j) = stringToWord(temp.TabWord[k]);
+            ELMT_FT((ELMT_LP(*LP, *tempIDpengguna).simbol), i, j) = charToWord(temp.TabWord[k]);
             k += 4;
         }
     }

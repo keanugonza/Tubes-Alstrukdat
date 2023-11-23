@@ -9,15 +9,6 @@
 #include "..\..\ADT\pengguna.h"
 #include "..\..\ADT\liststatikpengguna.h"
 
-#include "..\..\ADT\kicauan.c"
-#include "..\..\ADT\listdinKicauan.c"
-#include "..\..\ADT\wordmachine.c"
-#include "..\..\ADT\charmachine.c"
-#include "..\..\ADT\datetime.c"
-#include "..\..\ADT\friends.c"
-#include "..\..\ADT\pengguna.c"
-#include "..\..\ADT\liststatikpengguna.c"
-
 
 
 

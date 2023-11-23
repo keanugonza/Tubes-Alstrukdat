@@ -55,9 +55,7 @@ void daftar(ListPengguna *LP){
         STARTWORD_takeBlank();
         sandi = currentWord;
     }
-    Word kosong;
-    kosong.TabWord[0] = " ";
-    kosong.Length = 1;
+    Word kosong = stringToWord("");
     Pengguna User;
     int id = lenListPengguna(*LP);
     boolean privat = false;
@@ -65,7 +63,7 @@ void daftar(ListPengguna *LP){
     createMatrixColor(&formatcolor);
     createMatrixSimbol(&formatsimbol);
     createPengguna(&User, id, nama, sandi, kosong, kosong, kosong, privat, formatcolor, formatsimbol);
-    insertLastPengguna(&LP, User);
+    insertLastPengguna(LP, User);
 }
 
 void keluar(int *tempIDpengguna){
