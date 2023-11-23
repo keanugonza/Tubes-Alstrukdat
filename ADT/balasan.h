@@ -6,20 +6,23 @@ typedef struct nodeBalasan* Balasan;
 
 typedef struct nodeBalasan {
     int idbalasan;
-    int idparent;
     Word author;
+    Word isiBalasan;
     Balasan leftChild;
     Balasan rightSibling;
     DATETIME datetime;
 } NodeBalasan;
 
-#define IDBALASAN(p) (p)->idbalasan;
-#define IDPARENTBALASAN(p) (p)->idparent;
-#define AUTHORBALASAN(p) (p)->author;
-#define SIBLINGBALASAN(p) (p)->rightSibling;
-#define CHILDBALASAN(p) (p)->leftChild;
-#define DATETIMEBALASAN(p) (p)->datetime;
+#define IDBALASAN(p) (p)->idbalasan
+#define ISIBALASAN(p) (p)->isiBalasan
+#define AUTHORBALASAN(p) (p)->author
+#define SIBLINGBALASAN(p) (p)->rightSibling
+#define CHILDBALASAN(p) (p)->leftChild
+#define DATETIMEBALASAN(p) (p)->datetime
 
 
-Balasan newNodeBalasan(int idbalasan, int idparent, Word author, DATETIME datetime);
+Balasan newNodeBalasan(int idbalasan,Word isibalasan, Word author, DATETIME datetime);
 void newChildBalasan(Balasan parent, Balasan newChild);
+Balasan findByIdBalasan(Balasan parent, int id);
+int findMaxIdBalasan(Balasan parentbalasan);
+void displayBalasan(Balasan cbalasannode);

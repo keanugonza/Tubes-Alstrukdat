@@ -21,6 +21,7 @@ void IgnoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
+// void IgnoreNL();
 
 void STARTWORD();
 /* I.S. : currentChar sembarang
@@ -57,5 +58,6 @@ void CopyWord_takeBlank();
 void displayWord(Word w);
 
 boolean isWordEqual(Word w1, Word w2);
-
+Word stringToWord(char* cstring);
+int wordToInt(Word w);
 #endif
