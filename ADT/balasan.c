@@ -70,6 +70,7 @@ void displayBalasan(Balasan cbalasannode){
     printf("\n");
     printf("| ");
     TulisDATETIME(DATETIMEBALASAN(cbalasannode));
+    printf("\n");
     printf("| ");
     displayWord(ISIBALASAN(cbalasannode));
     printf("\n");

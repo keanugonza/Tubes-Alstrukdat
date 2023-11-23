@@ -13,6 +13,7 @@ void createDraf(Draf *d, Word text){
 void displayDraf(Draf d){
     printf("| ");
     TulisDATETIME(DATETIME_DRAF(d));
+    printf("\n");
     printf("| ");
     displayWord(TEXT_DRAF(d));
     printf("\n");
