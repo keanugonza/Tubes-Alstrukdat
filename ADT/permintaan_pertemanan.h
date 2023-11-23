@@ -10,10 +10,10 @@ void createFriendReqList(Queue *q);
 boolean hasSentFriendReq(Queue q, Word nama);
 
 /* Meminta Permintaan Pertemanan dengan Pengguna Lain*/
-void addFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna, ListPengguna ListPenggunaFriendReq);
+void addFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna ListPenggunaFriendReq);
 
 /* Mencetak Daftar Permintaan Pertemanan Milik User */
 void displayFriendReqList(Queue q);
 
 /* Menerima Permintaan Pertemanan dari User Lain */
-void accFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna ListPenggunaFriendReq);
+void accFriendReq(Queue *q, Pengguna currUser, Friends *FriendReq, ListPengguna ListPenggunaFriendReq);

@@ -15,7 +15,7 @@ boolean hasSentFriendReq(Queue q, Word nama){
     return false;
 }
 
-void addFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna, ListPengguna ListPenggunaFriendReq){
+void addFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna ListPenggunaFriendReq){
     infotype friendReq;
     Word text;
     printf("\nMasukkan nama pengguna:\n");
@@ -61,7 +61,7 @@ void displayFriendReqList(Queue q){
     printf("\n");
 }
 
-void accFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna ListPenggunaFriendReq){
+void accFriendReq(Queue *q, Pengguna currUser, Friends *FriendReq, ListPengguna ListPenggunaFriendReq){
     infotype dum;
     Word text;
 
@@ -74,7 +74,7 @@ void accFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna L
 
     if(isWordEqual(text, stringToWord("YA"))){
         Dequeue(q, &dum);
-        addFriend(&FriendReq, currUser.id, idxPengguna(ListPenggunaFriendReq, Info(HEAD(*q))));
+        addFriend(FriendReq, currUser.id, idxPengguna(ListPenggunaFriendReq, Info(HEAD(*q))));
         printf("\nPermintaan pertemanan dari %s telah disetujui. Selamat! Anda telah berteman dengan %s.\n", text, text);
     }
     else if(!isWordEqual(text, stringToWord("TIDAK"))){

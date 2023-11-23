@@ -7,7 +7,7 @@ Word currentWord;
 
 void IgnoreBlanks()
 {
-    while (currentChar == BLANK)
+    while (currentChar == BLANK || currentChar == MARKSC || currentChar == MARKNL)
     {
         ADV_Char();
     }
@@ -23,14 +23,14 @@ void IgnoreNL()
 void STARTWORD()
 {
     START_Char();
-    CopyWord();
     IgnoreBlanks();
+    CopyWord();
 }
 
 void ADVWORD()
 {
-    CopyWord();
     IgnoreBlanks();
+    CopyWord();
 }
 
 void CopyWord()

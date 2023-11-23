@@ -7,6 +7,7 @@
 #include "subprogram/perintahprofil.c"
 #include "subprogram/perintahTeman.c"
 #include "subprogram/perintahUtas.c"
+#include "subprogram/perintahBalasan.c"
 #include "../ADT/balasan.c"
 #include "../ADT/charmachine.c"
 #include "../ADT/datetime.c"
@@ -25,8 +26,19 @@
 
 
 int main(){
+    for(int i=0; i<20; i ++){
+        CreateStackDraf(&progStackDraf[i]);
+    }
+    // for(int i=0; i<20; i ++){
+    //     createFriendReqList(&progQueue[i]);
+    // }
+    createListPengguna(&progListPengguna);
+    CreateListDinKicauan(&progListDinKicau,1);
+    CreateListDinUtas(&progListDinUtas,1);
+    // createPertemanan(&progFriends);
+
     Word perintah[3];
-    ADVWORD();
+    STARTWORD();
     perintah[0] = currentWord;
     while(!(isWordEqual(perintah[0],stringToWord("TUTUP_PROGRAM")))){
         if(isWordEqual(perintah[0],stringToWord("DAFTAR"))){
@@ -58,13 +70,15 @@ int main(){
             HAPUS_TEMAN(user, progListPengguna, &progFriends);
         } 
         else if (isWordEqual(perintah[0],stringToWord("TAMBAH_TEMAN"))){
-            addFriendReq(&progQueue[progIdPengguna]);
+            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+            addFriendReq(&progQueue[progIdPengguna], user, progFriends, progListPengguna);
         } 
         else if (isWordEqual(perintah[0],stringToWord("DAFTAR_PERMINTAAN_TEMAN"))){
             displayFriendReqList(progQueue[progIdPengguna]);
         } 
         else if (isWordEqual(perintah[0],stringToWord("SETUJUI_PERTEMANAN"))){
-            accFriendReq(&progQueue[progIdPengguna]);
+            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+            accFriendReq(&progQueue[progIdPengguna], user, &progFriends,progListPengguna);
         } 
         else if (isWordEqual(perintah[0],stringToWord("KICAU"))){
             Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
@@ -89,23 +103,28 @@ int main(){
             UBAH_KICAUAN(&progListDinKicau, idKicau, user);
         } 
         else if (isWordEqual(perintah[0],stringToWord("BALAS"))){
-            // ADVWORD();
-            // perintah[1] = currentWord;
-            // ADVWORD();
-            // perintah[2] = currentWord;
-            // BALAS();
+            ADVWORD();
+            perintah[1] = currentWord;
+            int idKicau = wordToInt(perintah[1]);
+            ADVWORD();
+            perintah[2] = currentWord;
+            int idBalas = wordToInt(perintah[2]);
+            BALAS(idKicau, idBalas, progListPengguna, &progListDinKicau, progIdPengguna, progFriends);
         } 
         else if (isWordEqual(perintah[0],stringToWord("BALASAN"))){
-            // ADVWORD();
-            // perintah[1] = currentWord;
-            // BALASAN();
+            ADVWORD();
+            perintah[1] = currentWord;
+            int idKicau = wordToInt(perintah[1]);
+            BALASAN(progIdPengguna, idKicau, progListDinKicau, progListPengguna, progFriends);
         } 
         else if (isWordEqual(perintah[0],stringToWord("HAPUS_BALASAN"))){
-            // ADVWORD();
-            // perintah[1] = currentWord;
-            // ADVWORD();
-            // perintah[2] = currentWord;
-            // HAPUS_BALASAN();
+            ADVWORD();
+            perintah[1] = currentWord;
+            int idKicau = wordToInt(perintah[1]);
+            ADVWORD();
+            perintah[2] = currentWord;
+            int idHapus = wordToInt(perintah[2]);
+            HAPUSBALAS(idKicau, idHapus, progListPengguna, &progListDinKicau, progIdPengguna);
         } 
         else if (isWordEqual(perintah[0],stringToWord("BUAT_DRAF"))){
             Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
@@ -155,5 +174,8 @@ int main(){
         else if (isWordEqual(perintah[0],stringToWord("MUAT"))){
             // MUAT();
         }
+        // displayWord(perintah[0]);
+        ADVWORD();
+        perintah[0] = currentWord;
     }
 }
