@@ -106,11 +106,18 @@ void HAPUS_UTAS(ListUtas lu, Pengguna user, int idUtas, int idx){
 
 void CETAK_UTAS(ListUtas lu, Friends graphTeman, ListPengguna lp, Pengguna user,int idUtas){
     if(isIdxEffUtas(lu,idUtas-1)){ // cek apakah terdapat utas dengan idUtas
-        if(isFriend(graphTeman, idxPengguna(lp, AUTHOR_UTAS(ELMT_UTAS(lu,idUtas-1))), idxPengguna(lp,Nama(user)))){ // cek apakah user dan author utas merupakan teman
-            displayUtas(ELMT_UTAS(lu,idUtas-1));
+        int idxP = idxPengguna(lp, AUTHOR_UTAS(ELMT_UTAS(lu,idUtas-1)));
+        Pengguna authorUtas = ELMT_LP(lp,idxP);
+        if(Jenis(authorUtas)){
+            if(isFriend(graphTeman, idxPengguna(lp, AUTHOR_UTAS(ELMT_UTAS(lu,idUtas-1))), idxPengguna(lp,Nama(user)))){ // cek apakah user dan author utas merupakan teman
+                displayUtas(ELMT_UTAS(lu,idUtas-1));
+            }else{
+                printf("Akun yang membuat utas ini adalah akun privat! Ikuti dahulu akun ini untuk melihat utasnya!\n");
+            }
         }else{
-            printf("Akun yang membuat utas ini adalah akun privat! Ikuti dahulu akun ini untuk melihat utasnya!\n");
+            displayUtas(ELMT_UTAS(lu,idUtas-1));
         }
+        
     }else{
         printf("Utas tidak ditemukan!\n");
     }

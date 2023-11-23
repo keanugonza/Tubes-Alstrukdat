@@ -143,16 +143,18 @@ void displayUtas(Utas u){
     printf("| ");//isi
     displayWord(ISI_UTAS(u));
     printf("\n");
-    if(NEXT_UTAS(p) != NULL){
-        printf("    | INDEX =%d\n",getCurrIDX(u,p));
+    p = NEXT_UTAS(p);
+    while(p != NULL){
+        printf("    | INDEX = %d\n",getCurrIDX(u,p)+1);
         printf("    | "); // author
-        displayWord(AUTHOR_UTAS(u));
+        displayWord(AUTHOR_UTAS(p));
         printf("\n");
         printf("    | ");
-        TulisDATETIME(DATETIME_UTAS(u));
+        TulisDATETIME(DATETIME_UTAS(p));
         printf("    | "); //isi
-        displayWord(ISI_UTAS(u));
+        displayWord(ISI_UTAS(p));
         printf("\n");
+        p = NEXT_UTAS(p);
     }
 }
 

@@ -113,4 +113,5 @@ int wordToInt(Word w){
         res += (int)(w.TabWord[i] - '0');
         i++;
     }
+    return res;
 }

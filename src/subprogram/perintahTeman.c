@@ -5,7 +5,7 @@
 void DAFTAR_TEMAN(Pengguna user, ListPengguna lp, Friends f){
     int length = lenListPengguna(lp);
     int i;
-    int jumlahTeman = friendCount(Id(user));
+    int jumlahTeman = friendCount(f,Id(user));
     if(jumlahTeman > 0){
         displayWord(Nama(user));
         printf(" memiliki %d teman\n", jumlahTeman);
@@ -19,10 +19,10 @@ void DAFTAR_TEMAN(Pengguna user, ListPengguna lp, Friends f){
                 }
             }
         }
-        printf("\n")
+        printf("\n");
     }else{
         displayWord(Nama(user));
-        printf(" belum mempunyai teman.\n")
+        printf(" belum mempunyai teman.\n");
     }
     
 
@@ -42,11 +42,11 @@ void HAPUS_TEMAN(Pengguna user, ListPengguna lp, Friends *f){
     printf("Masukkan nama pengguna:\n");
     ADVWORD_takeBlank();
     if(isMember(lp,currentWord)){
-        if(isFriend(*f,idxPengguna(Nama(user)), idxPengguna(currentWord))){
+        if(isFriend(*f,idxPengguna(lp,Nama(user)), idxPengguna(lp,currentWord))){
             for(;;){ // cek input agar YA atau TIDAK
                     printf("Apakah anda yakin ingin menghapus ");
                     displayWord(currentWord);
-                    printf("dari daftar teman anda?(YA/TIDAK)\n")
+                    printf("dari daftar teman anda?(YA/TIDAK)\n");
                     ADVWORD_takeBlank();
                     if(isWordEqual(currentWord,ya) || isWordEqual(currentWord,tidak)){
                         break;
@@ -55,18 +55,18 @@ void HAPUS_TEMAN(Pengguna user, ListPengguna lp, Friends *f){
                     }
                 }
             if(isWordEqual(currentWord,ya)){
-                removeFriend(f,idxPengguna(Nama(user)), idxPengguna(currentWord));
+                removeFriend(f,idxPengguna(lp,Nama(user)), idxPengguna(lp,currentWord));
                 displayWord(currentWord);
                 printf(" berhasil dihapus dari daftar teman Anda.\n");
             }else{
-                printf("Penghapusan teman dibatalkan.\n")
+                printf("Penghapusan teman dibatalkan.\n");
             }
         }else{
             displayWord(currentWord);
-            printf(" bukan teman Anda\n")
+            printf(" bukan teman Anda\n");
         }
     }else{
-        printf("User tidak dapat ditemukan\n")
+        printf("User tidak dapat ditemukan\n");
     }
 }
 
