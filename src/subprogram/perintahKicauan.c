@@ -32,10 +32,6 @@ boolean isBlank(Word text){
     }
 }
 
-boolean isTeman(Word a, Word b){
-    return false;
-}
-
 void KICAU(ListDinKicauan *l, Pengguna user){
     Word text;
     Kicauan k;
