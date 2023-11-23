@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "wordmachine.h"
 
 boolean EndWord;
@@ -111,7 +112,16 @@ int wordToInt(Word w){
     for(i=0;i<w.Length;i++){
         res *=10;
         res += (int)(w.TabWord[i] - '0');
-        i++;
     }
     return res;
+}
+
+char* wordToString(Word w){
+    char *str = (char*)malloc(281);
+    int i;
+    for(i = 0; i < w.Length; i++){
+        str[i] = w.TabWord[i];
+    }
+    str[i] = '\0';
+    return str;
 }

@@ -60,4 +60,5 @@ void displayWord(Word w);
 boolean isWordEqual(Word w1, Word w2);
 Word stringToWord(char* cstring);
 int wordToInt(Word w);
+char* wordToString(Word w);
 #endif

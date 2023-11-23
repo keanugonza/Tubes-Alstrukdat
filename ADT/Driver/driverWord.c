@@ -47,4 +47,12 @@ int main(){
     printf("kata: ");
     displayWord(w);
     printf("\n");
+    char* str;
+    str = wordToString(w);
+    printf("Ini stringnya: ");
+    int i = 0;
+    while(str[i] != '\0'){
+        printf("%c", str[i]);
+        i ++;
+    }
 }
