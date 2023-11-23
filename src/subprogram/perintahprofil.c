@@ -17,12 +17,12 @@ void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
     printInfoPengguna(*LP, *tempIDpengguna);
     printf("\nMasukkan Bio Akun:\n");
     Word bio;
-    STARTWORD_takeBlank();
+    ADVWORD_takeBlank();
     bio = currentWord;
     ELMT_LP(*LP, *tempIDpengguna).bio = bio;
     printf("\nMasukkan No HP:\n");
     Word hp;
-    STARTWORD_takeBlank();
+    ADVWORD_takeBlank();
     hp = currentWord;
     int i = 0;
     boolean state = false;
@@ -41,13 +41,13 @@ void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
             state = true;
         } else {
             printf("\nNo HP tidak valid. Masukkan lagi yuk!\n");
-            STARTWORD_takeBlank();
+            ADVWORD_takeBlank();
             hp = currentWord;
         }
     }
     printf("\nMasukkan Weton:\n");
     Word weton;
-    STARTWORD_takeBlank();
+    ADVWORD_takeBlank();
     weton = currentWord;
     boolean statusWeton = false;
     while(statusWeton == false){
@@ -55,7 +55,7 @@ void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
             statusWeton = true;
         } else {
             printf("\nWeton anda tidak valid.\n");
-            STARTWORD_takeBlank();
+            ADVWORD_takeBlank();
         weton = currentWord;
         }
     }
