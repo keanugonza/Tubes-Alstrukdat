@@ -84,6 +84,7 @@ int main(){
         } 
         else if (isWordEqual(perintah[0],stringToWord("KICAU"))){
             Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+            printf("\n");
             KICAU(&progListDinKicau, user);
         } 
         else if (isWordEqual(perintah[0],stringToWord("KICAUAN"))){
@@ -171,6 +172,10 @@ int main(){
             int idUtas = wordToInt(perintah[1]);
             CETAK_UTAS(progListDinUtas, progFriends, progListPengguna,user,idUtas);
         } 
+        else if (isWordEqual(perintah[0],stringToWord("KELUAR"))){
+            progIdPengguna = -1;
+            printf("\nAnda berhasil logout. Sampai jumpa di pertemuan berikutnya!\n");
+        } 
         else if (isWordEqual(perintah[0],stringToWord("SIMPAN"))){
             // SIMPAN();
         } 
@@ -178,7 +183,10 @@ int main(){
             // MUAT();
         }
         // displayWord(perintah[0]);
+        printf("\n");
+        printf(">> ");
         ADVWORD();
         perintah[0] = currentWord;
     }
+    printf("\nAnda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n");
 }

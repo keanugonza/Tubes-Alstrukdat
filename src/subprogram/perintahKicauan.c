@@ -16,11 +16,12 @@ boolean EndWord;
 Word currentWord;
 
 boolean isBlank(Word text){
-    if(text.Length == 0){
-        return true;
-    } else{
-        return false;
+    for(int i=0; i<text.Length; i++){
+        if (text.TabWord[i] != ' '){
+            return false;
+        }
     }
+    return true;
 }
 
 void KICAU(ListDinKicauan *l, Pengguna user){
@@ -31,7 +32,7 @@ void KICAU(ListDinKicauan *l, Pengguna user){
     STARTWORD_takeBlank();
     text = currentWord;
     if (isBlank(text)){
-        printf("Kicauan tidak boleh hanya berisi spasi!\n");
+        printf("\nKicauan tidak boleh hanya berisi spasi!\n");
     } else{
         int id = listLengthKicauan(*l) + 1;
         int like =0;
@@ -51,8 +52,8 @@ void allKICAUAN(ListDinKicauan *l, Pengguna user, ListPengguna LP, Friends f){
         int idx_pengguna = idxPengguna(LP, pemilikKicauan);
         if((isWordEqual(user.nama, pemilikKicauan)) || isFriend(f, user.id, idx_pengguna)){
             displayKicauan(k);
+            printf("\n");
         }
-        printf("\n");
     }
 }
 
@@ -98,6 +99,7 @@ void UBAH_KICAUAN(ListDinKicauan *l, int idKICAU, Pengguna user){
             printf("Masukkan kicauan baru:\n");
             ubahTeksKicauan(&k);
             setKicauan(l, k, idx);
+            printf("\n");
             printf("Selamat! kicauan telah diterbitkan!\n");
             printf("Detil kicauan:\n");
             displayKicauan(k);

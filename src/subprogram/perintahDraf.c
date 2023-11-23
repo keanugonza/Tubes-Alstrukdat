@@ -13,7 +13,7 @@ void SIMPAN(StackDraf*s, Word text){
     Draf d;
     createDraf(&d, text);
     pushDraf(s,d);
-    printf("Draf telah berhasil disimpan!\n");
+    printf("\nDraf telah berhasil disimpan!\n");
 }
 
 void TERBIT(ListDinKicauan *l, Word text, Pengguna user){
@@ -35,14 +35,14 @@ void BUAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
     Word WORD_SIMPAN = stringToWord("SIMPAN");
     Word WORD_TERBIT = stringToWord("TERBIT");
 
-    printf("Masukkan draf:\n");
+    printf("\nMasukkan draf:\n");
     ADVWORD_takeBlank();
     text = currentWord;
     
-    printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?\n");
+    printf("\nApakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?\n");
     ADVWORD_takeBlank();
     if(isWordEqual(currentWord, WORD_HAPUS)){ //HAPUS
-        printf("Draf telah berhasil dihapus!\n");
+        printf("\nDraf telah berhasil dihapus!\n");
     } else if(isWordEqual(currentWord, WORD_SIMPAN)){ //SIMPAN
         SIMPAN(s, text);
     } else if (isWordEqual(currentWord, WORD_TERBIT)){ //TERBIT
@@ -59,6 +59,7 @@ void LIHAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
     Word WORD_UBAH = stringToWord("UBAH");
     Word WORD_HAPUS = stringToWord("HAPUS");
     Word WORD_TERBIT = stringToWord("TERBIT");
+    Word WORD_KEMBALI = stringToWord("KEMBALI");
     if (isEmptyDraf(*s)){
         printf("Yah, anda belum memiliki draf apapun! Buat dulu ya :D\n");
     } else{
@@ -74,7 +75,9 @@ void LIHAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
             printf("Draf telah berhasil dihapus!\n");
         } else if (isWordEqual(currentWord, WORD_TERBIT)){ //Terbit
             TERBIT(l,TEXT_DRAF(d),user);
-        }
+        } else if (isWordEqual(currentWord, WORD_KEMBALI)){ //Kembali
+            pushDraf(s, d);
+        } 
     }
 }
 

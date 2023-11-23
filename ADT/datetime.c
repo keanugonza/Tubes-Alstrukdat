@@ -26,7 +26,7 @@ void BacaDATETIME(DATETIME *D){
     YY = (gm_time -> tm_year) + 1900;
     MM = (gm_time -> tm_mon) + 1;
     DD = gm_time -> tm_mday;
-    hh = (gm_time -> tm_hour) + 7;
+    hh = ((gm_time -> tm_hour) + 7) % 24;
     mm = gm_time -> tm_min;
     ss = gm_time -> tm_sec;
 
@@ -39,12 +39,31 @@ void BacaDATETIME(DATETIME *D){
 
 
 void TulisDATETIME(DATETIME D){
-    printf("%d/",DAY(D));
-    printf("%d/",MONTH(D));
-    printf("%d ",YEAR(D));
-    printf("%d:",HOUR(D));
-    printf("%d:",MINUTE(D));
-    printf("%d",SECOND(D));
+    if(DAY(D)<10){
+        printf("0%d/",DAY(D));
+    }  if (DAY(D)>=10){
+        printf("%d/",DAY(D));
+    }  if (MONTH(D)<10){
+        printf("0%d/",MONTH(D));
+    }  if (MONTH(D) >= 10){
+        printf("%d/",MONTH(D));
+    }  if (YEAR(D) < 10){
+        printf("0%d ",YEAR(D));
+    }  if (YEAR(D)>=10){
+        printf("%d ",YEAR(D));
+    }  if (HOUR(D) < 10){
+        printf("0%d:",HOUR(D));
+    } if (HOUR(D)>=10){
+        printf("%d:",HOUR(D));
+    } if (MINUTE(D)<10){
+        printf("0%d:",MINUTE(D));
+    } if (MINUTE(D)>=10){
+         printf("%d:",MINUTE(D));
+    } if (SECOND(D) < 10){
+        printf("0%d",SECOND(D));
+    } if (SECOND(D)>=10){
+        printf("%d",SECOND(D));
+    }
 }
 
 /* I.S. : D sembarang */
