@@ -5,6 +5,7 @@
 AddressToUtas newNodeUtas(int id, Word author, DATETIME dt, Word isi){
     AddressToUtas p = (AddressToUtas) malloc(sizeof(NodeUtas));
     if(p != NULL){
+        ID_UTAS(p) = id;
         AUTHOR_UTAS(p) = author;
         DATETIME_UTAS(p) = dt;
         ISI_UTAS(p) = isi;
@@ -133,13 +134,12 @@ void hapusUtasAt(Utas *utama, int idx){
 
 void displayUtas(Utas u){
     AddressToUtas p = KICAUANUTAMA(u);
-    printf("| ID =%d\n", ID_UTAS(p));
+    printf("| ID = %d\n", ID_UTAS(p));
     printf("| ");// author
     displayWord(AUTHOR_UTAS(u));
     printf("\n");
     printf("| ");
     TulisDATETIME(DATETIME_UTAS(u));
-    printf("\n");
     printf("| ");//isi
     displayWord(ISI_UTAS(u));
     printf("\n");
