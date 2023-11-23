@@ -11,35 +11,25 @@ void IgnoreBlanks()
         ADV_Char();
     }
 }
+void IgnoreNL()
+{
+    while (currentChar == MARKNL)
+    {
+        ADV_Char();
+    }
+}
 
 void STARTWORD()
 {
     START_Char();
+    CopyWord();
     IgnoreBlanks();
-    if (currentChar == MARKSC || currentChar == MARKNL)
-    {
-        EndWord = true;
-    }
-    else
-    {
-        EndWord = false;
-        CopyWord();
-    }
 }
 
 void ADVWORD()
 {
+    CopyWord();
     IgnoreBlanks();
-    if (currentChar == MARKSC || currentChar == MARKNL)
-    {
-        EndWord = true;
-    }
-    else
-    {
-        EndWord = false;
-        CopyWord();
-        IgnoreBlanks();
-    }
 }
 
 void CopyWord()
@@ -50,40 +40,38 @@ void CopyWord()
         if (currentWord.Length < NMax)
         { // jika lebih akan terpotong
             currentWord.TabWord[currentWord.Length++] = currentChar;
-            ADV_Char();
         }
-        else
-            break;
+        ADV_Char();
     }
 }
 
 void STARTWORD_takeBlank()
 {
     START_Char();
-    while(currentChar == MARKNL) ADV_Char();
+    while(currentChar == MARKSC || currentChar == MARKNL){
+        ADV_Char();
+    }
     CopyWord_takeBlank();
-    ADV_Char();
 }
 
 void ADVWORD_takeBlank()
 {   
-    while(currentChar == MARKNL) ADV_Char();
+    while(currentChar == MARKSC || currentChar == MARKNL){
+        ADV_Char();
+    }
     CopyWord_takeBlank();
-    ADV_Char();
 }
 
 void CopyWord_takeBlank()
 {
     currentWord.Length = 0;
-    while (currentChar != MARKSC)
+    while (currentChar != MARKSC && currentChar != MARKNL)
     {
         if (currentWord.Length < NMax)
         { // jika lebih akan terpotong
             currentWord.TabWord[currentWord.Length++] = currentChar;
-            ADV_Char();
         }
-        else
-            break;
+        ADV_Char();
     }
 }
 
@@ -92,7 +80,6 @@ void displayWord(Word w){
     for(i = 0 ; i < w.Length ; i++){
         printf("%c",w.TabWord[i]);
     }
-    fflush(stdout);
 }
 
 boolean isWordEqual(Word w1, Word w2){
@@ -103,4 +90,27 @@ boolean isWordEqual(Word w1, Word w2){
             if(w1.TabWord[i] != w2.TabWord[i]) return false;
     }
     return true;
+}
+
+
+Word stringToWord(char* cstring){
+    int i=0;
+    Word res;
+    res.Length = 0;
+    while(cstring[i] != '\0'){
+        res.TabWord[i] = cstring[i];
+        res.Length++;
+        i++;
+    }
+    return res;
+}
+
+int wordToInt(Word w){
+    int i,res;
+    res = 0;
+    for(i=0;i<w.Length;i++){
+        res *=10;
+        res += (int)(w.TabWord[i] - '0');
+        i++;
+    }
 }
