@@ -14,22 +14,22 @@ void masuk(ListPengguna *LP, int *tempIDpengguna){
     else
     {
         printf("\nMasukkan nama:\n");
-    STARTWORD_takeBlank();
+    ADVWORD_takeBlank();
     Word nama = currentWord;
     while(isMember(*LP, nama) == false){
         printf("\nWah, nama yang Anda cari tidak ada. Masukkan nama lain!\n");
         printf("Masukkan nama:\n");
-        STARTWORD_takeBlank();
+        ADVWORD_takeBlank();
         nama = currentWord;
     }
     *tempIDpengguna = idxPengguna(*LP, nama);
     printf("\nMasukkan kata sandi:\n");
-    STARTWORD_takeBlank();
+    ADVWORD_takeBlank();
     Word sandi = currentWord;
     while(isWordEqual(ELMT_LP(*LP,idxPengguna(*LP, nama)).kata_sandi, sandi) == false){
         printf("\nWah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
         printf("Masukkan nama:\n");
-        STARTWORD_takeBlank();
+        ADVWORD_takeBlank();
         sandi = currentWord;
     }
     printf("\nAnda telah berhasil masuk dengan nama pengguna Tuan Bri. Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n");
@@ -38,21 +38,21 @@ void masuk(ListPengguna *LP, int *tempIDpengguna){
 
 void daftar(ListPengguna *LP){
     printf("\nMasukkan nama:\n");
-    STARTWORD_takeBlank();
+    ADVWORD_takeBlank();
     Word nama = currentWord;
     while(isMember(*LP, nama) == true){
         printf("\nWah, sayang sekali nama tersebut telah diambil.\n");
         printf("Masukkan nama:\n");
-        STARTWORD_takeBlank();
+        ADVWORD_takeBlank();
         nama = currentWord;
     }
     printf("\nMasukkan kata sandi:\n");
-    STARTWORD_takeBlank();
+    ADVWORD_takeBlank();
     Word sandi = currentWord;
     while(sandi.Length > 20){
         printf("\nWah, kata sandi anda terlalu panjang.\n");
         printf("Masukkan kata sandi:\n");
-        STARTWORD_takeBlank();
+        ADVWORD_takeBlank();
         sandi = currentWord;
     }
     Word kosong = stringToWord("");
