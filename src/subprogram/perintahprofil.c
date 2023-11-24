@@ -5,63 +5,76 @@
 #include "..\..\ADT\charmachine.h"
 #include "..\..\ADT\pcolor.h"
 
+boolean isInt(Word HP){
+    for (int i = 0; i< HP.Length; i++){
+        if (HP.TabWord[i] < '0' || HP.TabWord[i] > '9'){
+            return false;
+        }
+    }
+    return true;
+}
 
 void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
-    Word listWeton[5];
+    Word listWeton[6];
     listWeton[0] = stringToWord("Pahing");
     listWeton[1] = stringToWord("Kliwon");
     listWeton[2] = stringToWord("Wage");
     listWeton[3] = stringToWord("Pon");
     listWeton[4] = stringToWord("Legi");
-    Word kosong= stringToWord("");
+    listWeton[5] = stringToWord("");
+    Word kosong = stringToWord("");
     printInfoPengguna(*LP, *tempIDpengguna);
     printf("\n\nMasukkan Bio Akun:\n");
     Word bio;
     ADVWORD_takeBlank();
     bio = currentWord;
-    ELMT_LP(*LP, *tempIDpengguna).bio = bio;
+    printf(">>>>>>");
+    displayWord(bio);
+    printf("<<<<<<\n");
+    if (isWordEqual(bio, kosong) == false){
+        while (bio.Length > 135){
+            printf("\nBio anda terlalu panjang\n");
+            printf("Masukkan Bio Akun:\n");
+            ADVWORD_takeBlank();
+            bio = currentWord;
+        }
+        ELMT_LP(*LP, *tempIDpengguna).bio = bio;
+    }
     printf("\nMasukkan No HP:\n");
     Word hp;
     ADVWORD_takeBlank();
     hp = currentWord;
-    int i = 0;
-    boolean state = false;
-    while (state = false){
-        boolean status = true;
-        while(i < hp.Length && status == true){
-            if (hp.TabWord[i] != '0' || hp.TabWord[i] != '1' || hp.TabWord[i] != '2' || hp.TabWord[i] != '3' || hp.TabWord[i] != '4' || hp.TabWord[i] != '5'|| hp.TabWord[i] != '6'|| hp.TabWord[i] != '7'|| hp.TabWord[i] != '8'|| hp.TabWord[i] != '9' ){
-                status = false;
-            }
-            else
-            {
-                i++;
-            }
-        }
-        if (status == true){
-            state = true;
-        } else {
-            printf("\nNo HP tidak valid. Masukkan lagi yuk!\n");
+    printf(">>>>>>");
+    displayWord(hp);
+    printf("<<<<<<\n");
+    if (isWordEqual(bio, kosong) == false){
+        while (!(hp.Length < 20 && isInt(hp))){
+            printf("No HP tidak valid. Masukkan lagi yuk!");
+            printf("\nMasukkan No HP:\n");
             ADVWORD_takeBlank();
             hp = currentWord;
         }
+        ELMT_LP(*LP, *tempIDpengguna).noHP = hp;
     }
-    ELMT_LP(*LP, *tempIDpengguna).noHP = hp;
     printf("\nMasukkan Weton:\n");
     Word weton;
     ADVWORD_takeBlank();
     weton = currentWord;
-    boolean statusWeton = false;
-    while(statusWeton == false){
-        if(isWordEqual(weton, listWeton[0]) || isWordEqual(weton, listWeton[1]) || isWordEqual(weton, listWeton[2]) || isWordEqual(weton, listWeton[3]) || isWordEqual(weton, listWeton[4]) || isWordEqual(weton, kosong)){
-            statusWeton = true;
-        } else {
-            printf("\nWeton anda tidak valid.\n");
-            ADVWORD_takeBlank();
-        weton = currentWord;
+    if (isWordEqual(hp, kosong) == false){
+        boolean statusWeton = false;
+        while(statusWeton == false){
+            if(isWordEqual(weton, listWeton[0]) || isWordEqual(weton, listWeton[1]) || isWordEqual(weton, listWeton[2]) || isWordEqual(weton, listWeton[3]) || isWordEqual(weton, listWeton[4]) || isWordEqual(weton, listWeton[5])){
+                statusWeton = true;
+            } else {
+                printf("\nWeton anda tidak valid.\n");
+                printf("Masukkan Weton:\n");
+                ADVWORD_takeBlank();
+            weton = currentWord;
+            }
         }
+        ELMT_LP(*LP, *tempIDpengguna).weton = weton;
+        printf("\nProfil Anda sudah berhasil diperbarui!\n");
     }
-    ELMT_LP(*LP, *tempIDpengguna).weton = weton;
-    printf("\nProfil Anda sudah berhasil diperbarui!\n");
 }
 
 void lihatprofil(ListPengguna *LP, Word val){
@@ -74,11 +87,17 @@ void lihatprofil(ListPengguna *LP, Word val){
             printf("\n\n");
             displayProfil(*LP, i);
         } else {
-            printf("\nWah, akun ");
-            displayWord(val);
-            printf(" diprivat nih. Ikuti dulu yuk untuk bisa melihat profil ");
-            displayWord(val);
-            printf("!\n");
+            if (progIdPengguna == i){
+                printInfoPengguna(*LP, i);
+                printf("\n\n");
+                displayProfil(*LP, i);
+            } else {
+                printf("\nWah, akun ");
+                displayWord(val);
+                printf(" diprivat nih. Ikuti dulu yuk untuk bisa melihat profil ");
+                displayWord(val);
+                printf("!\n");
+            }
         }
     }
 }
@@ -90,6 +109,7 @@ void aturjenisakun(ListPengguna *LP, int *tempIDpengguna){
     boolean type = ELMT_LP(*LP,*tempIDpengguna).jenis;
     if (type == false){
         printf("\nSaat ini, akun Anda adalah akun Publik. \nIngin mengubah ke akun Privat? \n(YA/TIDAK)\n");
+        printf("\nKonfirmasi: \n");
         Word confirm;
         ADVWORD_takeBlank();
         confirm = currentWord;
