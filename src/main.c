@@ -88,10 +88,10 @@ int main(){
                 printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
             } else{
                 Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-                addFriendReq(&progQueue[progIdPengguna], user, progFriends, progListPengguna);
+                addFriendReq(user, progFriends, progListPengguna);
             }
         } 
-        else if (isWordEqual(perintah[0],stringToWord("DAFTAR_PERMINTAAN_TEMAN"))){
+        else if (isWordEqual(perintah[0],stringToWord("DAFTAR_PERMINTAAN_PERTEMANAN"))){
             displayFriendReqList(progQueue[progIdPengguna]);
         } 
         else if (isWordEqual(perintah[0],stringToWord("SETUJUI_PERTEMANAN"))){
@@ -99,7 +99,7 @@ int main(){
                 printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
             } else{
                 Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-                accFriendReq(&progQueue[progIdPengguna], user, &progFriends,progListPengguna);
+                accFriendReq(user, &progFriends,progListPengguna);
             }
         } 
         else if (isWordEqual(perintah[0],stringToWord("KICAU"))){
