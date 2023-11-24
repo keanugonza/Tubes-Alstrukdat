@@ -3,11 +3,6 @@
 #include "datetime.h"
 #include "wordmachine.h"
 #include "charmachine.h"
-#include "kicauan.c"
-#include "stackDraf.c"
-#include "datetime.c"
-#include "wordmachine.c"
-#include "charmachine.c"
 
 boolean EndWord;
 Word currentWord;

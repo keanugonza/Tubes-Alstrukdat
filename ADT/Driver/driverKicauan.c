@@ -1,8 +1,9 @@
-#include "kicauan.h"
-#include "listdinKicauan.h"
-#include "datetime.h"
-#include "wordmachine.h"
-#include "charmachine.h"
+#include "../kicauan.h"
+#include "../listdinKicauan.h"
+#include "../datetime.h"
+#include "../wordmachine.h"
+#include "../charmachine.h"
+#include "../pengguna.h"
 
 boolean EndWord;
 Word currentWord;
@@ -11,19 +12,20 @@ int main(){
     Word author;
     Word text;
     ListDinKicauan l;
-    
-    STARTWORD_takeBlank();
+    Pengguna user;
+    createPengguna(&user, 0, stringToWord("A"), stringToWord("A"), stringToWord(" "), stringToWord(" "), stringToWord(" "), boolean false, )
+    ADVWORD();
     text = currentWord;
     displayWord(text);
 
     int capacity = 2;
     CreateListDinKicauan(&l,capacity);
 
-    createKicauan(&K, 1,text,12,author,true);
+    createKicauan(&K, 1,text,12,user);
     insertKicauan(&l, K);
     printKicauan(K);
     
-    createKicauan(&K, 2,text,12482934,author,true);
+    createKicauan(&K, 2,text,12482934,user);
     insertKicauan(&l, K);
     printKicauan(K);
 
@@ -35,7 +37,7 @@ int main(){
     printKicauan(K);
 
 
-    createKicauan(&K, 3,text,111,author,true);
+    createKicauan(&K, 3,text,111,user);
     printKicauan(K);
     insertKicauan(&l, K);
 

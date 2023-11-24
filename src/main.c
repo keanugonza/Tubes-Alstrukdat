@@ -64,46 +64,78 @@ int main(){
             ubahfotoprofil(&progListPengguna, &progIdPengguna);
         } 
         else if (isWordEqual(perintah[0],stringToWord("DAFTAR_TEMAN"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            DAFTAR_TEMAN(user, progListPengguna, progFriends);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                DAFTAR_TEMAN(user, progListPengguna, progFriends);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("HAPUS_TEMAN"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            HAPUS_TEMAN(user, progListPengguna, &progFriends);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                HAPUS_TEMAN(user, progListPengguna, &progFriends);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("TAMBAH_TEMAN"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            addFriendReq(&progQueue[progIdPengguna], user, progFriends, progListPengguna);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                addFriendReq(&progQueue[progIdPengguna], user, progFriends, progListPengguna);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("DAFTAR_PERMINTAAN_TEMAN"))){
             displayFriendReqList(progQueue[progIdPengguna]);
         } 
         else if (isWordEqual(perintah[0],stringToWord("SETUJUI_PERTEMANAN"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            accFriendReq(&progQueue[progIdPengguna], user, &progFriends,progListPengguna);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                accFriendReq(&progQueue[progIdPengguna], user, &progFriends,progListPengguna);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("KICAU"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            printf("\n");
-            KICAU(&progListDinKicau, user);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                printf("\n");
+                KICAU(&progListDinKicau, user);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("KICAUAN"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            allKICAUAN(&progListDinKicau, user, progListPengguna,progFriends);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                allKICAUAN(&progListDinKicau, user, progListPengguna,progFriends);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("SUKA_KICAUAN"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            ADVWORD();
-            perintah[1] = currentWord;
-            int idKicau = wordToInt(perintah[1]);
-            SUKA_KICAUAN(&progListDinKicau, idKicau,user,progListPengguna,progFriends);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                ADVWORD();
+                perintah[1] = currentWord;
+                int idKicau = wordToInt(perintah[1]);
+                SUKA_KICAUAN(&progListDinKicau, idKicau,user,progListPengguna,progFriends);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("UBAH_KICAUAN"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            ADVWORD();
-            perintah[1] = currentWord;
-            int idKicau = wordToInt(perintah[1]);
-            UBAH_KICAUAN(&progListDinKicau, idKicau, user);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                ADVWORD();
+                perintah[1] = currentWord;
+                int idKicau = wordToInt(perintah[1]);
+                UBAH_KICAUAN(&progListDinKicau, idKicau, user);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("BALAS"))){
             ADVWORD();
@@ -131,46 +163,70 @@ int main(){
             HAPUSBALAS(idKicau, idHapus, progListPengguna, &progListDinKicau, progIdPengguna);
         } 
         else if (isWordEqual(perintah[0],stringToWord("BUAT_DRAF"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            BUAT_DRAF(&progStackDraf[progIdPengguna], &progListDinKicau, user);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                BUAT_DRAF(&progStackDraf[progIdPengguna], &progListDinKicau, user);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("LIHAT_DRAF"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            LIHAT_DRAF(&progStackDraf[progIdPengguna], &progListDinKicau, user);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                LIHAT_DRAF(&progStackDraf[progIdPengguna], &progListDinKicau, user);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("UTAS"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            ADVWORD();
-            perintah[1] = currentWord;
-            int idKicau = wordToInt(perintah[1]);
-            UTAS(&progListDinUtas, progListDinKicau, user, idKicau);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                ADVWORD();
+                perintah[1] = currentWord;
+                int idKicau = wordToInt(perintah[1]);
+                UTAS(&progListDinUtas, progListDinKicau, user, idKicau);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("SAMBUNG_UTAS"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            ADVWORD();
-            perintah[1] = currentWord;
-            int idUtas = wordToInt(perintah[1]);
-            ADVWORD();
-            perintah[2] = currentWord;
-            int idx = wordToInt(perintah[2]);
-            SAMBUNG_UTAS(&progListDinUtas, user, idUtas, idx);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                ADVWORD();
+                perintah[1] = currentWord;
+                int idUtas = wordToInt(perintah[1]);
+                ADVWORD();
+                perintah[2] = currentWord;
+                int idx = wordToInt(perintah[2]);
+                SAMBUNG_UTAS(&progListDinUtas, user, idUtas, idx);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("HAPUS_UTAS"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            ADVWORD();
-            perintah[1] = currentWord;
-            int idUtas = wordToInt(perintah[1]);
-            ADVWORD();
-            perintah[2] = currentWord;
-            int idx = wordToInt(perintah[2]);
-            HAPUS_UTAS(&progListDinUtas,user,idUtas,idx);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                ADVWORD();
+                perintah[1] = currentWord;
+                int idUtas = wordToInt(perintah[1]);
+                ADVWORD();
+                perintah[2] = currentWord;
+                int idx = wordToInt(perintah[2]);
+                HAPUS_UTAS(&progListDinUtas,user,idUtas,idx);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("CETAK_UTAS"))){
-            Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
-            ADVWORD();
-            perintah[1] = currentWord;
-            int idUtas = wordToInt(perintah[1]);
-            CETAK_UTAS(progListDinUtas, progFriends, progListPengguna,user,idUtas);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                Pengguna user = ELMT_LP(progListPengguna, progIdPengguna);
+                ADVWORD();
+                perintah[1] = currentWord;
+                int idUtas = wordToInt(perintah[1]);
+                CETAK_UTAS(progListDinUtas, progFriends, progListPengguna,user,idUtas);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("KELUAR"))){
             progIdPengguna = -1;
@@ -188,5 +244,5 @@ int main(){
         ADVWORD();
         perintah[0] = currentWord;
     }
-    printf("\nAnda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n");
+    printf("\nAnda telah keluar dari program BurBir.\nSampai jumpa di penjelajahan berikutnya.\n\n");
 }
