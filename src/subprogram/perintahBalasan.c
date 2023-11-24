@@ -15,7 +15,6 @@ void rekurHapusBalas(Balasan par, int idxdihapus);
 
 void BALAS(int idkicau, int iddibalas, ListPengguna progListPengguna, ListDinKicauan *progListKicau, int progIdUser,Friends progFriends)
 {
-    idkicau--;
     Balasan par, parbalasan, resBalasan;
     Word kataBalasan, namaUser;
     DATETIME dtbalasan;
@@ -26,7 +25,7 @@ void BALAS(int idkicau, int iddibalas, ListPengguna progListPengguna, ListDinKic
         return;
     }
 
-    par = ANAK_KICAU(KICAUAN(*progListKicau, idkicau));
+    par = ANAK_KICAU(KICAUAN(*progListKicau, idkicau-1));
     parbalasan = findByIdBalasan(par, iddibalas);
 
     if (parbalasan == NULL && iddibalas != -1)
@@ -34,7 +33,7 @@ void BALAS(int idkicau, int iddibalas, ListPengguna progListPengguna, ListDinKic
         printf("Wah, tidak terdapat kicauan yang ingin Anda balas!\n");
         return;
     }
-    idxauthorkicau = idxPengguna(progListPengguna,AUTHOR_KICAUAN(KICAUAN(*progListKicau, idkicau)));
+    idxauthorkicau = idxPengguna(progListPengguna,AUTHOR_KICAUAN(KICAUAN(*progListKicau, idkicau-1)));
     if(Jenis(ELMT_LP(progListPengguna,idxauthorkicau)) && !isFriend(progFriends, idxauthorkicau, progIdUser)){
         printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman akun tersebut!\n");
         return;
@@ -52,7 +51,7 @@ void BALAS(int idkicau, int iddibalas, ListPengguna progListPengguna, ListDinKic
     {
         if (par == NULL)
         {
-            ANAK_KICAU(KICAUAN(*progListKicau, idkicau)) = resBalasan;
+            ANAK_KICAU(KICAUAN(*progListKicau, idkicau-1)) = resBalasan;
         }
         else
         {
@@ -112,7 +111,6 @@ void rekurbalasan(Balasan cnodebal, int progIdUser, int idxKicau, ListDinKicauan
 }
 
 void BALASAN(int progIdUser, int idxKicau, ListDinKicauan progListKicau, ListPengguna progListPengguna, Friends progFriends){
-    idxKicau--;
     int idxauthorkicau;
     Balasan par;
     if (idxKicau > (progListKicau.nEff_Kicauan) || idxKicau < 1)
@@ -120,16 +118,16 @@ void BALASAN(int progIdUser, int idxKicau, ListDinKicauan progListKicau, ListPen
         printf("Tidak terdapat kicauan dengan id tersebut!\n");
         return;
     }
-    idxauthorkicau = idxPengguna(progListPengguna,AUTHOR_KICAUAN(KICAUAN(progListKicau, idxKicau)));
+    idxauthorkicau = idxPengguna(progListPengguna,AUTHOR_KICAUAN(KICAUAN(progListKicau, idxKicau-1)));
     if(Jenis(ELMT_LP(progListPengguna,idxauthorkicau)) && !isFriend(progFriends, idxauthorkicau, progIdUser)){
         printf("Wah, kicauan tersebut dibuat oleh pengguna dengan akun privat!\n");
         return;
     }
-    if(ANAK_KICAU(KICAUAN(progListKicau, idxKicau)) == NULL){
+    if(ANAK_KICAU(KICAUAN(progListKicau, idxKicau-1)) == NULL){
         printf("Belum terdapat balasan apapun pada kicauan tersebut. Yuk balas kicauan tersebut!");
         return;
     }
-    par = ANAK_KICAU(KICAUAN(progListKicau, idxKicau));
+    par = ANAK_KICAU(KICAUAN(progListKicau, idxKicau-1));
     rekurbalasan(par, progIdUser,idxKicau, progListKicau, progListPengguna, progFriends, 0);
 }
 
@@ -137,7 +135,7 @@ void HAPUSBALAS(int idkicau, int balasdihapus, ListPengguna progListPengguna, Li
     Balasan par;
     Balasan resbalasan;
     idkicau--;
-    par = ANAK_KICAU(KICAUAN(*progListKicau, idkicau));
+    par = ANAK_KICAU(KICAUAN(*progListKicau, idkicau-1));
     resbalasan = findByIdBalasan(par, balasdihapus);
     if(resbalasan == NULL){
         printf("Balasan tidak ditemukan\n");

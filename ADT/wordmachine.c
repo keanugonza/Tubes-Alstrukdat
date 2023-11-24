@@ -110,7 +110,7 @@ int wordToInt(Word w){
     int i,res, peng;
     res = 0;
     i = 0;
-    if(w.TabWord == '-'){
+    if(w.TabWord[i] == '-'){
         i++;
         peng = -1;
     }

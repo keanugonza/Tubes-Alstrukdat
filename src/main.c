@@ -148,7 +148,6 @@ int main(){
             ADVWORD();
             perintah[2] = currentWord;
             int idBalas = wordToInt(perintah[2]);
-            printf("%d", idKicau);
             BALAS(idKicau, idBalas, progListPengguna, &progListDinKicau, progIdPengguna, progFriends);
         } 
         else if (isWordEqual(perintah[0],stringToWord("BALASAN"))){
