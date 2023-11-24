@@ -11,7 +11,7 @@ void DAFTAR_TEMAN(Pengguna user, ListPengguna lp, Friends f){
         printf(" memiliki %d teman\n", jumlahTeman);
         printf("Daftar teman ");
         displayWord(Nama(user));
-        for(i = 0; i < 20; i++){
+        for(i = 0; i < length; i++){
             if(i!= Id(user)){
                 if(f[Id(user)][i] == 1){
                     printf("| ");

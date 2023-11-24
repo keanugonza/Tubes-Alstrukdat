@@ -61,9 +61,10 @@ void displayFriendReqList(Queue q){
     printf("\n");
     if(length > 0){
         printf("Terdapat %d permintaan pertemanan untuk Anda.\n", len);
-        while(len--){
-            Dequeue(&q, &dum);
-            printf("\n| %s\n| Jumlah teman:  %d\n", Info(dum), Prio(dum));
+        for(int i = 0; i < len; i++){
+            printf("\n| ");
+            displayWord(Info(q.buffer[i]));
+            printf("\n| Jumlah teman:  %d\n", Prio(q.buffer[i]));
         }
     }
     else
@@ -83,13 +84,13 @@ void accFriendReq(Pengguna currUser, Friends *FriendReq, ListPengguna ListPenggu
     text = currentWord;
 
     if(isWordEqual(text, stringToWord("YA"))){
-        Dequeue(&progQueue[currUser.id], &dum);
         addFriend(FriendReq, currUser.id, idxPengguna(ListPenggunaFriendReq, Info(HEAD(progQueue[currUser.id]))));
         printf("\nPermintaan pertemanan dari ");
         displayWord(Info(HEAD(progQueue[currUser.id])));
         printf(" telah disetujui. Selamat! Anda telah berteman dengan ");
         displayWord(Info(HEAD(progQueue[currUser.id])));
         printf(".\n");
+        Dequeue(&progQueue[currUser.id], &dum);
     }
     else if(!isWordEqual(text, stringToWord("TIDAK"))){
         Dequeue(&progQueue[currUser.id], &dum);
