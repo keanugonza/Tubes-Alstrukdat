@@ -77,7 +77,7 @@ int main(){
             if(progIdPengguna == -1){
                 printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
             } else{
-                ADVWORD();
+                ADVWORD_takeBlank();
                 perintah[1] = currentWord;
                 lihatprofil(&progListPengguna, perintah[1]);
             }
