@@ -84,7 +84,10 @@ void accFriendReq(Queue *q, Pengguna currUser, Friends *FriendReq, ListPengguna 
         Dequeue(q, &dum);
         addFriend(FriendReq, currUser.id, idxPengguna(ListPenggunaFriendReq, Info(HEAD(*q))));
         printf("\nPermintaan pertemanan dari ");
-        printf(" telah disetujui. Selamat! Anda telah berteman dengan %s.\n", text, text);
+        displayWord(text);
+        printf(" telah disetujui. Selamat! Anda telah berteman dengan ");
+        displayWord(text);
+        printf(".\n");
     }
     else if(!isWordEqual(text, stringToWord("TIDAK"))){
         Dequeue(q, &dum);
