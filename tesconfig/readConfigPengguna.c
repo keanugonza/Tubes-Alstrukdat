@@ -3,6 +3,8 @@
 #include "../ADT/pengguna.h"
 #include "../ADT/liststatikpengguna.h"
 
+extern ListPengguna progListPengguna;
+
 void readConfigPengguna(Word wpath, ListPengguna lp){
     int nPengguna, h, curIdx1, curIdx2, nPermintaan;
     Word CurNama, CurPassword, CurBio, CurNoHP, CurWeton;
@@ -10,6 +12,7 @@ void readConfigPengguna(Word wpath, ListPengguna lp){
     Matrix CurWarnaProfil;
     Matrix CurSimbolProfil;
     Word wpath;
+    createListPengguna(&progListPengguna);
     STARTWORD();
     wpath = currentWord;
     wpath.TabWord[wpath.Length] = '\0';
