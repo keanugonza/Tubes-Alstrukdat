@@ -137,13 +137,13 @@ void displayUtas(Utas u){
     AddressToUtas p = KICAUANUTAMA(u);
     printf("| ID = %d\n", ID_UTAS(p));
     printf("| ");// author
-    displayWord(AUTHOR_UTAS(u));
+    displayWord(AUTHOR_UTAS(p));
     printf("\n");
     printf("| ");
-    TulisDATETIME(DATETIME_UTAS(u));
+    TulisDATETIME(DATETIME_UTAS(p));
     printf("\n");
     printf("| ");//isi
-    displayWord(ISI_UTAS(u));
+    displayWord(AUTHOR_UTAS(p));
     printf("\n");
     p = NEXT_UTAS(p);
     while(p != NULL){
