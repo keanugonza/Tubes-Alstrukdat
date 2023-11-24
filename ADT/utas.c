@@ -143,7 +143,7 @@ void displayUtas(Utas u){
     TulisDATETIME(DATETIME_UTAS(p));
     printf("\n");
     printf("| ");//isi
-    displayWord(AUTHOR_UTAS(p));
+    displayWord(ISI_UTAS(p));
     printf("\n");
     p = NEXT_UTAS(p);
     while(p != NULL){
