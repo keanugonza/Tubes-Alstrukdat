@@ -34,7 +34,7 @@ void addFriendReq(Pengguna currUser, Friends FriendReq, ListPengguna ListPenggun
     else if(!isMember(ListPenggunaFriendReq, text)){
         printf("Pengguna bernama ");
         displayWord(text);
-        printf("tidak ditemukan.\n");
+        printf(" tidak ditemukan.\n");
     }
     else if(isFriend(FriendReq, currUser.id, idxPengguna(ListPenggunaFriendReq, text))){
         printf("Anda sudah berteman dengan ");
@@ -76,8 +76,11 @@ void accFriendReq(Pengguna currUser, Friends *FriendReq, ListPengguna ListPenggu
     infotype dum;
     Word text;
 
-    printf("\nPermintaan pertemanan teratas dari %s\n", Info(HEAD(progQueue[currUser.id])));
-    printf("\n| %s\n| Jumlah teman:  %d\n", Info(HEAD(progQueue[currUser.id])), Prio(HEAD(progQueue[currUser.id])));
+    printf("\nPermintaan pertemanan teratas dari ");
+    displayWord(Info(HEAD(progQueue[currUser.id])));
+    printf("\n\n| ");
+    displayWord(Info(HEAD(progQueue[currUser.id])));
+    printf("\n| Jumlah teman:  %d\n", Prio(HEAD(progQueue[currUser.id])));
 
     printf("Apakah Anda ingin menyetujui permintaan pertemanan ini? (YA/TIDAK) ");
     ADVWORD();
