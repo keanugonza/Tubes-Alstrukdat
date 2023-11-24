@@ -3,6 +3,7 @@
 
 #include "boolean.h"
 #include "charmachine.h"
+#include "datetime.h"
 
 /* State Mesin Word */
 extern boolean EndWord;
