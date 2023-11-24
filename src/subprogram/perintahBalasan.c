@@ -66,6 +66,9 @@ void BALAS(int idkicau, int iddibalas, ListPengguna progListPengguna, ListDinKic
     {
         newChildBalasan(parbalasan, resBalasan);
     }
+    printf("Selamat! balasan telah diterbitkan!\nDetil balasan:\n");
+    displayBalasan(resBalasan);
+
 }
 
 void rekurbalasan(Balasan cnodebal, int progIdUser, int idxKicau, ListDinKicauan progListKicau, ListPengguna progListPengguna, Friends progFriends, int depth){
@@ -148,6 +151,7 @@ void HAPUSBALAS(int idkicau, int balasdihapus, ListPengguna progListPengguna, Li
         return;
     }
     rekurHapusBalas(&par,balasdihapus);
+    printf("Balasan berhasil dihapus\n");
 }
 
 void rekurHapusBalas(Balasan *par, int idxdihapus){

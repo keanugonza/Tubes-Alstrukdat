@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include "data.h"
-#include "../main.c"
 #include "bacatulisConfig/readConfig.c"
 #include <sys/stat.h>
 

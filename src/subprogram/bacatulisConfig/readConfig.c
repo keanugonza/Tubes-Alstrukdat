@@ -6,6 +6,25 @@ extern Friends progFriends;
 extern Queue progQueue[20];
 extern Friends progFriends;
 
+void readConfigPermintaanPertemanan(){
+    infotype dum;
+    int nPermintaan, idx;
+    ADVWORD();
+    nPermintaan = wordToInt(currentWord);
+    for(int j=0; j<20; j++){
+        createFriendReqList(&progQueue[j]);
+    }
+    for(int i = 0; i < nPermintaan; i++){
+        ADVWORD();
+        Info(dum) = Nama(ELMT_LP(progListPengguna, wordToInt(currentWord)));
+        ADVWORD();
+        idx = wordToInt(currentWord);
+        ADVWORD();
+        Prio(dum) = wordToInt(currentWord);
+        Enqueue(&progQueue[idx], dum);
+    }
+}
+
 void readConfigPengguna(Word wpath){
     int nPengguna, h, curIdx1, curIdx2, nPermintaan;
     Word CurNama, CurPassword, CurBio, CurNoHP, CurWeton;
@@ -65,24 +84,6 @@ void readConfigPengguna(Word wpath){
     readConfigPermintaanPertemanan();
 }
 
-void readConfigPermintaanPertemanan(){
-    infotype dum;
-    int nPermintaan, idx;
-    ADVWORD();
-    nPermintaan = wordToInt(currentWord);
-    for(int j=0; j<20; j++){
-        createFriendReqList(&progQueue[j]);
-    }
-    for(int i = 0; i < nPermintaan; i++){
-        ADVWORD();
-        Info(dum) = Nama(ELMT_LP(progListPengguna, wordToInt(currentWord)));
-        ADVWORD();
-        idx = wordToInt(currentWord);
-        ADVWORD();
-        Prio(dum) = wordToInt(currentWord);
-        Enqueue(&progQueue[idx], dum);
-    }
-}
 
 void readConfigKicau(Word wpath, ListDinKicauan *progListDinKicau){
     Kicauan K;
@@ -129,9 +130,9 @@ void readConfigBalasan(Word wpath, ListDinKicauan* progListKicau){
         par = ANAK_KICAU(KICAUAN(*progListKicau, curIdKicauDibalas-1));
         while(curJumlahbalasan--){
             ADVWORD();
-            curBalasDibalas = wordToString(currentWord);
+            curBalasDibalas = wordToInt(currentWord);
             ADVWORD();
-            curIdBalasan = wordToString(currentWord);
+            curIdBalasan = wordToInt(currentWord);
             ADVWORD_takeBlank();
             isiBalasan = currentWord;
             ADVWORD_takeBlank();
@@ -157,7 +158,7 @@ void readConfigBalasan(Word wpath, ListDinKicauan* progListKicau){
             else
             {   
                 curParBalasan = findByIdBalasan(par, curBalasDibalas);
-                newChildBalasan(curBalasDibalas, curTempBalasan);
+                newChildBalasan(curParBalasan, curTempBalasan);
             }
         }
     }
