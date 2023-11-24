@@ -15,6 +15,7 @@ void rekurHapusBalas(Balasan par, int idxdihapus);
 
 void BALAS(int idkicau, int iddibalas, ListPengguna progListPengguna, ListDinKicauan *progListKicau, int progIdUser,Friends progFriends)
 {
+    idkicau--;
     Balasan par, parbalasan, resBalasan;
     Word kataBalasan, namaUser;
     DATETIME dtbalasan;
@@ -111,6 +112,7 @@ void rekurbalasan(Balasan cnodebal, int progIdUser, int idxKicau, ListDinKicauan
 }
 
 void BALASAN(int progIdUser, int idxKicau, ListDinKicauan progListKicau, ListPengguna progListPengguna, Friends progFriends){
+    idxKicau--;
     int idxauthorkicau;
     Balasan par;
     if (idxKicau > (progListKicau.nEff_Kicauan) || idxKicau < 1)
@@ -134,6 +136,7 @@ void BALASAN(int progIdUser, int idxKicau, ListDinKicauan progListKicau, ListPen
 void HAPUSBALAS(int idkicau, int balasdihapus, ListPengguna progListPengguna, ListDinKicauan *progListKicau, int progIdUser){
     Balasan par;
     Balasan resbalasan;
+    idkicau--;
     par = ANAK_KICAU(KICAUAN(*progListKicau, idkicau));
     resbalasan = findByIdBalasan(par, balasdihapus);
     if(resbalasan == NULL){
