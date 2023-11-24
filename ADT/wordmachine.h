@@ -4,15 +4,6 @@
 #include "boolean.h"
 #include "charmachine.h"
 
-#define NMax 280
-#define BLANK ' '
-
-typedef struct
-{
-   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
-   int Length;
-} Word;
-
 /* State Mesin Word */
 extern boolean EndWord;
 extern Word currentWord;
@@ -22,12 +13,15 @@ void IgnoreBlanks();
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 // void IgnoreNL();
+void IgnoreNL();
 
 void STARTWORD();
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
+
+void STARTREADCONFIG(Word w);
 
 void ADVWORD();
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
@@ -49,6 +43,7 @@ void STARTWORD_takeBlank();
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
+void STARTREADCONFIG_takeBlank(Word w);
 
 void ADVWORD_takeBlank();
 

@@ -27,6 +27,12 @@ void STARTWORD()
     CopyWord();
 }
 
+void STARTREADCONFIG(Word w){
+    START_Char_Config(w);
+    IgnoreBlanks();
+    CopyWord();
+}
+
 void ADVWORD()
 {
     IgnoreBlanks();
@@ -49,17 +55,19 @@ void CopyWord()
 void STARTWORD_takeBlank()
 {
     START_Char();
-    while(currentChar == MARKSC || currentChar == MARKNL){
-        ADV_Char();
-    }
+    IgnoreNL();
+    CopyWord_takeBlank();
+}
+void STARTREADCONFIG_takeBlank(Word w)
+{
+    START_Char_Config(w);
+    IgnoreNL();
     CopyWord_takeBlank();
 }
 
 void ADVWORD_takeBlank()
 {   
-    while(currentChar == MARKSC || currentChar == MARKNL){
-        ADV_Char();
-    }
+    IgnoreNL();
     CopyWord_takeBlank();
 }
 
@@ -74,6 +82,7 @@ void CopyWord_takeBlank()
         }
         ADV_Char();
     }
+    if(currentChar == MARKSC) ADV_Char();
 }
 
 void displayWord(Word w){

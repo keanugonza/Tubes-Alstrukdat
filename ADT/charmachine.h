@@ -5,9 +5,18 @@
 
 #define MARKSC ';'
 #define MARKNL '\n'
+#define NMax 280
+#define BLANK ' '
+
+typedef struct
+{
+   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   int Length;
+} Word;
+
 /* State Mesin */
 extern char currentChar;
-extern boolean EOP;
+
 
 void START_Char();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
@@ -16,6 +25,8 @@ void START_Char();
    F.S. : currentChar adalah karakter pertama pada pita
           Jika currentChar != MARK maka EOP akan padam (false)
           Jika currentChar = MARK maka EOP akan menyala (true) */
+
+void START_Char_Config(Word w);
 
 void ADV_Char();
 /* Pita dimajukan satu karakter.
