@@ -31,12 +31,12 @@ void displayMatrix(Matrix m){
         for (j = 0; j < 5; j++){
             if (j == (5 - 1)){
                 if (i == (5 - 1)){ /* Element pojok kanan bawah */
-                    printf("%d\n", ELMT_FT(m, i, j)); 
+                    displayWord(ELMT_FT(m, i, j));
                 } else { /* Element pinggir kanan*/
-                    printf("%d\n", ELMT_FT(m, i, j)); 
+                    displayWord(ELMT_FT(m, i, j));
                 }
             } else { /* Element selain pinggir kanan*/
-                printf("%d ", ELMT_FT(m, i, j)); 
+                displayWord(ELMT_FT(m, i, j));
             }
         }
     }

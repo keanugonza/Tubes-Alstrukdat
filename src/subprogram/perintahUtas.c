@@ -15,8 +15,7 @@ void UTAS(ListUtas *lu, ListDinKicauan lk, Pengguna user, int idKicauan){
             idKicauan = idKicauan -1;
             if(isWordEqual(AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), Nama(user)) ){ // cek apakah kicauan milik user
                 DATETIME currDatetime;
-                BacaDATETIME(&currDatetime);
-                AddressToUtas kicUtama = newNodeUtas(idKicauan+1, AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), currDatetime, TEXT_KICAUAN(KICAUAN(lk,idKicauan)));
+                AddressToUtas kicUtama = newNodeUtas(idKicauan+1, AUTHOR_KICAUAN(KICAUAN(lk,idKicauan)), DATETIME_KICAUAN(KICAUAN(lk,idKicauan)), TEXT_KICAUAN(KICAUAN(lk,idKicauan)));
                 if(isFullListUtas(*lu)){
                     expandListUtas(lu,2);
                 }
@@ -99,7 +98,7 @@ void HAPUS_UTAS(ListUtas *lu, Pengguna user, int idUtas, int idx){
     }
 }
 
-void CETAK_UTAS(ListUtas lu, Friends graphTeman, ListPengguna lp, Pengguna user,int idUtas){
+void CETAK_UTAS(ListUtas lu, Friends graphTeman, ListPengguna lp, Pengguna user,int idUtas, ListDinKicauan lk){
     if(isIdxEffUtas(lu,idUtas-1)){ // cek apakah terdapat utas dengan idUtas
         int idxP = idxPengguna(lp, AUTHOR_UTAS(ELMT_UTAS(lu,idUtas-1)));
         Pengguna authorUtas = ELMT_LP(lp,idxP);
