@@ -6,10 +6,13 @@ OBJ_MAIN = $(SRC_MAIN:.c=.o)
 
 .PHONY: all clean test
 
-all: clean main
+all: clean main run
 
 main: $(OBJ_MAIN) $(OBJ_FOO)
 	$(CC) $(CFLAGS) -o $@ $^
+
+run:
+	./main
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
