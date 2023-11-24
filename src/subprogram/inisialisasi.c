@@ -12,7 +12,7 @@ void pesanpembuka(){
     printf("\n");
     printf("Aplikasi untuk studi kualitatif mengenai perilaku manusia dengan menggunakan metode\n(pengambilan data berupa) Focused Group Discussion kedua di zamannya.\n");
     printf("Silahkan masukan folder konfigurasi untuk dimuat: ");
-    //ambil config
+    // ambil config
     printf("\n");
     printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");
 }
