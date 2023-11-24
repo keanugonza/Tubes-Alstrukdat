@@ -63,15 +63,21 @@ void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
 }
 
 void lihatprofil(ListPengguna *LP, Word val){
-    int i = idxPengguna(*LP, val);
-    if (ELMT_LP(*LP,i).jenis == false){
-        printInfoPengguna(*LP, i);
-        printf("\n\n");
-        displayProfil(*LP, i);
-    }
-    else 
-    {
-        printf("\nWah, akun %s diprivat nih. Ikuti dulu yuk untuk bisa melihat profil %s!\n", val, val);
+    if (isMember(*LP, val) == false){
+        printf("Tidak ada pengguna dengan nama tersebut\n");
+    } else {
+        int i = idxPengguna(*LP, val);
+        if (ELMT_LP(*LP,i).jenis == false){
+            printInfoPengguna(*LP, i);
+            printf("\n\n");
+            displayProfil(*LP, i);
+        } else {
+            printf("\nWah, akun");
+            displayWord(val);
+            printf("diprivat nih. Ikuti dulu yuk untuk bisa melihat profil");
+            displayWord(val);
+            printf("!\n");
+        }
     }
 }
 

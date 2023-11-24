@@ -16,6 +16,9 @@ void masuk(ListPengguna *LP, int *tempIDpengguna){
         if (lenListPengguna(*LP) == 0){
             printf("\nBelum ada pengguna terdaftar nih. Daftar dulu yuk!\n");
         }
+        else if (lenListPengguna(*LP) == 20){
+            printf("\nSayang sekali jumlah pengguna sudah mencapai maksimal\n");
+        }
         else 
         {
             printf("\nMasukkan nama:\n");
