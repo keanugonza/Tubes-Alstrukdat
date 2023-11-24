@@ -5,6 +5,7 @@ extern ListPengguna progListPengguna;
 extern Friends progFriends;
 extern Queue progQueue[20];
 extern Friends progFriends;
+extern StackDraf progStackDraf[20];
 
 void readConfigPermintaanPertemanan(){
     infotype dum;
@@ -68,7 +69,8 @@ void readConfigPengguna(Word wpath){
             }
         }
         createPengguna(&User, h, CurNama, CurPassword, CurBio, CurNoHP, CurWeton, CurJenis, CurWarnaProfil, CurSimbolProfil);
-        ELMT_LP(progListPengguna, h) = User;
+        insertLastPengguna(&progListPengguna, User);
+        displayWord(Nama(User));
     }
     for(int i = 0;i<20;i++){
         for(int j = 0; j<20;j++){
@@ -82,6 +84,7 @@ void readConfigPengguna(Word wpath){
         }
     }
     readConfigPermintaanPertemanan();
+    printf("hiji\n");
 }
 
 
@@ -209,7 +212,7 @@ Word takeNama(Word word){
     return out;
 }
 
-void readConfigDraf(Word wpath, ListPengguna progListPengguna, StackDraf *progStackDraf[20]){
+void readConfigDraf(Word wpath){
     STARTREADCONFIG(wpath);
     int jumlahUserDraf = wordToInt(currentWord);
     for(int i=0; i< jumlahUserDraf; i ++){
@@ -218,7 +221,7 @@ void readConfigDraf(Word wpath, ListPengguna progListPengguna, StackDraf *progSt
         int jumlahDraf = takeIntLast(currentWord);
 
         int idx_pengguna = idxPengguna(progListPengguna, author);
-        CreateStackDraf(progStackDraf[idx_pengguna]);
+        CreateStackDraf(&progStackDraf[idx_pengguna]);
         
         StackDraf temp;
         CreateStackDraf(&temp);
@@ -238,7 +241,7 @@ void readConfigDraf(Word wpath, ListPengguna progListPengguna, StackDraf *progSt
         while(!isEmptyDraf(temp)){
             Draf tempDraf;
             popDraf(&temp, &tempDraf);
-            pushDraf(progStackDraf[idx_pengguna], tempDraf);
+            pushDraf(&progStackDraf[idx_pengguna], tempDraf);
         }
     }
 }

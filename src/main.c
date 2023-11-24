@@ -25,6 +25,17 @@
 #include "../ADT/wordmachine.c"
 #include "../ADT/pcolor.c"
 
+extern StackDraf progStackDraf[20];
+extern ListPengguna progListPengguna;
+extern Draf progDraf;
+extern ListDinKicauan progListDinKicau;
+extern Kicauan progKicauan;
+extern ListUtas progListDinUtas;
+extern Utas progUtas;
+extern Friends progFriends;
+extern int progIdPengguna;
+extern Queue progQueue[20];
+
 int main(){
     pesanpembuka();
     progIdPengguna = -1;

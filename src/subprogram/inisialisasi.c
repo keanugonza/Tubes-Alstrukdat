@@ -49,5 +49,13 @@ void takeConfig(){
     balasanPath = concateWord(folderConfig, concateWord(path, stringToWord("/balasan.config")));
     drafPath = concateWord(folderConfig, concateWord(path, stringToWord("/draf.config")));
     utasPath = concateWord(folderConfig, concateWord(path, stringToWord("/utas.config")));
-    
+    readConfigPengguna(penggunaPath);
+    readConfigKicau(kicauanPath, &progListDinKicau);
+    printf("loro\n");
+    readConfigBalasan(balasanPath, &progListDinKicau);
+    printf("tilu\n");
+    readConfigDraf(drafPath);
+    printf("papat\n");
+    readConfigUtas(utasPath, progListPengguna, &progListDinUtas, progListDinKicau);
+    printf("five\n");
 }
