@@ -19,41 +19,36 @@ void readConfigPengguna(Word wpath, ListPengguna lp){
         Pengguna User;
         ADVWORD_takeBlank();
         CurNama = currentWord;
-        User.nama = CurNama;
         ADVWORD_takeBlank();
         CurPassword = currentWord;
-        User.kata_sandi = CurPassword;
         ADVWORD_takeBlank();
         CurBio = currentWord;
-        User.bio = CurBio;
         ADVWORD_takeBlank();
         CurNoHP = currentWord;
-        User.noHP = CurNoHP;
         ADVWORD_takeBlank();
         CurWeton = currentWord;
-        User.weton = CurWeton;
         ADVWORD_takeBlank();
         if (isWordEqual(currentWord,stringToWord("Privat"))){
             CurJenis = false;
         } else {
             CurJenis = true;
         }
-        User.jenis = CurJenis;
         for(int i = 0; i < 5; i++){
             Word temp;
             ADVWORD_takeBlank();
             temp = currentWord;
             int k = 0;
             for(int j = 0; j < 5; j++){
-                ELMT_FT((ELMT_LP(lp, i).color), i, j) = charToWord(temp.TabWord[k]);
+                ELMT_FT(CurWarnaProfil, i, j) = charToWord(temp.TabWord[k]);
                 k += 4;
             }
             k = 2;
             for(int j = 0; j < 5; j++){
-                ELMT_FT((ELMT_LP(lp, i).simbol), i, j) = charToWord(temp.TabWord[k]);
+                ELMT_FT(CurSimbolProfil, i, j) = charToWord(temp.TabWord[k]);
                 k += 4;
             }
         }
+        createPengguna(&User, h, CurNama, CurPassword, CurBio, CurNoHP, CurWeton, CurJenis, CurWarnaProfil, CurSimbolProfil);
         ELMT_LP(lp, h) = User;
     }
 }
