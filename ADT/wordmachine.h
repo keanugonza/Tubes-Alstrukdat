@@ -3,6 +3,7 @@
 
 #include "boolean.h"
 #include "charmachine.h"
+#include "datetime.h"
 
 /* State Mesin Word */
 extern boolean EndWord;
@@ -57,4 +58,5 @@ Word stringToWord(char* cstring);
 int wordToInt(Word w);
 char* wordToString(Word w);
 Word charToWord(char c);
+DATETIME wordToDATETIME(Word w);
 #endif
