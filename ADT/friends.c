@@ -24,6 +24,7 @@ void addFriend(Friends *f, int user1, int user2){
     NODE_TEMAN(*f,user2,user1) = 1;
 }
 
+
 void removeFriend(Friends*f, int user1, int user2){
     /* I.S. Friends terdefinisi */
     /* F.S. Mengembalikan friends dengan pengurangan relasi antara user 1 dan user 2 */
@@ -37,7 +38,7 @@ boolean isFriend(Friends f, int user1, int user2){
 
 int friendCount(Friends f, int user){
     int i,j;
-    int count;
+    int count=0;
     for(i = 0; i < 20; i++){
         if(i != user){
             if(f[user][i] == 1){
@@ -45,4 +46,5 @@ int friendCount(Friends f, int user){
             }
         }
     }
+    return count;
 }

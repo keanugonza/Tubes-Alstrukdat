@@ -1,12 +1,13 @@
 #include <stdio.h>
-#include "..\..\ADT\kicauan.h"
-#include "..\..\ADT\stackDraf.h"
-#include "..\..\ADT\wordmachine.h"
-#include "..\..\ADT\charmachine.h"
-#include "..\..\ADT\boolean.h"
-#include "..\..\ADT\datetime.h"
-#include "..\..\ADT\listdinKicauan.h"
-#include "..\..\ADT\pengguna.h"
+#include "../../ADT/kicauan.h"
+#include "../../ADT/stackDraf.h"
+#include "../../ADT/wordmachine.h"
+#include "../../ADT/charmachine.h"
+#include "../../ADT/boolean.h"
+#include "../../ADT/datetime.h"
+#include "../../ADT/listdinKicauan.h"
+#include "../../ADT/pengguna.h"
+
 
 boolean isBlankDraf(Word text){
     for(int i=0; i<text.Length; i++){
