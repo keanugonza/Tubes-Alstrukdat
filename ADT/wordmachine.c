@@ -66,7 +66,8 @@ void STARTREADCONFIG_takeBlank(Word w)
 }
 
 void ADVWORD_takeBlank()
-{   
+{ 
+    IgnoreBlanks(); 
     if(currentChar == MARKNL) ADV_Char();
     CopyWord_takeBlank();
 }
@@ -186,4 +187,22 @@ DATETIME wordToDATETIME(Word w){
     tempInt = wordToInt(temp);
     SECOND(out) = tempInt;
     return out;
+}
+
+Word concateWord(Word w1, Word w2){
+    Word result;
+    int i = 0;
+
+    for (i = 0; i < w1.Length; i++) {
+        result.TabWord[i] = w1.TabWord[i];
+    }
+
+    for (int j = 0; j < w2.Length && i < sizeof(result.TabWord) - 1; j++, i++) {
+        result.TabWord[i] = w2.TabWord[j];
+    }
+
+    result.TabWord[i] = '\0';
+    result.Length = i;
+
+    return result;
 }
