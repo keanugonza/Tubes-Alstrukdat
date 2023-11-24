@@ -8,7 +8,7 @@ void BALAS(int idkicau, int iddibalas, ListPengguna progListPengguna, ListDinKic
 void rekurbalasan(Balasan cnodebal, int progIdUser, int idxKicau, ListDinKicauan progListKicau, ListPengguna progListPengguna, Friends progFriends, int depth);
 void BALASAN(int progIdUser, int idxKicau, ListDinKicauan progListKicau, ListPengguna progListPengguna, Friends progFriends);
 void HAPUSBALAS(int idkicau, int balasdihapus, ListPengguna progListPengguna, ListDinKicauan *progListKicau, int progIdUser);
-void rekurHapusBalas(Balasan par, int idxdihapus);
+void rekurHapusBalas(Balasan *par, int idxdihapus);
 
 
 
@@ -134,7 +134,6 @@ void BALASAN(int progIdUser, int idxKicau, ListDinKicauan progListKicau, ListPen
 void HAPUSBALAS(int idkicau, int balasdihapus, ListPengguna progListPengguna, ListDinKicauan *progListKicau, int progIdUser){
     Balasan par;
     Balasan resbalasan;
-    idkicau--;
     par = ANAK_KICAU(KICAUAN(*progListKicau, idkicau-1));
     resbalasan = findByIdBalasan(par, balasdihapus);
     if(resbalasan == NULL){
@@ -144,29 +143,29 @@ void HAPUSBALAS(int idkicau, int balasdihapus, ListPengguna progListPengguna, Li
         printf("Hei, ini balasan punya siapa? Jangan dihapus ya!\n");
         return;
     }
-    rekurHapusBalas(par,balasdihapus);
+    rekurHapusBalas(&par,balasdihapus);
 }
 
-void rekurHapusBalas(Balasan par, int idxdihapus){
-    if(par == NULL) return;
-    if(CHILDBALASAN(par)!=NULL){
+void rekurHapusBalas(Balasan *par, int idxdihapus){
+    if(*par == NULL) return;
+    if(CHILDBALASAN(*par)!=NULL){
         printf("anak\n");
-        if(IDBALASAN(CHILDBALASAN(par)) == idxdihapus){
-            (CHILDBALASAN(par)) = SIBLINGBALASAN(CHILDBALASAN(par));
+        if(IDBALASAN(CHILDBALASAN(*par)) == idxdihapus){
+            (CHILDBALASAN(*par)) = SIBLINGBALASAN(CHILDBALASAN(*par));
             return;
         }
         else{
-            rekurHapusBalas(CHILDBALASAN(par),idxdihapus);
+            rekurHapusBalas(CHILDBALASAN(*par),idxdihapus);
         }
     }
-    if(SIBLINGBALASAN(par)!=NULL){
+    if(SIBLINGBALASAN(*par)!=NULL){
         printf("sodara\n");
-        if(IDBALASAN(SIBLINGBALASAN(par)) == idxdihapus){
-            (SIBLINGBALASAN(par)) = SIBLINGBALASAN(SIBLINGBALASAN(par));
+        if(IDBALASAN(SIBLINGBALASAN(*par)) == idxdihapus){
+            (SIBLINGBALASAN(*par)) = SIBLINGBALASAN(SIBLINGBALASAN(*par));
             return;
         }
         else{
-            rekurHapusBalas(SIBLINGBALASAN(par),idxdihapus);
+            rekurHapusBalas(SIBLINGBALASAN(*par),idxdihapus);
         }
     }
 }
