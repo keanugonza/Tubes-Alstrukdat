@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Werror -std=c11
+CFLAGS = -Wall -g -std=c11
 
 SRC_MAIN = main.c
 OBJ_MAIN = $(SRC_MAIN:.c=.o)
