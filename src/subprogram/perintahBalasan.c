@@ -149,23 +149,21 @@ void HAPUSBALAS(int idkicau, int balasdihapus, ListPengguna progListPengguna, Li
 void rekurHapusBalas(Balasan *par, int idxdihapus){
     if(*par == NULL) return;
     if(CHILDBALASAN(*par)!=NULL){
-        printf("anak\n");
         if(IDBALASAN(CHILDBALASAN(*par)) == idxdihapus){
             (CHILDBALASAN(*par)) = SIBLINGBALASAN(CHILDBALASAN(*par));
             return;
         }
         else{
-            rekurHapusBalas(CHILDBALASAN(*par),idxdihapus);
+            rekurHapusBalas(&CHILDBALASAN(*par),idxdihapus);
         }
     }
     if(SIBLINGBALASAN(*par)!=NULL){
-        printf("sodara\n");
         if(IDBALASAN(SIBLINGBALASAN(*par)) == idxdihapus){
             (SIBLINGBALASAN(*par)) = SIBLINGBALASAN(SIBLINGBALASAN(*par));
             return;
         }
         else{
-            rekurHapusBalas(SIBLINGBALASAN(*par),idxdihapus);
+            rekurHapusBalas(&SIBLINGBALASAN(*par),idxdihapus);
         }
     }
 }
