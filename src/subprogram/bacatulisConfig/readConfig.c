@@ -271,7 +271,7 @@ void readConfigUtas(Word wpath, ListPengguna lp, ListUtas *lu, ListDinKicauan lk
             ADVWORD_takeBlank();
             tempDate = wordToDATETIME(currentWord);
             new = newNodeUtas(0,tempAuthor,tempDate,tempIsi);
-            sambungUtasAt(&utasutama, new, j);
+            sambungUtasAt(&utasutama, new, j+1);
         }
     }
 }
