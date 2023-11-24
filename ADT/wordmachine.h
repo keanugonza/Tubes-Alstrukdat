@@ -59,4 +59,5 @@ int wordToInt(Word w);
 char* wordToString(Word w);
 Word charToWord(char c);
 DATETIME wordToDATETIME(Word w);
+Word concateWord(Word w1, Word w2);
 #endif

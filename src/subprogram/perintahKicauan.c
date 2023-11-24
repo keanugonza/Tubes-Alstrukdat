@@ -65,8 +65,8 @@ void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Pengguna user, ListPengguna LP
         k = KICAUAN(*l,idx);
 
         Word authorLIKE = AUTHOR_KICAUAN(k);
-        int idKicauLike = idxPengguna(LP, authorLIKE);
-        Pengguna authorKicauan = ELMT_LP(LP,idKicauLike);
+        int idpenggunalike = idxPengguna(LP, authorLIKE);
+        Pengguna authorKicauan = ELMT_LP(LP,idpenggunalike);
         if (authorKicauan.jenis == false){
             tambahLike(&k,1);
             setKicauan(l, k, idx);
@@ -74,7 +74,7 @@ void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Pengguna user, ListPengguna LP
             printf("Detil kicauan:\n");
             displayKicauan(k);
         } else{
-            if(isWordEqual(user.nama, authorLIKE) || isFriend(f, user.id, idKicauLike)){
+            if(isWordEqual(user.nama, authorLIKE) || isFriend(f, user.id, idpenggunalike)){
                 tambahLike(&k,1);
                 setKicauan(l, k, idKICAU-1);
                 printf("Selamat! kicauan telah disukai!\n");
