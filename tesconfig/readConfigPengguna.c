@@ -13,9 +13,6 @@ void readConfigPengguna(Word wpath){
     Matrix CurSimbolProfil;
     Word wpath;
     createListPengguna(&progListPengguna);
-    STARTWORD();
-    wpath = currentWord;
-    wpath.TabWord[wpath.Length] = '\0';
     STARTREADCONFIG(wpath);
     nPengguna = wordToInt(currentWord);
     for(h = 0; h < nPengguna; h++){
