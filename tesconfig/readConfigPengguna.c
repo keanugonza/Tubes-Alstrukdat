@@ -2,8 +2,11 @@
 #include <stdio.h> 
 #include "../ADT/pengguna.h"
 #include "../ADT/liststatikpengguna.h"
+#include "../ADT/permintaan_pertemanan.h"
 
 extern ListPengguna progListPengguna;
+extern Friends progFriends;
+extern Queue progQueue[20];
 
 void readConfigPengguna(Word wpath){
     int nPengguna, h, curIdx1, curIdx2, nPermintaan;
@@ -50,6 +53,25 @@ void readConfigPengguna(Word wpath){
         }
         createPengguna(&User, h, CurNama, CurPassword, CurBio, CurNoHP, CurWeton, CurJenis, CurWarnaProfil, CurSimbolProfil);
         ELMT_LP(progListPengguna, h) = User;
+    }
+}
+
+void readConfigPermintaanPertemanan(Word wpath){
+    infotype dum;
+    int nPermintaan, idx;
+    ADVWORD();
+    nPermintaan = wordToInt(currentWord);
+    for(int j=0; j<20; j++){
+        createFriendReqList(&progQueue[j]);
+    }
+    for(int i = 0; i < nPermintaan; i++){
+        ADVWORD();
+        Info(dum) = Nama(ELMT_LP(progListPengguna, wordToInt(currentWord)));
+        ADVWORD();
+        idx = wordToInt(currentWord);
+        ADVWORD();
+        Prio(dum) = wordToInt(currentWord);
+        Enqueue(&progQueue[idx], dum);
     }
 }
 
