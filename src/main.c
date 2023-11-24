@@ -23,9 +23,10 @@
 #include "../ADT/utas.c"
 #include "../ADT/wordmachine.c"
 #include "../ADT/pcolor.c"
-
+#include "../inisialisasi.h"
 
 int main(){
+    pesanpembuka();
     progIdPengguna = -1;
     for(int i=0; i<20; i ++){
         CreateStackDraf(&progStackDraf[i]);
@@ -228,7 +229,7 @@ int main(){
                 ADVWORD();
                 perintah[1] = currentWord;
                 int idUtas = wordToInt(perintah[1]);
-                CETAK_UTAS(progListDinUtas, progFriends, progListPengguna,user,idUtas);
+                CETAK_UTAS(progListDinUtas, progFriends, progListPengguna,user,idUtas, progListDinKicau);
             }
         } 
         else if (isWordEqual(perintah[0],stringToWord("KELUAR"))){

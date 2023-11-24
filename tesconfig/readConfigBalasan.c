@@ -29,7 +29,7 @@ void readConfigBalasan(Word wpath, ListDinKicauan* progListKicau){
             {
                 if (par == NULL)
                 {
-                    par = curTempBalasan;
+                    ANAK_KICAU(KICAUAN(*progListKicau, curIdKicauDibalas-1)) = curTempBalasan;
                 }
                 else
                 {

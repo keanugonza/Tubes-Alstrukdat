@@ -143,6 +143,10 @@ void HAPUSBALAS(int idkicau, int balasdihapus, ListPengguna progListPengguna, Li
         printf("Hei, ini balasan punya siapa? Jangan dihapus ya!\n");
         return;
     }
+    if(IDBALASAN(par) == balasdihapus){
+        ANAK_KICAU(KICAUAN(*progListKicau, idkicau-1)) = SIBLINGBALASAN(par);
+        return;
+    }
     rekurHapusBalas(&par,balasdihapus);
 }
 

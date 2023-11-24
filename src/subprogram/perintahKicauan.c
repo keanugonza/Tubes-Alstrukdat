@@ -64,16 +64,17 @@ void SUKA_KICAUAN(ListDinKicauan *l, int idKICAU, Pengguna user, ListPengguna LP
         Kicauan k;
         k = KICAUAN(*l,idx);
 
-        if (!PRIVAT_KICAUAN(k)){
+        Word authorLIKE = AUTHOR_KICAUAN(k);
+        int idpenggunalike = idxPengguna(LP, authorLIKE);
+        Pengguna authorKicauan = ELMT_LP(LP,idpenggunalike);
+        if (authorKicauan.jenis == false){
             tambahLike(&k,1);
             setKicauan(l, k, idx);
             printf("Selamat! kicauan telah disukai!\n");
             printf("Detil kicauan:\n");
             displayKicauan(k);
         } else{
-            Word authorLIKE = AUTHOR_KICAUAN(k);
-            int idx_pengguna = idxPengguna(LP, authorLIKE);
-            if(isWordEqual(user.nama, authorLIKE) || isFriend(f, user.id, idx_pengguna)){
+            if(isWordEqual(user.nama, authorLIKE) || isFriend(f, user.id, idpenggunalike)){
                 tambahLike(&k,1);
                 setKicauan(l, k, idKICAU-1);
                 printf("Selamat! kicauan telah disukai!\n");
