@@ -15,7 +15,7 @@ void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
     listWeton[4] = stringToWord("Legi");
     Word kosong= stringToWord("");
     printInfoPengguna(*LP, *tempIDpengguna);
-    printf("\nMasukkan Bio Akun:\n");
+    printf("\n\nMasukkan Bio Akun:\n");
     Word bio;
     ADVWORD_takeBlank();
     bio = currentWord;
@@ -45,6 +45,7 @@ void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
             hp = currentWord;
         }
     }
+    ELMT_LP(*LP, *tempIDpengguna).noHP = hp;
     printf("\nMasukkan Weton:\n");
     Word weton;
     ADVWORD_takeBlank();
@@ -59,6 +60,7 @@ void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
         weton = currentWord;
         }
     }
+    ELMT_LP(*LP, *tempIDpengguna).weton = weton;
     printf("\nProfil Anda sudah berhasil diperbarui!\n");
 }
 
@@ -72,9 +74,9 @@ void lihatprofil(ListPengguna *LP, Word val){
             printf("\n\n");
             displayProfil(*LP, i);
         } else {
-            printf("\nWah, akun");
+            printf("\nWah, akun ");
             displayWord(val);
-            printf("diprivat nih. Ikuti dulu yuk untuk bisa melihat profil");
+            printf(" diprivat nih. Ikuti dulu yuk untuk bisa melihat profil ");
             displayWord(val);
             printf("!\n");
         }
