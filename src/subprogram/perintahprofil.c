@@ -28,9 +28,6 @@ void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
     Word bio;
     ADVWORD_takeBlank();
     bio = currentWord;
-    printf(">>>>>>");
-    displayWord(bio);
-    printf("<<<<<<\n");
     if (isWordEqual(bio, kosong) == false){
         while (bio.Length > 135){
             printf("\nBio anda terlalu panjang\n");
@@ -44,9 +41,6 @@ void gantiprofil(ListPengguna *LP, int *tempIDpengguna){
     Word hp;
     ADVWORD_takeBlank();
     hp = currentWord;
-    printf(">>>>>>");
-    displayWord(hp);
-    printf("<<<<<<\n");
     if (isWordEqual(bio, kosong) == false){
         while (!(hp.Length < 20 && isInt(hp))){
             printf("No HP tidak valid. Masukkan lagi yuk!");
