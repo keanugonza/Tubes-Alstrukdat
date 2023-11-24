@@ -107,13 +107,19 @@ Word stringToWord(char* cstring){
 }
 
 int wordToInt(Word w){
-    int i,res;
+    int i,res, peng;
     res = 0;
-    for(i=0;i<w.Length;i++){
+    i = 0;
+    if(w.TabWord == '-'){
+        i++;
+        peng = -1;
+    }
+    else peng = 1;
+    for(i;i<w.Length;i++){
         res *=10;
         res += (int)(w.TabWord[i] - '0');
     }
-    return res;
+    return res*peng;
 }
 
 char* wordToString(Word w){
