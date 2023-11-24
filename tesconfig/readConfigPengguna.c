@@ -5,7 +5,7 @@
 
 extern ListPengguna progListPengguna;
 
-void readConfigPengguna(Word wpath, ListPengguna lp){
+void readConfigPengguna(Word wpath){
     int nPengguna, h, curIdx1, curIdx2, nPermintaan;
     Word CurNama, CurPassword, CurBio, CurNoHP, CurWeton;
     boolean CurJenis;
@@ -52,7 +52,7 @@ void readConfigPengguna(Word wpath, ListPengguna lp){
             }
         }
         createPengguna(&User, h, CurNama, CurPassword, CurBio, CurNoHP, CurWeton, CurJenis, CurWarnaProfil, CurSimbolProfil);
-        ELMT_LP(lp, h) = User;
+        ELMT_LP(progListPengguna, h) = User;
     }
 }
 
