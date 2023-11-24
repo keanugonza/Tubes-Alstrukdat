@@ -8,6 +8,14 @@
 #include "..\..\ADT\listdinKicauan.h"
 #include "..\..\ADT\pengguna.h"
 
+boolean isBlankDraf(Word text){
+    for(int i=0; i<text.Length; i++){
+        if (text.TabWord[i] != ' '){
+            return false;
+        }
+    }
+    return true;
+}
 
 void SIMPAN(StackDraf*s, Word text){
     Draf d;
@@ -17,6 +25,9 @@ void SIMPAN(StackDraf*s, Word text){
 }
 
 void TERBIT(ListDinKicauan *l, Word text, Pengguna user){
+    if (isBlankDraf(text)){
+        printf("\nKicauan tidak boleh hanya berisi spasi!\n");
+    }else{
     Kicauan k;
     int id = listLengthKicauan(*l) + 1;
     int like =0;
@@ -26,6 +37,7 @@ void TERBIT(ListDinKicauan *l, Word text, Pengguna user){
     printf("Selamat! kicauan telah diterbitkan!\n");
     printf("Detil kicauan:\n");
     displayKicauan(k);
+    }
 }
 
 
@@ -74,7 +86,7 @@ void LIHAT_DRAF(StackDraf *s, ListDinKicauan *l, Pengguna user){
         } else if (isWordEqual(currentWord, WORD_HAPUS)){ // hapus
             printf("Draf telah berhasil dihapus!\n");
         } else if (isWordEqual(currentWord, WORD_TERBIT)){ //Terbit
-            TERBIT(l,TEXT_DRAF(d),user);
+                TERBIT(l,TEXT_DRAF(d),user);
         } else if (isWordEqual(currentWord, WORD_KEMBALI)){ //Kembali
             pushDraf(s, d);
         } 

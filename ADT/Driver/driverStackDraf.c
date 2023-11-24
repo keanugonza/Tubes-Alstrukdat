@@ -1,13 +1,14 @@
-#include "kicauan.h"
-#include "stackDraf.h"
-#include "datetime.h"
-#include "wordmachine.h"
-#include "charmachine.h"
+#include "../kicauan.h"
+#include "../stackDraf.h"
+#include "../datetime.h"
+#include "../wordmachine.h"
+#include "../charmachine.h"
+#include <stdio.h>
 
 boolean EndWord;
 Word currentWord;
 int main(){
-    Draf d;
+    Draf d, d2;
     DATETIME T;
     Word author;
     Word text;
@@ -15,38 +16,38 @@ int main(){
     StackDraf s;
     CreateStackDraf(&s);
     
-    STARTWORD_takeBlank();
+    printf("\n\n---------------------push-----------------------\n");
+    STARTWORD();
     text = currentWord;
     createDraf(&d, text);
-    displayDraf(d);
     pushDraf(&s, d);
 
-    STARTWORD_takeBlank();
-    text = currentWord;
-    createDraf(&d, text);
-    displayDraf(d);
-    pushDraf(&s, d);
-
+    printf("\n\n---------------------pop-----------------------\n");
     popDraf(&s, &d);
     displayDraf(d);
 
-    popDraf(&s, &d);
-    displayDraf(d);
-    // createKicauan(&K, 1,text,12,author,true);
-    // pushDraf(&s, K);
-    // printKicauan(&K);
-    
-    // createKicauan(&K, 2,text,12482934,author,true);
-    // pushDraf(&s, K);
-    // printKicauan(&K);
+ 
+    printf("\n\n---------------------push1-----------------------\n");
+    ADVWORD();
+    text = currentWord;
+    createDraf(&d2, text);
+    pushDraf(&s, d2);
 
+    printf("\n\n---------------------push2-----------------------\n");
+    ADVWORD();
+    text = currentWord;
+    createDraf(&d2, text);
+    pushDraf(&s, d2);
 
-    // printf("\n\n-------------OPERASI POP--------------");
-    // popDraf(&s, &K);
-    // printKicauan(&K);
-    // popDraf(&s, &K);
-    // printKicauan(&K);
+    printf("\n\n---------------------pop 1-----------------------\n");
+    popDraf(&s, &d2);
+    displayDraf(d2);
+    printf("\n\n---------------------pop 2-----------------------\n");
+    popDraf(&s, &d2);
+    displayDraf(d2);
+ 
+
  
 }
 
-//gcc -o testKicauan .\datetime.c .\kicauan.c .\listdinKicauan.c .\testKicauan.c
+//gcc  -o main .\driverStackDraf.c ..\charmachine.c ..\datetime.c ..\kicauan.c ..\listdinKicauan.c ..\wordmachine.c ..\stackDraf.c

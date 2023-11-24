@@ -237,6 +237,8 @@ int main(){
         } 
         else if (isWordEqual(perintah[0],stringToWord("MUAT"))){
             // MUAT();
+        } else{
+            printf("\nTidak ada perintah tersebut!\n");
         }
         // displayWord(perintah[0]);
         printf("\n");
