@@ -3,16 +3,16 @@
 #include "../ADT/pengguna.h"
 #include "../ADT/liststatikpengguna.h"
 
-void readConfigPengguna(Word wpath, ListPengguna lp){
+extern ListPengguna progListPengguna;
+
+void readConfigPengguna(Word wpath){
     int nPengguna, h, curIdx1, curIdx2, nPermintaan;
     Word CurNama, CurPassword, CurBio, CurNoHP, CurWeton;
     boolean CurJenis;
     Matrix CurWarnaProfil;
     Matrix CurSimbolProfil;
     Word wpath;
-    STARTWORD();
-    wpath = currentWord;
-    wpath.TabWord[wpath.Length] = '\0';
+    createListPengguna(&progListPengguna);
     STARTREADCONFIG(wpath);
     nPengguna = wordToInt(currentWord);
     for(h = 0; h < nPengguna; h++){
@@ -49,7 +49,7 @@ void readConfigPengguna(Word wpath, ListPengguna lp){
             }
         }
         createPengguna(&User, h, CurNama, CurPassword, CurBio, CurNoHP, CurWeton, CurJenis, CurWarnaProfil, CurSimbolProfil);
-        ELMT_LP(lp, h) = User;
+        ELMT_LP(progListPengguna, h) = User;
     }
 }
 
