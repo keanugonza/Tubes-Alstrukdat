@@ -28,11 +28,13 @@ void masuk(ListPengguna *LP, int *tempIDpengguna){
     Word sandi = currentWord;
     while(isWordEqual(ELMT_LP(*LP,idxPengguna(*LP, nama)).kata_sandi, sandi) == false){
         printf("\nWah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
-        printf("Masukkan nama:\n");
+        printf("\nMasukkan kata sandi:\n");
         ADVWORD_takeBlank();
         sandi = currentWord;
     }
-    printf("\nAnda telah berhasil masuk dengan nama pengguna Tuan Bri. Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n");
+    printf("\nAnda telah berhasil masuk dengan nama pengguna ");
+    displayWord(nama);
+    printf(". Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n");
     }
 }
 

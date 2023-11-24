@@ -30,8 +30,8 @@ int main(){
     for(int i=0; i<20; i ++){
         CreateStackDraf(&progStackDraf[i]);
     }
-    for(int i=0; i<20; i ++){
-        createFriendReqList(&progQueue[i]);
+    for(int j=0; j<20; j ++){
+        createFriendReqList(&progQueue[j]);
     }
     createListPengguna(&progListPengguna);
     CreateListDinKicauan(&progListDinKicau,1);
@@ -44,7 +44,11 @@ int main(){
     perintah[0] = currentWord;
     while(!(isWordEqual(perintah[0],stringToWord("TUTUP_PROGRAM")))){
         if(isWordEqual(perintah[0],stringToWord("DAFTAR"))){
-            daftar(&progListPengguna);
+            if(progIdPengguna != -1){
+                printf("Anda harus keluar dahulu.\n");
+            } else{
+                daftar(&progListPengguna);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("MASUK"))){
             masuk(&progListPengguna, &progIdPengguna);
@@ -229,8 +233,7 @@ int main(){
             }
         } 
         else if (isWordEqual(perintah[0],stringToWord("KELUAR"))){
-            progIdPengguna = -1;
-            printf("\nAnda berhasil logout. Sampai jumpa di pertemuan berikutnya!\n");
+            keluar(&progIdPengguna);
         } 
         else if (isWordEqual(perintah[0],stringToWord("SIMPAN"))){
             // SIMPAN();

@@ -30,17 +30,25 @@ void addFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna L
         printf("Terdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n");
     }
     else if(!isMember(ListPenggunaFriendReq, text)){
-        printf("Pengguna bernama %s tidak ditemukan.\n", text);
+        printf("Pengguna bernama ");
+        displayWord(text);
+        printf("tidak ditemukan.\n");
     }
     else if(isFriend(FriendReq, currUser.id, idxPengguna(ListPenggunaFriendReq, text))){
-        printf("Anda sudah berteman dengan %s!\n", text);
+        printf("Anda sudah berteman dengan ");
+        displayWord(text);
+        printf("!\n");
     }
     else if(hasSentFriendReq(*q, text)){
-        printf("Anda sudah mengirimkan permintaan pertemanan kepada %s. Silakan tunggu hingga permintaan Anda disetujui.\n", text);
+        printf("Anda sudah mengirimkan permintaan pertemanan kepada ");
+        displayWord(text);
+        printf(". Silakan tunggu hingga permintaan Anda disetujui.\n");
     }
     else{
         Enqueue(q, friendReq);
-        printf("Permintaan pertemanan kepada %s telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n", text);
+        printf("Permintaan pertemanan kepada ");
+        displayWord(text);
+        printf(" telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n");
     }
     printf("\n");
 }
@@ -75,11 +83,14 @@ void accFriendReq(Queue *q, Pengguna currUser, Friends *FriendReq, ListPengguna 
     if(isWordEqual(text, stringToWord("YA"))){
         Dequeue(q, &dum);
         addFriend(FriendReq, currUser.id, idxPengguna(ListPenggunaFriendReq, Info(HEAD(*q))));
-        printf("\nPermintaan pertemanan dari %s telah disetujui. Selamat! Anda telah berteman dengan %s.\n", text, text);
+        printf("\nPermintaan pertemanan dari ");
+        printf(" telah disetujui. Selamat! Anda telah berteman dengan %s.\n", text, text);
     }
     else if(!isWordEqual(text, stringToWord("TIDAK"))){
         Dequeue(q, &dum);
-        printf("\nPermintaan pertemanan dari %s telah ditolak.\n", text);
+        printf("\nPermintaan pertemanan dari ");
+        displayWord(text);
+        printf(" telah ditolak.\n");
     }
     printf("\n");
 }
