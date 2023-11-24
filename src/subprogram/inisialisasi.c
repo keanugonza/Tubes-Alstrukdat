@@ -27,21 +27,19 @@ void pesanpembuka(){
 
 void takeConfig(){
     Word pathCheck, path;
-    do{
-        STARTWORD();
+    STARTWORD();
+    while(true){
         path = currentWord;
         pathCheck = currentWord;
         pathCheck = concateWord(stringToWord("folderconfig/"),pathCheck);
         pathCheck.TabWord[pathCheck.Length] = '\0';
-        displayWord(pathCheck);
-        displayWord(stringToWord("folderconfig/"));
         if(checkFolder(pathCheck.TabWord)){
             break;
         }else{
             printf("\nFolder tidak ditemukan, silahkan ulangi input!\n");
             ADVWORD_takeBlank();
         }
-    }while(!checkFolder(path.TabWord));
+    }
     Word penggunaPath, kicauanPath, balasanPath, drafPath, utasPath, folderConfig;
     folderConfig = stringToWord("folderconfig/");
     penggunaPath = concateWord(folderConfig, concateWord(path, stringToWord("/pengguna.config")));
@@ -51,11 +49,7 @@ void takeConfig(){
     utasPath = concateWord(folderConfig, concateWord(path, stringToWord("/utas.config")));
     readConfigPengguna(penggunaPath);
     readConfigKicau(kicauanPath, &progListDinKicau);
-    printf("loro\n");
     readConfigBalasan(balasanPath, &progListDinKicau);
-    printf("tilu\n");
     readConfigDraf(drafPath);
-    printf("papat\n");
     readConfigUtas(utasPath, progListPengguna, &progListDinUtas, progListDinKicau);
-    printf("five\n");
 }

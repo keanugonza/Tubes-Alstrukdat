@@ -25,19 +25,18 @@
 #include "../ADT/wordmachine.c"
 #include "../ADT/pcolor.c"
 
-extern StackDraf progStackDraf[20];
-extern ListPengguna progListPengguna;
-extern Draf progDraf;
-extern ListDinKicauan progListDinKicau;
-extern Kicauan progKicauan;
-extern ListUtas progListDinUtas;
-extern Utas progUtas;
-extern Friends progFriends;
-extern int progIdPengguna;
-extern Queue progQueue[20];
+// extern StackDraf progStackDraf[20];
+// extern ListPengguna progListPengguna;
+// extern Draf progDraf;
+// extern ListDinKicauan progListDinKicau;
+// extern Kicauan progKicauan;
+// extern ListUtas progListDinUtas;
+// extern Utas progUtas;
+// extern Friends progFriends;
+// extern int progIdPengguna;
+// extern Queue progQueue[20];
 
 int main(){
-    pesanpembuka();
     progIdPengguna = -1;
     for(int i=0; i<20; i ++){
         CreateStackDraf(&progStackDraf[i]);
@@ -49,6 +48,8 @@ int main(){
     CreateListDinKicauan(&progListDinKicau,1);
     CreateListDinUtas(&progListDinUtas,1);
     createPertemanan(&progFriends);
+
+    pesanpembuka();
 
     Word perintah[3];
     printf(">> ");
@@ -63,11 +64,7 @@ int main(){
             }
         } 
         else if (isWordEqual(perintah[0],stringToWord("MASUK"))){
-            if(progIdPengguna == -1){
-                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
-            } else{
                 masuk(&progListPengguna, &progIdPengguna);
-            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("GANTI_PROFIL"))){
             if(progIdPengguna == -1){

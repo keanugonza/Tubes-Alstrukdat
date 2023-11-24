@@ -70,7 +70,6 @@ void readConfigPengguna(Word wpath){
         }
         createPengguna(&User, h, CurNama, CurPassword, CurBio, CurNoHP, CurWeton, CurJenis, CurWarnaProfil, CurSimbolProfil);
         insertLastPengguna(&progListPengguna, User);
-        displayWord(Nama(User));
     }
     for(int i = 0;i<20;i++){
         for(int j = 0; j<20;j++){
@@ -84,12 +83,12 @@ void readConfigPengguna(Word wpath){
         }
     }
     readConfigPermintaanPertemanan();
-    printf("hiji\n");
 }
 
 
 void readConfigKicau(Word wpath, ListDinKicauan *progListDinKicau){
     Kicauan K;
+    STARTREADCONFIG(wpath);
     int jumlahKicauan = wordToInt(currentWord);
     CreateListDinKicauan(progListDinKicau, jumlahKicauan);
     for(int i=0; i< jumlahKicauan; i++){
@@ -124,6 +123,7 @@ void readConfigBalasan(Word wpath, ListDinKicauan* progListKicau){
     Word namaPembalas, isiBalasan;
     DATETIME dtBalasan;
     Balasan curTempBalasan, par, curParBalasan;
+    STARTREADCONFIG(wpath);
     nKicauDibalas = wordToInt(currentWord);
     while(nKicauDibalas--){
         ADVWORD();
@@ -228,13 +228,14 @@ void readConfigDraf(Word wpath){
 
         Draf draf;
         for(int i =0; i< jumlahDraf; i++){
-            ADVWORD_takeBlank();
-            DATETIME d = wordToDATETIME(currentWord);
 
             ADVWORD_takeBlank();
             Word text = currentWord;
 
-            createDraf(&draf, text);
+            ADVWORD_takeBlank();
+            DATETIME d = wordToDATETIME(currentWord);
+
+            createDrafConfig(&draf, text, d);
             pushDraf(&temp, draf);
 
         }
@@ -258,8 +259,8 @@ void readConfigUtas(Word wpath, ListPengguna lp, ListUtas *lu, ListDinKicauan lk
     for(i = 0; i < nUtas; i ++){
         ADVWORD_takeBlank();
         CurID = wordToInt(currentWord);
-        AddressToUtas new = newNodeUtas(CurID, AUTHOR_KICAUAN(KICAUAN(lk,CurID-1)), DATETIME_KICAUAN(KICAUAN(lk,CurID-1)), TEXT_KICAUAN(KICAUAN(lk,CurID-1)));
-        insertLastUtas(lu, new);
+        AddressToUtas utasutama = newNodeUtas(CurID, AUTHOR_KICAUAN(KICAUAN(lk,CurID-1)), DATETIME_KICAUAN(KICAUAN(lk,CurID-1)), TEXT_KICAUAN(KICAUAN(lk,CurID-1)));
+        insertLastUtas(lu, utasutama);
         ADVWORD_takeBlank();
         nBalas = wordToInt(currentWord);
         for(j = 0; j < nBalas; j++){
@@ -270,6 +271,7 @@ void readConfigUtas(Word wpath, ListPengguna lp, ListUtas *lu, ListDinKicauan lk
             ADVWORD_takeBlank();
             tempDate = wordToDATETIME(currentWord);
             new = newNodeUtas(0,tempAuthor,tempDate,tempIsi);
+            sambungUtasAt(&utasutama, new, j);
         }
     }
 }

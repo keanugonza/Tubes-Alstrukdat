@@ -10,6 +10,10 @@ void createDraf(Draf *d, Word text){
     TEXT_DRAF(*d) = text;
 }
 
+void createDrafConfig(Draf *d, Word text, DATETIME inpdt){
+    DATETIME_DRAF(*d) = inpdt;
+    TEXT_DRAF(*d) = text;
+}
 
 void displayDraf(Draf d){
     printf("| ");

@@ -37,7 +37,7 @@ typedef struct {
 
 
 void createDraf(Draf *d, Word text);
-
+void createDrafConfig(Draf *d, Word text, DATETIME inpdt);
 void displayDraf(Draf d);
 
 /* Prototype manajemen memori */
