@@ -19,7 +19,7 @@ void addFriendReq(Queue *q, Pengguna currUser, Friends FriendReq, ListPengguna L
     infotype friendReq;
     Word text;
     printf("\nMasukkan nama pengguna:\n");
-    STARTWORD();
+    ADVWORD();
     text = currentWord;
 
     Info(friendReq) = text;
@@ -69,7 +69,7 @@ void accFriendReq(Queue *q, Pengguna currUser, Friends *FriendReq, ListPengguna 
     printf("\n| %s\n| Jumlah teman:  %d\n", Info(HEAD(*q)), Prio(HEAD(*q)));
 
     printf("Apakah Anda ingin menyetujui permintaan pertemanan ini? (YA/TIDAK) ");
-    STARTWORD();
+    ADVWORD();
     text = currentWord;
 
     if(isWordEqual(text, stringToWord("YA"))){
