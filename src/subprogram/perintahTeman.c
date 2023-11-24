@@ -16,6 +16,7 @@ void DAFTAR_TEMAN(Pengguna user, ListPengguna lp, Friends f){
                 if(f[Id(user)][i] == 1){
                     printf("| ");
                     displayWord(Nama(ELMT_LP(lp,i)));
+                    printf("\n");
                 }
             }
         }
