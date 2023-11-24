@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "data.h"
 
-void readConfigUtas(Word wpath, ListPengguna lp, ListUtas lu, ListDinKicauan lk){
+void readConfigUtas(Word wpath, ListPengguna lp, ListUtas *lu, ListDinKicauan lk){
     STARTREADCONFIG(wpath);
     int i,j,nBalas, nUtas = wordToInt(currentWord);
     int CurID;
@@ -13,6 +13,7 @@ void readConfigUtas(Word wpath, ListPengguna lp, ListUtas lu, ListDinKicauan lk)
         ADVWORD_takeBlank();
         CurID = wordToInt(currentWord);
         AddressToUtas new = newNodeUtas(CurID, AUTHOR_KICAUAN(KICAUAN(lk,CurID-1)), DATETIME_KICAUAN(KICAUAN(lk,CurID-1)), TEXT_KICAUAN(KICAUAN(lk,CurID-1)));
+        insertLastUtas(lu, new);
         ADVWORD_takeBlank();
         nBalas = wordToInt(currentWord);
         for(j = 0; j < nBalas; j++){
