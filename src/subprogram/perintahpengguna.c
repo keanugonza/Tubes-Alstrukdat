@@ -13,29 +13,36 @@ void masuk(ListPengguna *LP, int *tempIDpengguna){
     } 
     else
     {
-        printf("\nMasukkan nama:\n");
-    ADVWORD_takeBlank();
-    Word nama = currentWord;
-    while(isMember(*LP, nama) == false){
-        printf("\nWah, nama yang Anda cari tidak ada. Masukkan nama lain!\n");
-        printf("Masukkan nama:\n");
-        ADVWORD_takeBlank();
-        nama = currentWord;
-    }
-    *tempIDpengguna = idxPengguna(*LP, nama);
-    printf("\nMasukkan kata sandi:\n");
-    ADVWORD_takeBlank();
-    Word sandi = currentWord;
-    while(isWordEqual(ELMT_LP(*LP,idxPengguna(*LP, nama)).kata_sandi, sandi) == false){
-        printf("\nWah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
-        printf("\nMasukkan kata sandi:\n");
-        ADVWORD_takeBlank();
-        sandi = currentWord;
-    }
-    printf("\nAnda telah berhasil masuk dengan nama pengguna ");
-    displayWord(nama);
-    printf(". Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n");
-    }
+        if (lenListPengguna(*LP) == 0){
+            printf("\nBelum ada pengguna terdaftar nih. Daftar dulu yuk!\n");
+        }
+        else 
+        {
+            printf("\nMasukkan nama:\n");
+            ADVWORD_takeBlank();
+            Word nama = currentWord;
+            while(isMember(*LP, nama) == false){
+                printf("\nWah, nama yang Anda cari tidak ada. Masukkan nama lain!\n");
+                printf("Masukkan nama:\n");
+                ADVWORD_takeBlank();
+                nama = currentWord;
+            }
+            *tempIDpengguna = idxPengguna(*LP, nama);
+            printf("\nMasukkan kata sandi:\n");
+            ADVWORD_takeBlank();
+            Word sandi = currentWord;
+            while(isWordEqual(ELMT_LP(*LP,idxPengguna(*LP, nama)).kata_sandi, sandi) == false){
+                printf("\nWah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
+                printf("\nMasukkan kata sandi:\n");
+                ADVWORD_takeBlank();
+                sandi = currentWord;
+            }
+            printf("\nAnda telah berhasil masuk dengan nama ");
+            displayWord(ELMT_LP(*LP,idxPengguna(*LP, nama)).nama);
+            printf(". Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n");
+            }
+        }
+        
 }
 
 void daftar(ListPengguna *LP){

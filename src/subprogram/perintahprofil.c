@@ -66,6 +66,7 @@ void lihatprofil(ListPengguna *LP, Word val){
     int i = idxPengguna(*LP, val);
     if (ELMT_LP(*LP,i).jenis == false){
         printInfoPengguna(*LP, i);
+        printf("\n\n");
         displayProfil(*LP, i);
     }
     else 

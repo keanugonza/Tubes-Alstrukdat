@@ -62,10 +62,14 @@ int idxPengguna(ListPengguna LP, Word val)
 
 void printInfoPengguna(ListPengguna LP, int id)
 {
-    printf("\n| Nama: %s",ELMT_LP(LP,id).nama);
-    printf("\n| Bio Akun: %s",ELMT_LP(LP,id).bio);
-    printf("\n| No HP: %s",ELMT_LP(LP,id).noHP);
-    printf("\n| Weton: %s",ELMT_LP(LP,id).weton);
+    printf("\n| Nama: ");
+    displayWord(ELMT_LP(LP,id).nama);
+    printf("\n| Bio Akun: ");
+    displayWord(ELMT_LP(LP,id).bio);
+    printf("\n| No HP: ");
+    displayWord(ELMT_LP(LP,id).noHP);
+    printf("\n| Weton: ");
+    displayWord(ELMT_LP(LP,id).weton);
 }
 
 void displayProfil(ListPengguna LP, int id)

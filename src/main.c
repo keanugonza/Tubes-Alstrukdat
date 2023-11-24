@@ -45,7 +45,7 @@ int main(){
     while(!(isWordEqual(perintah[0],stringToWord("TUTUP_PROGRAM")))){
         if(isWordEqual(perintah[0],stringToWord("DAFTAR"))){
             if(progIdPengguna != -1){
-                printf("Anda harus keluar dahulu.\n");
+                printf("\nAnda harus keluar dahulu.\n");
             } else{
                 daftar(&progListPengguna);
             }
