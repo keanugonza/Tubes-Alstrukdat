@@ -63,21 +63,42 @@ int main(){
             }
         } 
         else if (isWordEqual(perintah[0],stringToWord("MASUK"))){
-            masuk(&progListPengguna, &progIdPengguna);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                masuk(&progListPengguna, &progIdPengguna);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("GANTI_PROFIL"))){
-            gantiprofil(&progListPengguna, &progIdPengguna);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                gantiprofil(&progListPengguna, &progIdPengguna);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("LIHAT_PROFIL"))){
-            ADVWORD();
-            perintah[1] = currentWord;
-            lihatprofil(&progListPengguna, perintah[1]);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                ADVWORD();
+                perintah[1] = currentWord;
+                lihatprofil(&progListPengguna, perintah[1]);
+            }
+            
         } 
         else if (isWordEqual(perintah[0],stringToWord("ATUR_JENIS_AKUN"))){
-            aturjenisakun(&progListPengguna, &progIdPengguna);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                aturjenisakun(&progListPengguna, &progIdPengguna);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("UBAH_FOTO_PROFIL"))){
-            ubahfotoprofil(&progListPengguna, &progIdPengguna);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                ubahfotoprofil(&progListPengguna, &progIdPengguna);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("DAFTAR_TEMAN"))){
             if(progIdPengguna == -1){
@@ -104,7 +125,11 @@ int main(){
             }
         } 
         else if (isWordEqual(perintah[0],stringToWord("DAFTAR_PERMINTAAN_PERTEMANAN"))){
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
             displayFriendReqList(progQueue[progIdPengguna]);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("SETUJUI_PERTEMANAN"))){
             if(progIdPengguna == -1){
@@ -154,28 +179,40 @@ int main(){
             }
         } 
         else if (isWordEqual(perintah[0],stringToWord("BALAS"))){
-            ADVWORD();
-            perintah[1] = currentWord;
-            int idKicau = wordToInt(perintah[1]);
-            ADVWORD();
-            perintah[2] = currentWord;
-            int idBalas = wordToInt(perintah[2]);
-            BALAS(idKicau, idBalas, progListPengguna, &progListDinKicau, progIdPengguna, progFriends);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                ADVWORD();
+                perintah[1] = currentWord;
+                int idKicau = wordToInt(perintah[1]);
+                ADVWORD();
+                perintah[2] = currentWord;
+                int idBalas = wordToInt(perintah[2]);
+                BALAS(idKicau, idBalas, progListPengguna, &progListDinKicau, progIdPengguna, progFriends);
+            } 
         } 
         else if (isWordEqual(perintah[0],stringToWord("BALASAN"))){
-            ADVWORD();
-            perintah[1] = currentWord;
-            int idKicau = wordToInt(perintah[1]);
-            BALASAN(progIdPengguna, idKicau, progListDinKicau, progListPengguna, progFriends);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                ADVWORD();
+                perintah[1] = currentWord;
+                int idKicau = wordToInt(perintah[1]);
+                BALASAN(progIdPengguna, idKicau, progListDinKicau, progListPengguna, progFriends);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("HAPUS_BALASAN"))){
-            ADVWORD();
-            perintah[1] = currentWord;
-            int idKicau = wordToInt(perintah[1]);
-            ADVWORD();
-            perintah[2] = currentWord;
-            int idHapus = wordToInt(perintah[2]);
-            HAPUSBALAS(idKicau, idHapus, progListPengguna, &progListDinKicau, progIdPengguna);
+            if(progIdPengguna == -1){
+                printf("\nAnda belum masuk, masuk terlebih dahulu!\n");
+            } else{
+                ADVWORD();
+                perintah[1] = currentWord;
+                int idKicau = wordToInt(perintah[1]);
+                ADVWORD();
+                perintah[2] = currentWord;
+                int idHapus = wordToInt(perintah[2]);
+                HAPUSBALAS(idKicau, idHapus, progListPengguna, &progListDinKicau, progIdPengguna);
+            }
         } 
         else if (isWordEqual(perintah[0],stringToWord("BUAT_DRAF"))){
             if(progIdPengguna == -1){
