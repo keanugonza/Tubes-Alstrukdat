@@ -8,6 +8,7 @@
 #include "subprogram/perintahTeman.c"
 #include "subprogram/perintahUtas.c"
 #include "subprogram/perintahBalasan.c"
+#include "subprogram/inisialisasi.c"
 #include "../ADT/balasan.c"
 #include "../ADT/charmachine.c"
 #include "../ADT/datetime.c"
@@ -23,7 +24,6 @@
 #include "../ADT/utas.c"
 #include "../ADT/wordmachine.c"
 #include "../ADT/pcolor.c"
-#include "../inisialisasi.h"
 
 int main(){
     pesanpembuka();
