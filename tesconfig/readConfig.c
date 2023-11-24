@@ -6,6 +6,7 @@
 #include "../ADT/listdinKicauan.h"
 #include "../ADT/wordmachine.h"
 #include  "../src/subprogram/data.h"
+#include "../ADT/stackDraf.h"
 
 extern ListPengguna progListPengguna;
 extern Friends progFriends;
@@ -80,7 +81,6 @@ void readConfigPermintaanPertemanan(Word wpath){
 
 void readConfigKicau(Word wpath, ListDinKicauan *progListDinKicau){
     Kicauan K;
-    STARTREADCONFIG(wpath);
     int jumlahKicauan = wordToInt(currentWord);
     CreateListDinKicauan(progListDinKicau, jumlahKicauan);
     for(int i=0; i< jumlahKicauan; i++){
@@ -115,7 +115,6 @@ void readConfigBalasan(Word wpath, ListDinKicauan* progListKicau){
     Word namaPembalas, isiBalasan;
     DATETIME dtBalasan;
     Balasan curTempBalasan, par, curParBalasan;
-    STARTREADCONFIG(wpath);
     nKicauDibalas = wordToInt(currentWord);
     while(nKicauDibalas--){
         ADVWORD();
@@ -159,10 +158,7 @@ void readConfigBalasan(Word wpath, ListDinKicauan* progListKicau){
     }
 }
 
-#include "../ADT/wordmachine.h"
-#include "../ADT/stackDraf.h"
-#include "../ADT/liststatikpengguna.h"
-#include  "../src/subprogram/data.h"
+
 
 int takeIntLast(Word word){
     int banyak = 0;
