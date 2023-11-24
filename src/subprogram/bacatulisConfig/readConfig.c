@@ -1,12 +1,5 @@
-#include <stdio.h> 
-#include "../ADT/pengguna.h"
-#include "../ADT/liststatikpengguna.h"
-#include "../ADT/permintaan_pertemanan.h"
-#include "../ADT/kicauan.h"
-#include "../ADT/listdinKicauan.h"
-#include "../ADT/wordmachine.h"
-#include  "../src/subprogram/data.h"
-#include "../ADT/stackDraf.h"
+#include <stdio.h>
+#include "../data.h"
 
 extern ListPengguna progListPengguna;
 extern Friends progFriends;

@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include "data.h"
-#include "../main.c"
-#include <sys/stat.h>
+#include "inisialisasi.h"
 
 boolean checkFolder(char *path) {
     struct stat statbuf;
@@ -23,7 +20,7 @@ void pesanpembuka(){
     printf("\n");
     printf("Aplikasi untuk studi kualitatif mengenai perilaku manusia dengan menggunakan metode\n(pengambilan data berupa) Focused Group Discussion kedua di zamannya.\n");
     printf("Silahkan masukan folder konfigurasi untuk dimuat: ");
-    // ambil config
+    takeConfig();
     printf("\n");
     printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");
 }
@@ -51,9 +48,4 @@ void takeConfig(){
     drafPath = concateWord(path, stringToWord("/draf.config"));
     utasPath = concateWord(path, stringToWord("/utas.config"));
     
-}
-
-int main(){
-    takeConfig();
-    return 0;
 }

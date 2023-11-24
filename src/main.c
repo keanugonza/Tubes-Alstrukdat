@@ -23,9 +23,10 @@
 #include "../ADT/utas.c"
 #include "../ADT/wordmachine.c"
 #include "../ADT/pcolor.c"
-
+#include "../inisialisasi.h"
 
 int main(){
+    pesanpembuka();
     progIdPengguna = -1;
     for(int i=0; i<20; i ++){
         CreateStackDraf(&progStackDraf[i]);
