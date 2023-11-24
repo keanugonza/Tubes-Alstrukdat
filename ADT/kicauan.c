@@ -14,9 +14,7 @@ void createKicauan(Kicauan *K, int id, Word text, int like, Pengguna user){
     LIKE_KICAUAN(*K) = like;
     AUTHOR_KICAUAN(*K) = user.nama;
     DATETIME_KICAUAN(*K) = T;
-    PRIVAT_KICAUAN(*K) = user.jenis;
     ANAK_KICAU(*K) = NULL;
-    UTAS_KICAU(*K) = NULL;
 }
 
 

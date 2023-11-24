@@ -4,7 +4,6 @@
 #include "wordmachine.h"
 #include "pengguna.h"
 #include "balasan.h"
-#include "utas.h"
 
 
 #ifndef KICAUAN_H
@@ -19,9 +18,7 @@ typedef struct
     int like; 
     Word author;  
     DATETIME T;
-    boolean Privat;
     Balasan leftChild;
-    Utas toUtas;
 } Kicauan;
 
 
@@ -33,7 +30,6 @@ typedef struct
 #define DATETIME_KICAUAN(K) (K).T
 #define PRIVAT_KICAUAN(K) (K).Privat
 #define ANAK_KICAU(K) (K).leftChild
-#define UTAS_KICAU(K) (K).toUtas
 
 
 /* ********** KONSTRUKTOR ********** */
