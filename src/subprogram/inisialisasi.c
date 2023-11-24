@@ -41,11 +41,12 @@ void takeConfig(){
             }
         }
     }while(!checkFolder(path.TabWord));
-    Word penggunaPath, kicauanPath, balasanPath, drafPath, utasPath;
-    penggunaPath = concateWord(path, stringToWord("/pengguna.config"));
-    kicauanPath = concateWord(path, stringToWord("/kicauan.config"));
-    balasanPath = concateWord(path, stringToWord("/balasan.config"));
-    drafPath = concateWord(path, stringToWord("/draf.config"));
-    utasPath = concateWord(path, stringToWord("/utas.config"));
+    Word penggunaPath, kicauanPath, balasanPath, drafPath, utasPath, folderConfig;
+    folderConfig = stringToWord("config/");
+    penggunaPath = concateWord(folderConfig, concateWord(path, stringToWord("/pengguna.config")));
+    kicauanPath = concateWord(folderConfig, concateWord(path, stringToWord("/kicauan.config")));
+    balasanPath = concateWord(folderConfig, concateWord(path, stringToWord("/balasan.config")));
+    drafPath = concateWord(folderConfig, concateWord(path, stringToWord("/draf.config")));
+    utasPath = concateWord(folderConfig, concateWord(path, stringToWord("/utas.config")));
     
 }
