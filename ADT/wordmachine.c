@@ -7,7 +7,7 @@ Word currentWord;
 
 void IgnoreBlanks()
 {
-    while (currentChar == BLANK || currentChar == MARKSC || currentChar == MARKNL)
+    while (currentChar == BLANK)
     {
         ADV_Char();
     }
@@ -35,6 +35,7 @@ void STARTREADCONFIG(Word w){
 
 void ADVWORD()
 {
+    if(currentChar == MARKNL) ADV_Char();
     IgnoreBlanks();
     CopyWord();
 }
@@ -50,24 +51,23 @@ void CopyWord()
         }
         ADV_Char();
     }
+    if(currentChar == MARKSC) ADV_Char();
 }
 
 void STARTWORD_takeBlank()
 {
     START_Char();
-    IgnoreNL();
     CopyWord_takeBlank();
 }
 void STARTREADCONFIG_takeBlank(Word w)
 {
     START_Char_Config(w);
-    IgnoreNL();
     CopyWord_takeBlank();
 }
 
 void ADVWORD_takeBlank()
 {   
-    IgnoreNL();
+    if(currentChar == MARKNL) ADV_Char();
     CopyWord_takeBlank();
 }
 
