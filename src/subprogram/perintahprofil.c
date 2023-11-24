@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "..\..\ADT\pengguna.h"
-#include "..\..\ADT\liststatikpengguna.h"
-#include "..\..\ADT\wordmachine.h"
-#include "..\..\ADT\charmachine.h"
-#include "..\..\ADT\pcolor.h"
+#include "../../ADT/pengguna.h"
+#include "../../ADT/liststatikpengguna.h"
+#include "../../ADT/wordmachine.h"
+#include "../../ADT/charmachine.h"
+#include "../../ADT/pcolor.h"
 
 
 void gantiprofil(ListPengguna *LP, int *tempIDpengguna){

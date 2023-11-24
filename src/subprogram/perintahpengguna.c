@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "..\..\ADT\pengguna.h"
-#include "..\..\ADT\liststatikpengguna.h"
-#include "..\..\ADT\wordmachine.h"
-#include "..\..\ADT\charmachine.h"
-#include "..\..\ADT\foto.h"
+#include "../../ADT/pengguna.h"
+#include "../../ADT/liststatikpengguna.h"
+#include "../../ADT/wordmachine.h"
+#include "../../ADT/charmachine.h"
+#include "../../ADT/foto.h"
 
 
 void masuk(ListPengguna *LP, int *tempIDpengguna){

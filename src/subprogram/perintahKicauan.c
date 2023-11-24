@@ -1,13 +1,12 @@
 #include <stdio.h>
-#include "..\..\ADT\kicauan.h"
-#include "..\..\ADT\listdinKicauan.h"
-#include "..\..\ADT\wordmachine.h"
-#include "..\..\ADT\charmachine.h"
-#include "..\..\ADT\boolean.h"
-#include "..\..\ADT\boolean.h"
-#include "..\..\ADT\friends.h"
-#include "..\..\ADT\pengguna.h"
-#include "..\..\ADT\liststatikpengguna.h"
+#include "../../ADT/kicauan.h"
+#include "../../ADT/listdinKicauan.h"
+#include "../../ADT/wordmachine.h"
+#include "../../ADT/charmachine.h"
+#include "../../ADT/boolean.h"
+#include "../../ADT/friends.h"
+#include "../../ADT/pengguna.h"
+#include "../../ADT/liststatikpengguna.h"
 
 
 

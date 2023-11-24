@@ -22,7 +22,19 @@ void addFriend(Friends *f, int user1, int user2){
     /* F.S. Mengembalikan friends dengan penambahan relasi antara user 1 dan user 2 */
     NODE_TEMAN(*f,user1,user2) = 1;
     NODE_TEMAN(*f,user2,user1) = 1;
+    int i,j,input;
+    for(i=0;i<20;i++){
+        for(j=0;j<20;j++){ 
+            if (j==20-1){
+                printf("%d\n",NODE_TEMAN(*f,i,j));
+            }
+            else{
+            printf("%d ",NODE_TEMAN(*f,i,j));
+            }
+        }
+    }
 }
+
 
 void removeFriend(Friends*f, int user1, int user2){
     /* I.S. Friends terdefinisi */
@@ -37,7 +49,7 @@ boolean isFriend(Friends f, int user1, int user2){
 
 int friendCount(Friends f, int user){
     int i,j;
-    int count;
+    int count=0;
     for(i = 0; i < 20; i++){
         if(i != user){
             if(f[user][i] == 1){
